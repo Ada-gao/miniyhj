@@ -7,7 +7,7 @@
   z-index: -1;
 }
 
-.loginicon{
+.loginicon {
   margin-top: 100rpx;
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@
   height: 120rpx;
 }
 
-.txt{
+.txt {
   font-size: 34rpx;
   margin-top: 50rpx;
   color: #e6e6e6;
@@ -33,7 +33,7 @@
   padding-right: 40rpx;
 }
 
-.item{
+.item {
   border-bottom: 1rpx #e6e6e6 solid;
   display: flex;
   margin-top: 40rpx;
@@ -42,14 +42,14 @@
   align-items: center;
 }
 
-.icon{
+.icon {
   width: 45rpx;
   height: 45rpx;
 }
 
-.input{
+.input {
   flex: 1;
-  color: #ffffff;
+  color: #fff;
   margin-left: 20rpx;
   margin-right: 20rpx;
   font-size: 32rpx;
@@ -57,15 +57,15 @@
   height: 100%;
 }
 
-.phcolor{
+.phcolor {
   color: #e6e6e6;
 }
 
-.button{
+.button {
   margin-top: 80rpx;
   height: 88rpx;
-  background:linear-gradient(-90deg,rgba(47,107,226,1),rgba(93,144,244,1));
-  border-radius:6rpx;
-  color: #ffffff;
+  background: linear-gradient(-90deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));
+  border-radius: 6rpx;
+  color: #fff;
   font-size: 36rpx;
 }
