@@ -1,1 +1,55 @@
-/* pages/about/about.wxss */
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  margin-top: 120rpx;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.name {
+  font-size: 36rpx;
+  margin-top: 40rpx;
+  color: #000000;
+}
+
+.version {
+  font-size: 26rpx;
+  margin-top: 29rpx;
+  color: #868686;
+}
+
+.copyright{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: fixed;
+  bottom: 100rpx;
+}
+
+.txt1 {
+  font-size: 28rpx;
+  color: #3E3E3E;
+}
+
+.txt2 {
+  font-size: 24rpx;
+  color: #868686;
+  margin-top: 29rpx;
+  margin-bottom: 39rpx;
+}
+
+.txt3 {
+  font-size: 28rpx;
+  color: #306CE2;
+  margin-left: 20rpx;
+}
+
+.copy{
+  display: flex;
+  flex-direction: row;
+}
