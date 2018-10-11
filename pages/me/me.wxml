@@ -1,2 +1,4 @@
 <!--pages/me/me.wxml-->
-<text>Me</text>
+<view class="container">
+  <view bindtap='logout'>退出</view>
+</view>

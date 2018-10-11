@@ -1,2 +1,11 @@
 <!--pages/login/login.wxml-->
-<text>Login</text>
+<view class="container">
+  <view class="section">
+    <input type="number" placeholder="手机号"  maxlength="11"  bindinput="phoneInput"/>  
+  </view>
+  <view class="section">
+    <input password type="text" placeholder="密码" bindinput="passwordInput"/>  
+  </view>
+  <view class="section">{{ errorMsg }}</view>
+  <view bindtap="login">登录</view>
+</view>

@@ -1,23 +1,16 @@
 // pages/me/me.js
-Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
-
-  },
-
-  /**
-   * 组件的初始数据
-   */
+const app = getApp()
+Page({
   data: {
 
   },
-
-  /**
-   * 组件的方法列表
-   */
-  methods: {
-
+  //事件处理函数
+  logout: function(e) {
+    // http request to get token
+    delete app.globalData.token
+    wx.removeStorageSync('token')
+    wx.redirectTo({
+      url: '/pages/login/login'
+    })
   }
 })
