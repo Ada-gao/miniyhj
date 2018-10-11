@@ -4,7 +4,9 @@
     "pages/index/index",
     "pages/me/me",
     "pages/404/404",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/task/task",
+    "pages/call/call"
   ],
   "window": {
     "backgroundTextStyle": "light",
