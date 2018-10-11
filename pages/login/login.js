@@ -27,7 +27,7 @@ Page({
         wx.switchTab({
           url: '/pages/index/index',
         })
-      }, 3000)
+      }, 1500)
     }
   },
   switchPwd: function(e) {

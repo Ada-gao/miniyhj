@@ -1,23 +1,26 @@
-// pages/me/me.js
-Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
-
-  },
-
-  /**
-   * 组件的初始数据
-   */
+Page({
   data: {
+  },
+  onLoad: function () {
 
   },
-
-  /**
-   * 组件的方法列表
-   */
-  methods: {
-
+  openAbout: function (e) {
+    wx.navigateTo({
+      url: '/pages/about/about',
+    })
+  },
+  loginOut: function (e) {
+    wx.showModal({
+      title: '提示',
+      content: '您确定要退出登录吗？',
+      success:function(res){
+        if(res.confirm){
+          wx.reLaunch({
+            url: '/pages/login/login',
+          })
+        }
+      }
+    })
+    
   }
 })
