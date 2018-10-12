@@ -1,8 +1,8 @@
-<view>
+<view wx:if="{{isLoading}}">
   <view class='head'>
-    <view class='complete'  style='width:{{completeRate}}%;'/>
-    <image class='snake' src='/image/icon_index_snack.png'/>  
-    <view class='empty'  style='width:{{100 - completeRate}}%;'/>  
+    <view class='complete' style='width:{{completeRate}}%;' />
+    <image class='snake' src='/image/icon_index_snack.png' />
+    <view class='empty' style='width:{{100 - completeRate}}%;' />
   </view>
   <view class='info'>
     <view class='item'>
@@ -14,8 +14,43 @@
       <text class='title'>内容今日目标</text>
     </view>
   </view>
-  <view class='task' bindtap='openTask'>
-   
+  <view class='task' wx:if="{{tasks.length===0}}">
+    <view class='emptyItem'>
+      <image class='emptyicon' src='/image/icon_index_empty.png'></image>
+      <text class='emptyTxt1'>暂无任务</text>
+      <text class='emptyTxt2'>请联系管理员给您分配任务</text>
+    </view>
   </view>
-  <view class='button' bindtap="openCall">开始外呼</view>
+
+  <swiper wx:if="{{tasks.length>0}}" class='card'>
+    <block wx:for="{{tasks}}">
+      <swiper-item>
+        <view bindtap='openTask' class='carditem'>
+          <text class='txt1'>{{item.name}}</text>
+          <view class='line'></view>
+          <view class='carditem2'>
+            <view class='cardsub'>
+              <text class='txt3'>88<text style='font-size:32rpx;'>个</text></text>
+              <text class='txt2'>客户总数</text>
+            </view>
+            <view class='cardsub'></view>
+            <view class='cardsub'>
+              <text class='txt3'>10<text style='font-size:32rpx;'>个</text></text>
+              <text class='txt2'>剩余未呼</text>
+            </view>
+          </view>
+          <view class='line'></view>
+          <text class='txt4'>计划完成时间：2018.7.1</text>
+          <view class='detail'>
+            <text class='txt5'>点击查看任务列表</text>
+            <image class='arrow' src='/image/icon_common_arrow.png' />
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='button' bindtap="openCall">
+    <image class='icon' src='/image/icon_index_call.png'></image>
+    <text class='txt'>开始外呼</text>
+  </view>
 </view>
