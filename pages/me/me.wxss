@@ -65,8 +65,8 @@ page {
   flex-direction: row;
   height: 100rpx;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .icon {
@@ -75,7 +75,7 @@ page {
 }
 
 .arrow {
-  width: 17rpx;
+  width: 33rpx;
   height: 33rpx;
 }
 
