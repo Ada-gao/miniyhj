@@ -1,8 +1,10 @@
-<view class='page'>
+<view>
   <view class='head'>
-    <view class='line'/>
-    <image class='snake' src='/image/icon_me_avatar.png' />
+    <view class='empty'/>  
+    <view class='complete'/>
+  <image class='snake' src='/image/icon_me_avatar.png' />  
   </view>
+  
   <view class='info'>
     <view class='item'>
       <text class='value'>-</text>

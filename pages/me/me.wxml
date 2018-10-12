@@ -19,9 +19,9 @@
     </view>
   </view>
   <view class='about' bindtap='openAbout'>
-    <image class='icon' src='/image/icon_me_avatar.png' />
+    <image class='icon' src='/image/icon_me_about.png' />
     <text class='value'>关于闪电呼</text>
-    <image class='arrow' src='/image/icon_common_arrow_right.png' />
+    <image class='arrow' src='/image/icon_me_arrow.png' />
   </view>
   <view class='button' bindtap="loginOut">退出</view>
 </view>

@@ -2,7 +2,11 @@ Page({
   data: {
   },
   onLoad: function () {
-
+    wx.showToast({
+      title: wx.getSystemInfoSync().screenWidth+'',
+      icon: 'none',
+      duration: 1500,
+    })
   },
   openTask: function (e) {
     wx.showToast({
