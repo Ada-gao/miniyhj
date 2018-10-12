@@ -1,16 +1,24 @@
 // pages/me/me.js
 const app = getApp()
 Page({
-  data: {
-
+  openAbout: function (e) {
+    wx.navigateTo({
+      url: '/pages/about/about',
+    })
   },
-  //事件处理函数
-  logout: function(e) {
-    // http request to get token
-    delete app.globalData.token
-    wx.removeStorageSync('token')
-    wx.redirectTo({
-      url: '/pages/login/login'
+  logout: function (e) {
+    wx.showModal({
+      title: '提示',
+      content: '您确定要退出登录吗？',
+      success:function(res){
+        if(res.confirm){
+           delete app.globalData.token
+           wx.removeStorageSync('token')
+           wx.reLaunch({
+             url: '/pages/login/login',
+           })
+        }
+      }
     })
   }
 })

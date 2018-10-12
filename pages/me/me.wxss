@@ -1,1 +1,98 @@
-/* pages/me/me.wxss */
+page {
+  background: #f4f5f7;
+}
+
+.head {
+  background: #fff;
+  padding-top: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 170rpx;
+  height: 170rpx;
+}
+
+.name {
+  font-size: 36rpx;
+  margin-top: 50rpx;
+  color: #323232;
+  margin-bottom: 20rpx;
+}
+
+.item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info {
+  background: #fff;
+  padding-top: 80rpx;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 59rpx;
+}
+
+.title {
+  font-size: 24rpx;
+  margin-top: 18rpx;
+  color: #9c9c9c;
+}
+
+.txt1 {
+  font-size: 36rpx;
+  color: #3a74e6;
+}
+
+.txt2 {
+  font-size: 36rpx;
+  color: #43c222;
+}
+
+.txt3 {
+  font-size: 36rpx;
+  color: #f14f3c;
+}
+
+.about {
+  background: #fff;
+  margin-top: 30rpx;
+  display: flex;
+  flex-direction: row;
+  height: 100rpx;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.arrow {
+  width: 17rpx;
+  height: 33rpx;
+}
+
+.value {
+  font-size: 28rpx;
+  margin-left: 30rpx;
+  flex: 1;
+  color: #323232;
+}
+
+.button {
+  margin-top: 30rpx;
+  margin-bottom: 60rpx;
+  line-height: 98rpx;
+  background: #fff;
+  border-radius: 6rpx;
+  text-align: center;
+  color: #3a74e6;
+  font-size: 32rpx;
+}

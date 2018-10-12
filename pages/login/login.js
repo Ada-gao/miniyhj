@@ -4,10 +4,8 @@ const app = getApp()
 Page({
   data: {
     redirect: '',
-    isTab: false,
-    phone: '',
-    password: '',
-    errorMsg: ''
+    isTab: false,   
+    isShowPassword: true
   },
   onLoad: function(options) {
     this.setData({
@@ -15,45 +13,39 @@ Page({
       isTab: options.isTab || true
     })
   },
-  phoneInput: function(e) {
-    this.setData({
-      phone: e.detail.value,
-      errorMsg: ''
-    })
-  },
-  passwordInput: function(e) {
-    this.setData({
-      password: e.detail.value,
-      errorMsg: ''
-    })
-  },
-  //登录事件
-  login: function(e) {
-    // http request to get token  
-    console.log('phone:' + this.data.phone)
-    console.log('password:' + this.data.password)
-
-    if (this.data.phone.length === 0 || this.data.password.lenght === 0) {
-      this.setData({
-        errorMsg: '用户名和密码不能为空！',
+  formSubmit: function(e) {
+    let account = e.detail.value.account;
+    let password = e.detail.value.password;
+    if (account.length === 0) {
+      wx.showToast({
+        title: '用户名不能为空',
+        icon: 'none',
+        duration: 1500,
+      })
+    } else if (password.length === 0) {
+      wx.showToast({
+        title: '密码不能为空',
+        icon: 'none',
+        duration: 1500,
       })
     } else {
+      wx.showLoading()
       let that = this
-
+      
       //需要仿照axios进行抽象
       wx.request({
         url: 'http://47.99.32.117/api/auth/login',
         data: {
-          username: this.data.phone,
-          password: this.data.password
-        },    
+          username: account,
+          password: password
+        },
         method: 'POST',
         success(res) {
           console.log(res.statusCode)
-          if(res.statusCode !== 200) { 
+          if(res.statusCode !== 200) {
             that.setData({
               errorMsg: res.data.error
-            })          
+            })
             return
           }
           wx.setStorageSync('token', res.data.token)
@@ -67,8 +59,20 @@ Page({
               url: that.data.redirect
             })
           }
-        }
-      })     
+          wx.hideLoading()
+        }         
+      })
+    }
+  },
+  switchPwd: function(e) {
+    if (this.data.isShowPassword) {
+      this.setData({
+        isShowPassword: false
+      })
+    } else {
+      this.setData({
+        isShowPassword: true
+      })
     }
   }
 })
