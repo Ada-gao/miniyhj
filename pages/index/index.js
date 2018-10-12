@@ -5,20 +5,22 @@ Page({
     total: 120, //总数量
     completeRate: 0,//完成率
     screenWidth: 0, //屏幕宽度
+    isLoading:false,
+    isEmpty:true
   },
   onLoad: function () {
-    this.setData({
-      completeRate: this.data.complete * 100 / this.data.total,
-    })
-  },
-  onShow: function () {
-    console.log('token in index.js:' + app.globalData.token)
     if (!app.globalData.token) {
       wx.redirectTo({
         url: '/pages/login/login?redirect=' + this.route + '&isTab=' + true
       })
       return
     }
+    this.setData({
+      isLoading:true,
+      isEmpty: this.data.complete>0?false:true,
+      completeRate: this.data.complete * 100 / this.data.total,
+    })
+   
   },
   openTask: function (e) {
     wx.showToast({

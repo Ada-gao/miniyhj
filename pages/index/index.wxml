@@ -1,4 +1,4 @@
-<view>
+<view wx:if="{{isLoading}}">
   <view class='head'>
     <view class='complete'  style='width:{{completeRate}}%;'/>
     <image class='snake' src='/image/icon_index_snack.png'/>  
@@ -14,8 +14,28 @@
       <text class='title'>内容今日目标</text>
     </view>
   </view>
-  <view class='task' bindtap='openTask'>
-   
+
+  <view class='task' wx:if="{{total==0}}">
+    <view class='emptyItem'>
+      <image class='emptyicon' src='/image/icon_index_empty.png'></image>
+      <text class='emptyTxt1'>暂无任务</text>
+      <text class='emptyTxt2'>请联系管理员给您分配任务</text>
+    </view>
+     
   </view>
-  <view class='button' bindtap="openCall">开始外呼</view>
+
+    <view class='task' bindtap='openTask' wx:if="{{total>0}}">
+    <view class='emptyItem'>
+      <image class='emptyicon' src='/image/icon_index_empty.png'></image>
+      <text class='emptyTxt1'>暂无任务</text>
+      <text class='emptyTxt2'>请联系管理员给您分配任务</text>
+    </view>
+     
+  </view>
+
+  <view class='button'  bindtap="openCall">
+    <image class='icon' src='/image/icon_index_call.png'></image>
+    <text class='txt'>开始外呼</text>
+  </view>
+  
 </view>
