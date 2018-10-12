@@ -10,7 +10,7 @@
 
 .complete {
   height: 16rpx;
-  background: #e7e7e7;
+  background: #f7f7f7;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
@@ -53,14 +53,14 @@
 }
 
 .task {
-  height: 600rpx;
+  height: 645rpx;
   margin-left: 60rpx;
   margin-right: 60rpx;
   margin-top: 40rpx;
-  border-radius: 12px;
-  box-shadow: 6px 4px 20px rgba(169, 169, 169, 0.4);
+  border-radius: 12rpx;
+  box-shadow: 6rpx 4rpx 20rpx rgba(169, 169, 169, 0.4);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -93,13 +93,91 @@
   color: #d3d3d3;
 }
 
-.button {
+.card {
+  height: 645rpx;
+}
+
+.carditem {
+  padding-left: 60rpx;
+  padding-right: 60rpx;
+  margin-top: 40rpx;
   margin-left: 60rpx;
   margin-right: 60rpx;
+  border-radius: 12rpx;
+  box-shadow: 6rpx 4rpx 20rpx rgba(169, 169, 169, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+.line {
+  height: 1rpx;
+  background: #e9e9e9;
+}
+
+.carditem2 {
+  display: flex;
+  flex-direction: row;
+  height: 200rpx;
+}
+
+.cardsub {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.txt1 {
+  font-size: 32rpx;
+  color: #000;
+  height: 150rpx;
+  line-height: 150rpx;
+}
+
+.txt2 {
+  font-size: 28rpx;
+  color: #9c9c9c;
+}
+
+.txt3 {
+  font-size: 64rpx;
+  color: #222;
+}
+
+.txt4 {
+  font-size: 32rpx;
+  color: #222;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+}
+
+
+.detail{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50rpx;
+}
+
+
+.txt5 {
+  font-size: 24rpx;
+  color: #9c9c9c;
+  flex: 1;
+}
+
+.arrow {
+  width: 33rpx;
+  height: 33rpx;
+}
+
+.button {
   margin-top: 60rpx;
+  margin-left: 60rpx;
+  margin-right: 60rpx;
   line-height: 98rpx;
   background: linear-gradient(-90deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));
-  border-radius: 12px;
+  border-radius: 12rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
