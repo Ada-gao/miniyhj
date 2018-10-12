@@ -20,5 +20,11 @@ Page({
         }
       }
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '闪电呼',
+      path: '/pages/index/index'
+    }
   }
 })
