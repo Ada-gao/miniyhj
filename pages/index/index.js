@@ -1,7 +1,16 @@
-// pages/index/index.js
 const app = getApp()
-
 Page({
+  data: {
+    complete: 20, //完成的数量
+    total: 120, //总数量
+    completeRate: 0,//完成率
+    screenWidth: 0, //屏幕宽度
+  },
+  onLoad: function () {
+    this.setData({
+      completeRate: this.data.complete * 100 / this.data.total,
+    })
+  },
   onShow: function () {
     console.log('token in index.js:' + app.globalData.token)
     if (!app.globalData.token) {
@@ -30,5 +39,5 @@ Page({
     wx.navigateTo({
       url: '/pages/call/call',
     })
-  }
+  },
 })

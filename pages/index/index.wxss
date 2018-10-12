@@ -2,27 +2,30 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 60rpx;
-}
-
-.empty {
-  height: 24rpx;
-  background: #e7e7e7;
-  width: 100rpx;
+  margin-left: 63rpx;
+  margin-right: 67rpx;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
 }
 
 .complete {
-  height: 24rpx;
+  height: 16rpx;
+  background: #e7e7e7;
+  border-top-left-radius:8px;
+  border-bottom-left-radius:8px;
+}
+
+.empty {
+  height: 16rpx;
   background: #5C8FF2;
-  flex: 1;
-  margin-right: 60rpx;
+  border-radius:8px;
+  margin-left: -5rpx;
 }
 
 .snake {
   width: 46rpx;
   height: 51rpx;
-  position: fixed;
-  left: 146rpx;
+  margin-left: -4rpx;
 }
 
 .info {
@@ -40,6 +43,7 @@
 .value {
   font-size: 34rpx;
   color: #3570e4;
+  font-weight: bold;
 }
 
 .title {
