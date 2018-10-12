@@ -152,13 +152,11 @@
   margin-bottom: 50rpx;
 }
 
-
-.detail{
+.detail {
   display: flex;
   flex-direction: row;
   margin-bottom: 50rpx;
 }
-
 
 .txt5 {
   font-size: 24rpx;

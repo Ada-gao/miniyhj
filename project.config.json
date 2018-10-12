@@ -61,6 +61,12 @@
 					"name": "about",
 					"pathName": "pages/about/about",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "call",
+					"pathName": "pages/call/call",
+					"query": ""
 				}
 			]
 		}

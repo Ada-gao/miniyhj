@@ -1,1 +1,118 @@
-/* pages/call/call.wxss */
+.bg {
+  width: 100%;
+  height: 420rpx;
+  z-index: -999;
+  position: fixed;
+}
+
+.scroll {
+  margin-top: 327rpx;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  padding: 40rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1rpx #e9e9e9 solid;
+}
+
+.txt {
+  font-size: 32rpx;
+  color: #505050;
+  margin-bottom: 26rpx;
+}
+
+.info2 {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+}
+
+.item {
+  margin-top: 44rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  font-size: 24rpx;
+  color: #939393;
+}
+
+.label {
+  font-size: 24rpx;
+  color: #252525;
+}
+
+.call {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  line-height: 98rpx;
+  background: linear-gradient(-90deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.calltxt {
+  color: #fff;
+  font-size: 36rpx;
+}
+
+.callicon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 22rpx;
+}
+
+.tip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 50rpx;
+  padding-top: 60rpx;
+  background: #fff;
+}
+
+.line {
+  width: 6rpx;
+  height: 30rpx;
+  background: linear-gradient(-90deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));
+}
+
+.name {
+  color: #000;
+  font-size: 32rpx;
+  padding-left: 10rpx;
+  font-weight: bold;
+}
+
+.term {
+  color: #252525;
+  font-size: 28rpx;
+  padding-left: 67rpx;
+  padding-right: 53rpx;
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
+  background: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
