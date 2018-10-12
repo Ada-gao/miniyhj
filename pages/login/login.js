@@ -1,6 +1,7 @@
 // pages/login/login.js
+var req = require('../../utils/request.js')
 const app = getApp()
-
+let Toast = require('../../utils/Toast.js')
 Page({
   data: {
     redirect: '',
@@ -17,51 +18,27 @@ Page({
     let account = e.detail.value.account;
     let password = e.detail.value.password;
     if (account.length === 0) {
-      wx.showToast({
-        title: '用户名不能为空',
-        icon: 'none',
-        duration: 1500,
-      })
+      Toast.show('用户名不能为空')     
     } else if (password.length === 0) {
-      wx.showToast({
-        title: '密码不能为空',
-        icon: 'none',
-        duration: 1500,
-      })
-    } else {
-      wx.showLoading()
-      let that = this
-      
-      //需要仿照axios进行抽象
-      wx.request({
-        url: 'http://47.99.32.117/api/auth/login',
-        data: {
-          username: account,
-          password: password
-        },
-        method: 'POST',
-        success(res) {
-          console.log(res.statusCode)
-          if(res.statusCode !== 200) {
-            that.setData({
-              errorMsg: res.data.error
-            })
-            return
-          }
-          wx.setStorageSync('token', res.data.token)
-          app.globalData.token = wx.getStorageSync('token')
-          if (that.data.isTab) {
-            wx.switchTab({
-              url: "/" + that.data.redirect
-            })
-          } else {
-            wx.navigateTo({
-              url: that.data.redirect
-            })
-          }
-          wx.hideLoading()
-        }         
-      })
+      Toast.show('密码不能为空')     
+    } else {    
+      let that = this      
+      req.post('/api/auth/login', {
+        username: account,
+        password: password
+      }, function (res){       
+        wx.setStorageSync('token', res.data.token)
+        app.globalData.token = wx.getStorageSync('token')
+        if (that.data.isTab) {
+          wx.switchTab({
+            url: "/" + that.data.redirect
+          })
+        } else {
+          wx.navigateTo({
+            url: that.data.redirect
+          })
+        }
+      })      
     }
   },
   switchPwd: function(e) {
