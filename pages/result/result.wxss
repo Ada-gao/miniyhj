@@ -1,0 +1,58 @@
+.title {
+  display: block;
+}
+.shadow {
+  box-shadow: 0 1rpx 40rpx #DBDBDB;
+}
+.weui-cells__title {
+  font-size: 32rpx;
+  color: #000;
+  padding-top: 40rpx;
+}
+.weui-cells {
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  padding-bottom: 40rpx;
+}
+.weui-cells:before {
+  border-top: none;
+}
+.weui-cells:after {
+  border-bottom: none;
+}
+.weui-cell {
+  font-size: 28rpx;
+  padding: 0;
+  height: 109rpx;
+}
+.weui-cell:before {
+  border-top: none;
+}
+.weui-cell:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1rpx solid #E9E9E9;
+  color: #E9E9E9;
+}
+.weui-cell__hd {
+  color: #323232;
+}
+.weui-cell__bd {
+  text-align: right;
+}
+.call-words {
+  padding: 28rpx 48rpx 40rpx 40rpx;
+  font-size: 28rpx;
+  color: #252525;
+}
+/* 记录外呼结果 */
+.weui-select {
+  border-right: none;
+}
+.button {
+  margin-bottom: 28rpx;
+}
