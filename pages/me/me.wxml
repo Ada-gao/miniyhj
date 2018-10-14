@@ -24,6 +24,6 @@
     <text class='value'>关于闪电呼</text>
     <image class='arrow' src='/image/icon_common_arrow.png' />
   </view>
-  <view class='button' bindtap="logout">退出</view>
+  <view class='logout_button' bindtap="logout">退出</view>
 </view>
 

@@ -41,7 +41,7 @@ Page({
         totalTaskCnt: res.data.totalTaskCnt,
         rate: utils.percent(res.data.totalTaskCompleteCnt, res.data.totalTaskCnt)
       })
-    })
+    }, false)
   },
   openAbout: function (e) {
     wx.navigateTo({
