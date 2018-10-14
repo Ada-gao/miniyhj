@@ -6,7 +6,8 @@
     "pages/about/about",
     "pages/task/task",
     "pages/call/call",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/result/result"
   ],
   "window": {
     "backgroundTextStyle": "light",
