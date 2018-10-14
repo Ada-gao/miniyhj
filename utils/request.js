@@ -1,8 +1,8 @@
 let isAbsoluteURL = require('./helpers/isAbsoluteURL.js')
 let combineURLs = require('./helpers/combineURLs.js')
 let Toast = require('./Toast.js')
-
-let base = "http://47.99.32.117"
+let env = require('../config/env.js')
+const baseURL = env.BASE_API
 
 function get(url, success, showLoading = true) {
   // TODO 此方法需要优化测试
@@ -16,7 +16,7 @@ function post(url, data, success, showLoading = true) {
 function request(url, data, method, success, showLoading = true) {
   var requestURL = url
   if (!isAbsoluteURL(url)) {
-    requestURL = combineURLs(base, url)
+    requestURL = combineURLs(baseURL, url)
   }
   if (showLoading) {
     wx.showLoading()
