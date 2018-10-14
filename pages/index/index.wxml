@@ -11,7 +11,7 @@
     </view>
     <view class='item'>
       <text class='value'>100个</text>
-      <text class='title'>内容今日目标</text>
+      <text class='title'>今日目标</text>
     </view>
   </view>
   <view class='task' wx:if="{{tasks.length===0}}">
@@ -26,21 +26,21 @@
     <block wx:for="{{tasks}}" wx:key="{{item.id}}">
       <swiper-item>
         <view bindtap='openTask' class='carditem'>
-          <text class='txt1'>{{item.name}}</text>
+          <text class='txt1'>{{ item.name }}</text>
           <view class='line'></view>
           <view class='carditem2'>
             <view class='cardsub'>
-              <text class='txt3'>88<text style='font-size:32rpx;'>个</text></text>
+              <text class='txt3'>{{ item.total }}<text style='font-size:32rpx;'>个</text></text>
               <text class='txt2'>客户总数</text>
             </view>
             <view class='cardsub'></view>
             <view class='cardsub'>
-              <text class='txt3'>10<text style='font-size:32rpx;'>个</text></text>
+              <text class='txt3'>{{ item.toFinish }}<text style='font-size:32rpx;'>个</text></text>
               <text class='txt2'>剩余未呼</text>
             </view>
           </view>
           <view class='line'></view>
-          <text class='txt4'>计划完成时间：2018.7.1</text>
+          <text class='txt4'>计划完成时间：{{ item.time }}</text>
           <view class='detail'>
             <text class='txt5'>点击查看任务列表</text>
             <image class='arrow' src='/image/icon_common_arrow.png' />

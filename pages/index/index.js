@@ -1,4 +1,6 @@
 const app = getApp()
+var req = require('../../utils/request.js')
+var utils = require('../../utils/utils.js')
 Page({
   data: {
     complete: 20, //完成的数量
@@ -7,28 +9,7 @@ Page({
     screenWidth: 0, //屏幕宽度
     isLoading: false,
     isEmpty: true,
-    tasks: [{
-        id: 1,
-        name: '某某某特惠产品',
-        total: 88,
-        num: 10,
-        time: '2018.7.1'
-      },
-      {
-        id: 2,
-        name: '某某某特惠产品2',
-        total: 22,
-        num: 2,
-        time: '2018.7.2'
-      },
-      {
-        id: 3,
-        name: '某某某特惠产品3',
-        total: 33,
-        num: 3,
-        time: '2018.7.3'
-      }
-    ]
+    tasks: []
   },
   onLoad: function() {
     if (!app.globalData.token) {
@@ -41,6 +22,23 @@ Page({
       isLoading: true,
       isEmpty: this.data.complete > 0 ? false : true,
       completeRate: this.data.complete * 100 / this.data.total,
+    })
+  },
+  onShow: function() {
+    var that = this
+    req.get('api/task/statisGroup',function(res) {
+      let tasks = res.data.map(function(task) {
+        return {
+          'id': task.taskGroupId,
+          'name': task.taskName,
+          'total': task.totalTaskCnt,
+          'toFinish': task.totalTaskCnt - task.totalTaskCompleteCnt,
+          'time': new Date(task.taskEndDate).toLocaleDateString()
+        }
+      })     
+      that.setData({
+        tasks: tasks
+      })
     })
   },
   openTask: function(e) {

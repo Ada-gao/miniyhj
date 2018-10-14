@@ -133,6 +133,10 @@
   color: #000;
   height: 150rpx;
   line-height: 150rpx;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  -o-text-overflow:ellipsis;
+  overflow: hidden;
 }
 
 .txt2 {
