@@ -3,7 +3,7 @@ let combineURLs = require('./helpers/combineURLs.js')
 let Toast = require('./Toast.js')
 let env = require('../config/env.js')
 const baseURL = env.BASE_API
-
+const app = getApp()
 function get(url, success, showLoading = true) {
   // TODO 此方法需要优化测试
   request(url, {}, 'GET', success, showLoading)
@@ -23,10 +23,14 @@ function request(url, data, method, success, showLoading = true) {
   }
   console.debug(method + ' ' + requestURL)
   if (method === 'POST') console.debug(data)
+  let headers = {
+    'Authorization': app.globalData.token
+  }
   wx.request({
     url: requestURL,
     data: data,
     method: method,
+    header: headers,
     success: function(res) {
       if (res.statusCode == 200) {
         if (showLoading) {
