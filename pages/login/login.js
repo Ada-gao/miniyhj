@@ -38,6 +38,22 @@ Page({
             url: that.data.redirect
           })
         }
+
+        req.get('api/app/me',function(res) {    
+          app.globalData.companyId = res.data.companyId
+          app.globalData.userId = res.data.id
+          app.globalData.mobile = res.data.mobile
+          app.globalData.name = res.data.name
+
+          //放在storage方便调试
+          wx.setStorageSync('userInfo', {
+            companyId: app.globalData.companyId,
+            userId: app.globalData.userId,
+            mobile: app.globalData.mobile,
+            name: app.globalData.name,
+          })
+          
+        })
       })      
     }
   },

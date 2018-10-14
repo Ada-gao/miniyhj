@@ -279,6 +279,20 @@ function extend(a, b, thisArg) {
   return a;
 }
 
+function isNull(val) {
+  return val === null;
+}
+
+function percent(numerator, denominator) {
+  if (denominator === null || denominator === 0 || !isNumber(denominator)) {
+    return 0
+  }
+  if (numerator === null || numerator === 0 || !isNumber(numerator)) {
+    return 0
+  }
+  return parseInt(numerator / denominator * 100)
+}
+
 module.exports = {
   isArray: isArray,
   isArrayBuffer: isArrayBuffer,
@@ -299,5 +313,7 @@ module.exports = {
   forEach: forEach,
   merge: merge,
   extend: extend,
-  trim: trim
+  trim: trim,
+  isNull: isNull,
+  percent: percent
 };
