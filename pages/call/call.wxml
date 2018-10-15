@@ -1,39 +1,46 @@
 <view>
-  <image class='bg' src='/image/icon_call_bg.png'></image>
-  <scroll-view scroll-y="true" class='scroll'>
-    <view class='info'>
-      <text class='txt'>任务名称：<text style='color:#252525'>2018.7-8月聚宝盆陌call</text></text>
-      <text class='txt'>客户姓名：<text style='color:#252525'>谢金鹏</text></text>
-      <text class='txt'>客户电话：<text style='color:#252525'>1310***3282</text></text>
-    </view>
-    <view class='info2'>
-      <view class='item'>
-        <text class='title'>外呼状态</text>
-        <image class='icon' src='/image/icon_call_nocall.png'></image>
-        <text class='label' style='color:#FF393E'>未外呼</text>
-      </view>
-      <view class='item'>
-        <text class='title'>产品名称</text>
-        <image class='icon' src='/image/icon_call_product.png'></image>
-        <text class='label'>聚宝盆</text>
-      </view>
-      <view class='item'>
-        <text class='title'>线索来源</text>
-        <image class='icon' src='/image/icon_call_clue.png'></image>
-        <text class='label'>自有线索</text>
-      </view>
-    </view>
-    <view style='padding-top: 40rpx;background: #fff'>
-      <view class='call' bindtap="callPhone">
-        <image class='callicon' src='/image/icon_index_call.png'></image>
-        <text class='calltxt'>立即拨打</text>
-      </view>
-    </view>
-    <view class='tip'>
-      <view class='line'></view>
-      <text class='name'>外呼话术</text>
-    </view>
+  <view class='bg'>
+    <image class='image' src='/image/icon_call_bg.png'></image>
+  </view>
 
-    <view class='term'>您好，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的您好，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的</view>
+  <scroll-view scroll-y="true" class='scroll'>
+    <view style='background: #fff;'>
+      <view class='info'>
+        <text class='txt'>任务名称：<text style='color:#252525'>2018.7-8月聚宝盆陌call</text></text>
+        <text class='txt' style='margin-top: 26rpx;margin-bottom: 26rpx;'>客户姓名：<text style='color:#252525'>谢金鹏</text></text>
+        <text class='txt'>客户电话：<text style='color:#252525'>1310***3282</text></text>
+      </view>
+      <view class='split'></view>
+      <view class='info2'>
+        <view class='item'>
+          <text class='title'>外呼状态</text>
+          <image class='icon' src='/image/icon_call_nocall.png'></image>
+          <text class='label' style='color:#FF393E'>未外呼</text>
+        </view>
+        <view class='item'>
+          <text class='title'>产品名称</text>
+          <image class='icon' src='/image/icon_call_product.png'></image>
+          <text class='label'>聚宝盆</text>
+        </view>
+        <view class='item'>
+          <text class='title'>线索来源</text>
+          <image class='icon' src='/image/icon_call_clue.png'></image>
+          <text class='label'>自有线索</text>
+        </view>
+      </view>
+      <view>
+        <view class='call' bindtap="callPhone">
+          <image class='callicon' src='/image/icon_index_call.png'></image>
+          <text class='calltxt'>立即拨打</text>
+        </view>
+      </view>
+    </view>
+    <view style='margin-top: 30rpx;background: #fff;'>
+      <view class='tip'>
+        <view class='line'></view>
+        <text class='name'>外呼话术</text>
+      </view>
+      <view class='term'>您好，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的您好，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的</view>
+    </view>
   </scroll-view>
 </view>
