@@ -44,16 +44,19 @@ Page({
     })
   },
   callPhone: function(e) {
-    // console.log(this.data.task)
-    let phneNo = this.data.task.phoneNo
+    let that = this
+    let phneNo = that.data.task.phoneNo
     if (phneNo === '***********'){
       let callLogin = true
-      req.post('api/app/call?nameId=' + this.data.task.outboundNameId + '&taskId=' + this.data.task.taskId, function (res) {
-        console.log(res)
-        // console.log('成功')
+      let nameId = that.data.task.outboundNameId
+      let taskId = that.data.task.taskId
+      req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {
+      },function (res) {
+        console.log(res.data.callSid)
+        wx.navigateTo({
+          url: '/pages/result/result',
+        })
       })
-      // setTimeout(function () {
-      // },10000)
     }else{
       wx.makePhoneCall({
         phoneNumber: phneNo,
