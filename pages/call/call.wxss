@@ -73,6 +73,14 @@ page {
   color: #252525;
 }
 
+.log {
+  font-size: 24rpx;
+  color: #3570e5;
+  margin-bottom: 40rpx;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+}
+
 .call {
   line-height: 98rpx;
   background: linear-gradient(-90deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));
@@ -126,4 +134,19 @@ page {
   width: 0;
   height: 0;
   color: transparent;
+}
+.call_head{
+  width: 150rpx;
+  height: 150rpx;
+  margin: 160rpx auto 40rpx;
+  display: block;
+}
+.call_login{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 510;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.61);
+
 }
