@@ -4,7 +4,6 @@ App({
     var token = wx.getStorageSync('token')
     this.globalData.token = token
     console.log('token:', token)
-
     var userInfo = wx.getStorageSync('userInfo')
     this.globalData.companyId = userInfo.companyId
     this.globalData.userId = userInfo.userId

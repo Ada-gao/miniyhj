@@ -17,7 +17,6 @@
 
 .empty {
   height: 16rpx;
-  background: #5c8ff2;
   border-radius: 8px;
   margin-left: -5rpx;
 }
