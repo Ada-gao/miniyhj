@@ -45,16 +45,14 @@ Page({
   },
   callPhone: function(e) {
     let phneNo = this.data.task.phoneNo
-    if (phneNo === '***********') {
-      wx.makePhoneCall({
-        phoneNumber: '18916797460',
-        success: function() {
-          wx.navigateTo({
-            url: '/pages/result/result',
-          })
-        }
+    if (phneNo === '***********'){
+      let callLogin = true
+      req.post('/api/app/call?nameId=' + id + '&taskId=' + taskid, function (e) {
+
       })
-    } else {
+      setTimeout(function () {
+      },10000)
+    }else{
       wx.makePhoneCall({
         phoneNumber: phneNo,
         success: function() {
