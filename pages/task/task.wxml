@@ -1,2 +1,32 @@
-<!--pages/task/task.wxml-->
-<text>pages/task/task.wxml</text>
+<view class="page">
+  <view class="page__bd page-padding">
+    <view class="title">
+      <picker class="weui-btn" mode="date" value="{{date}}" start="2018-09-01" end="2018-12-01" bindchange="bindDateChange">
+        <button type="default">{{initDate}}</button>
+      </picker>
+      <!-- <image class='arrow-left' src='/image/icon_back.png' /> -->
+      <!-- <view class="text-center">{{initDate}}</view> -->
+      <!-- <image class='arrow-right' src='/image/icon_next.png' /> -->
+    </view>
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick" data-type='{{item.value}}'>
+            <view class="weui-navbar__title">{{item.label}}</view>
+          </view>
+        </block>
+      </view>
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+          <view class="weui-cells weui-cells_after-title">
+            <navigator url="/pages/result/result" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
+              <view class="weui-cell__bd text-left">{{item.contactName}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access">{{item.lastCallResult}}</view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+</view>

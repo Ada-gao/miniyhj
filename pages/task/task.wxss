@@ -1,1 +1,65 @@
 /* pages/task/task.wxss */
+.page-padding {
+  padding: 72rpx;
+  font-family: PingFangSC-Regular;
+}
+.title {
+  position: relative;
+}
+.title image {
+  width: 18rpx;
+  height: 34rpx;
+  /* background-color: #2F6BE2; */
+  position: absolute;
+  top: 0
+}
+.arrow-right {
+  right: 0;
+}
+.arrow-left {
+  left: 0;
+}
+.weui-navbar {
+  border: none;
+  border-radius: 6rpx;
+  font-size: 28rpx;  
+}
+.weui-navbar__item {
+  background: #fff;
+  padding: 10rpx 0;
+  color: #9C9C9C;
+  border: 1rpx solid #ccc;
+}
+.weui-navbar__item:first-child {
+  border-radius: 6rpx 0 0 6rpx;
+}
+.weui-navbar__item:last-child {
+  border-radius: 0 6rpx 6rpx 0;
+}
+.weui-bar__item_on {
+  border: none;
+  background: linear-gradient(-90deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));
+  color: #fff!important;
+}
+.weui-tab__content .weui-cells .weui-cell {
+  padding-left: 0;
+  padding-right: 0;
+  border-bottom: 1rpx solid #E9E9E9;
+  height: 93rpx;
+  line-height: 93rpx;
+  box-sizing: border-box;
+}
+.weui-cells:before {
+  border-top: none;
+}
+.weui-cell:before {
+  border-top: none;
+}
+.text-left {
+  color: #323232;
+  font-size: 32rpx;
+}
+.weui-cell__ft_in-access {
+  color: #346FE4;
+  font-size: 26rpx;
+}
