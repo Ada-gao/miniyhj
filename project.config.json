@@ -73,6 +73,12 @@
 					"name": "result",
 					"pathName": "pages/result/result",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "task",
+					"pathName": "pages/task/task",
+					"query": ""
 				}
 			]
 		}
