@@ -48,10 +48,13 @@ Page({
     let phneNo = this.data.task.phoneNo
     if (phneNo === '***********'){
       let callLogin = true
-      req.post('api/app/call?nameId=' + this.data.task.outboundNameId + '&taskId=' + this.data.task.taskId, function (res) {
-        console.log(res)
-        // console.log('成功')
+      wx.navigateTo({
+        url: '/pages/result/result',
       })
+      // req.post('api/app/call?nameId=' + this.data.task.outboundNameId + '&taskId=' + this.data.task.taskId, function (res) {
+      //   console.log(res)
+      //   // console.log('成功')
+      // })
       // setTimeout(function () {
       // },10000)
     }else{

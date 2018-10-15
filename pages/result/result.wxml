@@ -1,7 +1,7 @@
 <view class="page">
   <view class="page__bd">
     <!-- 通话结果 -->
-    <view class="weui-cells weui-cells_after-title" wx:if="{{!callStart}}">
+    <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <view class="weui-label">通话时长</view>
@@ -73,11 +73,11 @@
         </view>
       </view>
     </view>
-    <view class="weui-cells__title" wx:if="{{callStart}}">外呼话术</view>
+    <button class="button" bindtap="openToast">提交</button>
+    <!-- <view class="weui-cells__title" wx:if="{{callStart}}">外呼话术</view>
     <view class="call-words" wx:if="{{callStart}}">
       您好，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的您好，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的
     </view>
-    <button class="button" bindtap="hangUp" wx:if="{{callStart}}">获取挂断</button>
-    <button class="button" bindtap="openToast" wx:else>提交</button>
+    <button class="button" bindtap="hangUp" wx:if="{{callStart}}">获取挂断</button> -->
   </view>
 </view>
