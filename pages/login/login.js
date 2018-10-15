@@ -29,15 +29,6 @@ Page({
       }, function (res){       
         wx.setStorageSync('token', res.data.token)
         app.globalData.token = wx.getStorageSync('token')
-        if (that.data.isTab) {
-          wx.switchTab({
-            url: "/" + that.data.redirect
-          })
-        } else {
-          wx.navigateTo({
-            url: that.data.redirect
-          })
-        }
         req.get('api/app/me',function(res) {    
           app.globalData.companyId = res.data.companyId
           app.globalData.userId = res.data.id
@@ -50,6 +41,16 @@ Page({
             mobile: app.globalData.mobile,
             name: app.globalData.name,
           })
+          //获取完用户信息后才能跳转页面
+          if (that.data.isTab) {
+            wx.switchTab({
+              url: "/" + that.data.redirect
+            })
+          } else {
+            wx.navigateTo({
+              url: that.data.redirect
+            })
+          }
         })
       })      
     }
