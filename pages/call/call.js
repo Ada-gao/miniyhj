@@ -1,9 +1,9 @@
 Page({
   data: {
-
+    callLogin: false
   },
   onLoad: function(options) {
-
+    console.log(options.title)
   },
   callPhone: function(e) {
     wx.makePhoneCall({

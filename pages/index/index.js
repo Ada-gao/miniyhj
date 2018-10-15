@@ -48,7 +48,7 @@ Page({
   },
   openCall: function(e) {
     wx.navigateTo({
-      url: '/pages/call/call',
+      url: '/pages/call/call?title=' +1233,
     })
   },
   onShareAppMessage: function () {

@@ -37,3 +37,6 @@
     <view class='term'>您好，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的您好，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的，我这边是必佑财富的高级理财经理XXX必佑财富是由钜派创始人胡天翔先生联合海通证券经纬中国、汤臣集团、杉杉集团、正荣集团等联合创立的</view>
   </scroll-view>
 </view>
+<view wx:if="{{callLogin}}" class='call_login'>
+<image class='call_head' src='/image/icon_call_hand.png' />
+</view>
