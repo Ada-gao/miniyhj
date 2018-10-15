@@ -42,8 +42,9 @@ Page({
   },
   //任务列表
   openTask: function(e) {
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/task/task',
+      url: '/pages/task/task?id=' + id,
     })
   },
   //任务详情

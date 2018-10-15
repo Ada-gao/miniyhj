@@ -29,7 +29,7 @@
   <swiper wx:if="{{tasks.length>0}}" class='card'>
     <block wx:for="{{tasks}}" wx:key="{{item.taskGroupId}}">
       <swiper-item>
-        <view bindtap='openTask' class='carditem'>
+        <view bindtap='openTask' class='carditem' data-id="{{item.taskGroupId}}">
           <text class='txt1'>{{ item.taskName }}</text>
           <view class='line'></view>
           <view class='carditem2'>
