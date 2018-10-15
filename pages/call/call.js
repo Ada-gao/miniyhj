@@ -48,17 +48,6 @@ Page({
     let phneNo = that.data.task.phoneNo
     if (phneNo === '***********'){
       let callLogin = true
-<<<<<<< HEAD
-      wx.navigateTo({
-        url: '/pages/result/result',
-      })
-      // req.post('api/app/call?nameId=' + this.data.task.outboundNameId + '&taskId=' + this.data.task.taskId, function (res) {
-      //   console.log(res)
-      //   // console.log('成功')
-      // })
-      // setTimeout(function () {
-      // },10000)
-=======
       let nameId = that.data.task.outboundNameId
       let taskId = that.data.task.taskId
       req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {
@@ -68,7 +57,6 @@ Page({
           url: '/pages/result/result',
         })
       })
->>>>>>> 6618b0a25fd357a0f518a4a9d078aa4af67ad82f
     }else{
       wx.makePhoneCall({
         phoneNumber: phneNo,
