@@ -20,10 +20,14 @@ Page({
   onShow: function() {
     var that = this
     req.get('api/task/statisBySales?userId=' + app.globalData.userId, function(res) {
-      let completeRate = res.data.dailyTaskCnt > 0 ? (res.data.dailyTaskCompleteCnt * 100 / res.data.dailyTaskCnt) : 0;
+      let dailyTaskCnt = res.data.dailyTaskCnt;
+      let dailyTaskCompleteCnt = res.data.dailyTaskCompleteCnt;
+      let completeRate = dailyTaskCnt > 0 ? (dailyTaskCompleteCnt * 100 / dailyTaskCnt) : 0;
       that.setData({
         isLoading: true,
-        completeRate: completeRate
+        completeRate: completeRate,
+        dailyTaskCnt: dailyTaskCnt,
+        dailyTaskCompleteCnt: dailyTaskCompleteCnt,
       })
     }, false)
     req.get('api/task/statisGroup', function(res) {
