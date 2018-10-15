@@ -29,7 +29,7 @@ Page({
         completeRate: completeRate,
         dailyTaskCnt: dailyTaskCnt,
         dailyTaskCompleteCnt: dailyTaskCompleteCnt,
-        isComplete: dailyTaskCompleteCnt === dailyTaskCnt
+        isComplete: completeRate === 100
       })
     }, false)
     req.get('api/task/statisGroup', function(res) {
