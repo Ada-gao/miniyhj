@@ -14,11 +14,13 @@ Page({
     ],
     actionIndex: -1,
     callStart: true,
-    task:''
+    task:'',
+    callsid: ''
   },
   onLoad: function (data) {
     this.setData({
-      task:JSON.parse(data.task)
+      task:JSON.parse(data.task),
+      callsid:data.callsid
     })
   },
   bindCountryChange: function (e) {

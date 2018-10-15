@@ -52,7 +52,7 @@
             <view class="weui-label">电话</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入" />
+            <input class="weui-input" placeholder="请输入" value='{{task.phoneNo}}' />
           </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -60,7 +60,7 @@
             <view class="weui-label">微信</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入" />
+            <input class="weui-input" placeholder="请输入" value='{{task.wechatNo}}'/>
           </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -68,7 +68,7 @@
             <view class="weui-label">备注</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入" />
+            <input class="weui-input" placeholder="请输入" value='{{task.common}}' />
           </view>
         </view>
       </view>

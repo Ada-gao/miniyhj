@@ -61,7 +61,7 @@ Page({
             callLogin: false
           })
           wx.navigateTo({
-            url: '/pages/result/result?task=' +JSON.stringify(that.data.task),
+            url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid,
           })
         },2000)
       })
