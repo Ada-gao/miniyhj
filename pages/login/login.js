@@ -17,10 +17,10 @@ Page({
   formSubmit: function(e) {
     let account = e.detail.value.account;
     let password = e.detail.value.password;
-    if (account.length === 0) {
-      Toast.show('用户名不能为空')     
-    } else if (password.length === 0) {
-      Toast.show('密码不能为空')     
+    if (account.length < 4) {
+      Toast.show('用户名不合法')     
+    } else if (password.length < 6) {
+      Toast.show('密码不合法')     
     } else {    
       let that = this      
       req.post('/api/auth/login', {
@@ -38,13 +38,11 @@ Page({
             url: that.data.redirect
           })
         }
-
         req.get('api/app/me',function(res) {    
           app.globalData.companyId = res.data.companyId
           app.globalData.userId = res.data.id
           app.globalData.mobile = res.data.mobile
           app.globalData.name = res.data.name
-
           //放在storage方便调试
           wx.setStorageSync('userInfo', {
             companyId: app.globalData.companyId,
@@ -52,7 +50,6 @@ Page({
             mobile: app.globalData.mobile,
             name: app.globalData.name,
           })
-          
         })
       })      
     }
