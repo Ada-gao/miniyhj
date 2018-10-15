@@ -1,6 +1,6 @@
-const app = getApp()
 var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
+const app = getApp()
 Page({
   data: {
     dailyTaskCompleteCnt: 0, //完成的数量
@@ -25,7 +25,7 @@ Page({
         isLoading: true,
         completeRate: completeRate
       })
-    })
+    }, false)
     req.get('api/task/statisGroup', function(res) {
       for (var index in res.data) {
         res.data[index].taskEndDate = new Date(res.data[index].taskEndDate).toLocaleDateString()
@@ -34,7 +34,7 @@ Page({
         isLoading: true,
         tasks: res.data
       })
-    })
+    }, false)
   },
   //任务列表
   openTask: function(e) {
