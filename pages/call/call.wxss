@@ -130,11 +130,7 @@ page {
   padding-bottom: 25rpx;
 }
 
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
-}
+
 .call_head{
   width: 150rpx;
   height: 150rpx;
@@ -148,5 +144,4 @@ page {
   z-index: 510;
   width: 100%;
   background: rgba(0, 0, 0, 0.61);
-
 }
