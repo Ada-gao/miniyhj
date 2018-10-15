@@ -1,5 +1,6 @@
 // pages/task/task.js
 var req = require('../../utils/request.js')
+var util = require('../../utils/util.js')
 Page({
 
   /**
@@ -29,6 +30,12 @@ Page({
       createTime: ''
     },
     date: '2016-09-01',
+    resultsColumns: [
+      { label: '未外呼', value: 'NOT_CALL', id: 0 },
+      { label: '空号', value: 'NOT_EXIST', id: 1 },
+      { label: '未接通', value: 'UNCONNECTED', id: 2 },
+      { label: '已接通', value: 'CONNECTED', id: 3 }
+    ],
     list: []
   },
 
@@ -74,6 +81,9 @@ Page({
     var listQuery = that.data.listQuery
     listQuery.createTime = data.initDate
     req.get(`api/app/tasks/${data.groupId}?pageIndex=${listQuery.pageIndex}&pageSize=${listQuery.pageSize}&type=${listQuery.type}&createTime=${listQuery.createTime}`, function (res) {
+      res.data.content.forEach(item => {
+        item.lastCallResult = util.transformText(that.data.resultsColumns, item.lastCallResult)
+      })
       that.setData({
         list: res.data.content || []
       })
