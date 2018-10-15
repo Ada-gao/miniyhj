@@ -47,15 +47,23 @@ Page({
     let that = this
     let phneNo = that.data.task.phoneNo
     if (phneNo === '***********'){
-      let callLogin = true
+      this.setData({
+        callLogin : true
+      })
+      console.log(that.data.callLogin)
       let nameId = that.data.task.outboundNameId
       let taskId = that.data.task.taskId
       req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {
       },function (res) {
         console.log(res.data.callSid)
-        wx.navigateTo({
-          url: '/pages/result/result',
-        })
+        setTimeout(function(){
+            that.setData({
+            callLogin: false
+          })
+          wx.navigateTo({
+            url: '/pages/result/result?task=' +JSON.stringify(that.data.task),
+          })
+        },2000)
       })
     }else{
       wx.makePhoneCall({

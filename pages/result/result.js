@@ -13,10 +13,13 @@ Page({
       { label: '继续跟进', value: 'FOLLOW', id: 2 }
     ],
     actionIndex: -1,
-    callStart: true
+    callStart: true,
+    task:''
   },
-  onLoad: function () {
-
+  onLoad: function (data) {
+    this.setData({
+      task:JSON.parse(data.task)
+    })
   },
   bindCountryChange: function (e) {
     console.log('picker country 发生选择改变，携带值为', e.detail.value);
