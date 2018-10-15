@@ -19,7 +19,7 @@
       <view class="weui-tab__panel">
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
           <view class="weui-cells weui-cells_after-title">
-            <navigator url="/pages/result/result" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
+            <navigator url="/pages/call/call?id={{userId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
               <view class="weui-cell__bd text-left">{{item.contactName}}</view>
               <view class="weui-cell__ft weui-cell__ft_in-access">{{item.lastCallResult}}</view>
             </navigator>
