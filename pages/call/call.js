@@ -44,14 +44,16 @@ Page({
     })
   },
   callPhone: function(e) {
+    // console.log(this.data.task)
     let phneNo = this.data.task.phoneNo
     if (phneNo === '***********'){
       let callLogin = true
-      req.post('/api/app/call?nameId=' + id + '&taskId=' + taskid, function (e) {
-
+      req.post('api/app/call?nameId=' + this.data.task.outboundNameId + '&taskId=' + this.data.task.taskId, function (res) {
+        console.log(res)
+        // console.log('成功')
       })
-      setTimeout(function () {
-      },10000)
+      // setTimeout(function () {
+      // },10000)
     }else{
       wx.makePhoneCall({
         phoneNumber: phneNo,
