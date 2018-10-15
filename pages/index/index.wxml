@@ -1,16 +1,21 @@
 <view wx:if="{{isLoading}}">
   <view class='head'>
     <view class='complete' style='width:{{completeRate}}%;' />
-    <image class='snake' src='/image/icon_index_snack.png' />
-    <view class='empty' style='width:{{100 - completeRate}}%;' />
+    <image class='snake' src="{{dailyTaskCnt>0?'/image/icon_index_snack.png':'/image/icon_index_snack_empty.png'}}" />
+    <block wx:if="{{dailyTaskCnt>0}}">
+      <view class='empty' style="width:{{100 - completeRate}}%;background: #5c8ff2"/>
+    </block>
+    <block wx:if="{{dailyTaskCnt===0}}">
+      <view class='empty' style="width:100%;background:#f7f7f7"/>
+    </block>
   </view>
   <view class='info'>
     <view class='item'>
-      <text class='value'>20个</text>
+      <text class='value'>{{dailyTaskCompleteCnt}}个</text>
       <text class='title'>今日完成</text>
     </view>
     <view class='item'>
-      <text class='value'>100个</text>
+      <text class='value'>{{dailyTaskCnt}}个</text>
       <text class='title'>今日目标</text>
     </view>
   </view>
@@ -21,26 +26,25 @@
       <text class='emptyTxt2'>请联系管理员给您分配任务</text>
     </view>
   </view>
-
   <swiper wx:if="{{tasks.length>0}}" class='card'>
-    <block wx:for="{{tasks}}" wx:key="{{item.id}}">
+    <block wx:for="{{tasks}}" wx:key="{{item.taskGroupId}}">
       <swiper-item>
-        <view bindtap='openTask' class='carditem'>
-          <text class='txt1'>{{ item.name }}</text>
+        <view bindtap='openTask' class='carditem' data-id="{{item.taskGroupId}}">
+          <text class='txt1'>{{ item.taskName }}</text>
           <view class='line'></view>
           <view class='carditem2'>
             <view class='cardsub'>
-              <text class='txt3'>{{ item.total }}<text style='font-size:32rpx;'>个</text></text>
+              <text class='txt3'>{{ item.totalTaskCnt }}<text style='font-size:32rpx;'>个</text></text>
               <text class='txt2'>客户总数</text>
             </view>
             <view class='cardsub'></view>
             <view class='cardsub'>
-              <text class='txt3'>{{ item.toFinish }}<text style='font-size:32rpx;'>个</text></text>
+              <text class='txt3'>{{ item.totalTaskCnt - item.totalTaskCompleteCnt }}<text style='font-size:32rpx;'>个</text></text>
               <text class='txt2'>剩余未呼</text>
             </view>
           </view>
           <view class='line'></view>
-          <text class='txt4'>计划完成时间：{{ item.time }}</text>
+          <text class='txt4'>计划完成时间：{{item.taskEndDate}}</text>
           <view class='detail'>
             <text class='txt5'>点击查看任务列表</text>
             <image class='arrow' src='/image/icon_common_arrow.png' />

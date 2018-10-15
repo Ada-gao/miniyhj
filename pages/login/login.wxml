@@ -9,11 +9,11 @@
     <view class='loginbox'>
       <view class='item'>
         <image class='icon' src='/image/icon_login_account.png' />
-        <input class="input" placeholder-class="phcolor" placeholder="请输入账号" name="account" />
+        <input class="input" placeholder-class="phcolor" placeholder="请输入账号" maxlength='50' name="account" />
       </view>
       <view class='item'>
         <image class='icon' src='/image/icon_login_pwd.png' />
-        <input class="input" placeholder-class="phcolor" placeholder="请输入密码" password="{{isShowPassword}}" name="password" />
+        <input class="input" placeholder-class="phcolor" placeholder="请输入密码" maxlength='12' password="{{isShowPassword}}" name="password" />
         <image class='icon' src="{{isShowPassword?'/image/icon_login_pwd_hide.png':'/image/icon_login_pwd_show.png'}}" bindtap='switchPwd' />
       </view>
       <view>
