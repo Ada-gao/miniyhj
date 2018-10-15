@@ -17,3 +17,15 @@ page {
   justify-content: center;
   color: #fff;
 }
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}

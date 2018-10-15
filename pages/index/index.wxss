@@ -195,3 +195,53 @@
   height: 48rpx;
   margin-right: 22rpx;
 }
+
+.dialog-mask {
+  width: 100%;
+  height: 100%;
+  background-color: #A9A9A9;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.dialog-content {
+  width: 623rpx;
+  height: 706rpx;
+  background-color: #fff;
+  position: absolute;
+  top: 176rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12rpx;
+}
+
+.complete-img {
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.dialog-txt1 {
+  color: #316DE3;
+  font-size: 36rpx;
+  margin-bottom: 39rpx;
+  margin-top: 40rpx;
+}
+
+.dialog-txt2 {
+  color: #909090;
+  font-size: 26rpx;
+  margin-bottom: 76rpx;
+}
+
+.dialog-btn {
+  background: linear-gradient(-90deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));
+  width: 80%;
+  height: 98rpx;
+  color: #fff;
+  font-size: 36rpx;
+}

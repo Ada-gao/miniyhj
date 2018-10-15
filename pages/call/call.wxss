@@ -130,11 +130,7 @@ page {
   padding-bottom: 25rpx;
 }
 
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
-}
+
 .call_head{
   width: 170rpx;
   height: 170rpx;
