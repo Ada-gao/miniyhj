@@ -44,6 +44,13 @@
         </view>
       </view>
     </view>
+    <view style='margin-top: 30rpx;background: #fff;' wx:if="{{task.common}}">
+          <view class='tip'>
+            <view class='line'></view>
+            <text class='name'>备注</text>
+          </view>
+          <view class='term'>{{task.common}}</view>
+    </view>
     <view style='margin-top: 30rpx;background: #fff;'>
           <view class='tip'>
             <view class='line'></view>

@@ -62,10 +62,10 @@
     <image class='icon' src='/image/icon_index_call.png'></image>
     <text class='txt'>开始外呼</text>
   </view>
-  <view class="dialog-mask" wx:if="{{isComplete}}">
+  <view class="dialog-mask" wx:if="{{showComplete}}">
     <view class="dialog-content">
       <image class='complete-img' src='/image/task.png'></image>
-      <text class="dialog-txt1">今天的任务已完成！</text>
+      <text class="dialog-txt1">今天的任务已完成！{{showComplete}}</text>
       <text class="dialog-txt2">请继续加油哦！</text>
       <button class="dialog-btn" type="default" bindtap="closeDialog">知道了</button>
     </view>
