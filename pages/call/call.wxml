@@ -56,8 +56,8 @@
 </view>
 <view wx:if="{{callLogin}}" class='call_login'>
   <image class='call_head' src='/image/icon_call_hand.png' />
-  <view class='call_name'>姓名</view>
-  <view class='call_phone'>13661876478</view>
+  <view class='call_name'>{{task.contactName}}</view>
+  <view class='call_phone'>{{task.phoneNo}}</view>
   <image class='phone_login' src='/image/icon_call_phone.gif'></image>
   <image class='call_cancle' src='/image/icon_call-cancle.png' bindtap='callRrturn'></image>
 </view>
