@@ -61,8 +61,10 @@ Page({
   tabClick: function (e) {
     if (e.currentTarget.dataset.type === 'dnf') {
       this.data.listQuery.type = 'dnf'
+      if (!this.data.list.length && !this.data.totalPages) this.onShow(e.currentTarget.dataset.type)
     } else {
       this.data.listQuery1.type = 'finish'
+      if (!this.data.list1.length && !this.data.totalPages1) this.onShow(e.currentTarget.dataset.type)
     }
     // this.data.listQuery.type = e.currentTarget.dataset.type
     this.setData({
@@ -70,7 +72,6 @@ Page({
     });
     this.data.loadMore = false
     this.data.loadMore1 = false
-    this.onShow(e.currentTarget.dataset.type)
   },
   bindDateChange: function (e) {
     this.setData({
@@ -105,7 +106,8 @@ Page({
     listQuery.createTime = data.initDate
     this.data.hidden = false
     req.get(`api/app/tasks/${data.groupId}?pageIndex=${listQuery.pageIndex}&pageSize=${listQuery.pageSize}&type=${listQuery.type}&createTime=${listQuery.createTime}`, function (res) {
-      res.data.content.forEach(item => {
+      var content = res.data.content
+      content.forEach(item => {
         item.lastCallResult = util.transformText(that.data.resultsColumns, item.lastCallResult)
       })
       that.data.hidden = true
@@ -116,16 +118,19 @@ Page({
             totalPages: true
           })
         }
-        that.setData({
-          isLast: res.data.last
-        })
-        for (var i = 0; i < res.data.content.length; i++) {
-          list.push(res.data.content[i])
+        if (that.data.loadMore) {
+          for (var i = 0; i < content.length; i++) {
+            list.push(content[i])
+          }
+          list = [...list, ...content]
+          that.data.listQuery.pageIndex++
+        } else {
+          list = content
         }
         that.setData({
-          list: list
+          list: list,
+          isLast: res.data.last
         })
-        if (that.data.loadMore) that.data.listQuery.pageIndex++
       } else {
         var list = that.data.list1
         if (!res.data.totalPages) {
@@ -133,16 +138,16 @@ Page({
             totalPages1: true
           })
         }
-        that.setData({
-          isLast1: res.data.last
-        })
-        for (var i = 0; i < res.data.content.length; i++) {
-          list.push(res.data.content[i])
+        for (var i = 0; i < content.length; i++) {
+          list.push(content[i])
+        }
+        if (that.data.loadMore1) {
+          that.data.listQuery1.pageIndex++
         }
         that.setData({
-          list1: list
+          list1: list,
+          isLast1: res.data.last
         })
-        if (that.data.loadMore1) that.data.listQuery1.pageIndex++
       }
     }, false)
   },
