@@ -10,11 +10,8 @@
     "pages/result/result"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "闪电呼",
     "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "color": "#2f2f2f",

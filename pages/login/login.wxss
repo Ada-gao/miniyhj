@@ -1,3 +1,7 @@
+page{
+  padding-top: 125rpx;
+}
+
 .loginbg {
   position: absolute;
   top: 0;
@@ -26,7 +30,7 @@
 }
 
 .loginbox {
-  margin-top: 160rpx;
+  margin-top: 120rpx;
   display: flex;
   flex-direction: column;
   padding-left: 40rpx;
@@ -61,7 +65,7 @@
   color: #e6e6e6;
 }
 
-.button {
+.login {
   margin-top: 80rpx;
   line-height: 98rpx;
   background: linear-gradient(-90deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));

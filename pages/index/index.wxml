@@ -1,12 +1,17 @@
 <view wx:if="{{isLoading}}">
+  <view class='tabBar'>
+    <view class='tabBarTitle'>
+      <text>闪电呼</text>
+    </view>
+  </view>
   <view class='head'>
     <view class='complete' style='width:{{completeRate}}%;' />
     <image class='snake' src="{{dailyTaskCnt>0?'/image/icon_index_snack.png':'/image/icon_index_snack_empty.png'}}" />
     <block wx:if="{{dailyTaskCnt>0}}">
-      <view class='empty' style="width:{{100 - completeRate}}%;background: #5c8ff2"/>
+      <view class='empty' style="width:{{100 - completeRate}}%;background: #5c8ff2" />
     </block>
     <block wx:if="{{dailyTaskCnt===0}}">
-      <view class='empty' style="width:100%;background:#f7f7f7"/>
+      <view class='empty' style="width:100%;background:#f7f7f7" />
     </block>
   </view>
   <view class='info'>

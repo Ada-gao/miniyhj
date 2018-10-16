@@ -2,6 +2,27 @@ page {
   background: #f3f4f6;
 }
 
+.head {
+  margin-top: 40rpx;
+  height: 85rpx;
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  line-height: 85rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.arrow {
+  width: 34rpx;
+  height: 34rpx;
+  margin-left: 38rpx;
+  margin-right: 10rpx;
+}
+
 .bg {
   display: flex;
   flex-direction: column;
@@ -130,30 +151,33 @@ page {
   padding-bottom: 25rpx;
 }
 
-
-.call_head{
+.call_head {
   width: 170rpx;
   height: 170rpx;
   margin: 160rpx auto 40rpx;
   display: block;
 }
-.call_login{
+
+.call_login {
   position: absolute;
   top: 0;
   bottom: 0;
   z-index: 3;
   width: 100%;
-  background: #191919
+  background: #191919;
 }
-.call_name,.call_phone{
+
+.call_name, .call_phone {
   text-align: center;
-  color: #dee2ed
+  color: #dee2ed;
 }
-.phone_login{
+
+.phone_login {
   width: 100%;
-  height: 90rpx
+  height: 90rpx;
 }
-.call_cancle{
+
+.call_cancle {
   width: 130rpx;
   height: 130rpx;
   display: block;

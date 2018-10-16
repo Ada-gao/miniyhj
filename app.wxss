@@ -1,9 +1,40 @@
 /**app.wxss**/
 @import 'weui.wxss';
+
 page {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
+
+.tabBar {
+  height: 125rpx;
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+}
+
+.tabBarBack {
+  margin-top: 40rpx;
+  width: 85rpx;
+  height: 85rpx;
+  text-align: center;
+  line-height: 85rpx;
+  position: fixed;
+}
+
+.tabBarIcon {
+  width: 34rpx;
+  height: 34rpx;
+}
+
+.tabBarTitle {
+  color: #000;
+  text-align: center;
+  padding-top: 65rpx;
+  width: 100%;
+  font-size: 37rpx;
+}
+
 .button {
   margin-top: 60rpx;
   margin-left: 60rpx;
@@ -17,9 +48,11 @@ page {
   justify-content: center;
   color: #fff;
 }
+
 .text-center {
   text-align: center;
 }
+
 .text-left {
   text-align: left;
 }

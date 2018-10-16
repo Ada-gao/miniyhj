@@ -175,5 +175,11 @@ Page({
     this.setData({
       hidden: true
     });
-  }
+    console.log("lower");
+  },
+  back: function (e) {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 })

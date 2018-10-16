@@ -1,5 +1,6 @@
 var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
+const app = getApp()
 Page({
   data: {
     resultsColumns: [
@@ -23,14 +24,14 @@ Page({
     actualCallStartDate: new Date,
     acutalCallEndDate: '',
     outboundTaskId: '',
-    common: ''
+    common: '',
+    duration: 0
   },
   onLoad: function (data) {
     this.setData({
       task:JSON.parse(data.task),
       callsid:data.callsid
     })
-    this.goMessage()
   },
   bindCountryChange: function (e) {
     let result = this.data.resultsColumns[e.detail.value].value
@@ -46,7 +47,8 @@ Page({
       actionIndex: e.detail.value
     })
   },
-  openToast: function () {
+  formSubmit: function (e) {
+    console.log(e.detail.value.contactName)
     let that = this
     let phoneNo = that.data.task.phoneNo
     console.log(that.data.task.wechatNo)
@@ -57,6 +59,9 @@ Page({
       let callsid = that.data.callsid
       req.get('api/app/callStatusResult/' + callsid, function (res) {
         that.callResult(res.data.start,res.data.end)
+        that.setData({
+          duration: res.data.duration
+        })
     })
     } else {
       let acutalCallEndDate = new Date()
@@ -66,6 +71,7 @@ Page({
         that.callResult(that.data.actualCallStartDate, that.data.actualCallStartDate)
       }
     }
+    that.getCallMoney()
   },
   hangUp: function () {
     this.setData({
@@ -103,13 +109,47 @@ Page({
         duration: 2000
       });
       wx.navigateTo({
-        url: 'pages/call/call'
+        url: '/pages/call/call'
       })
     })
   },
   goMessage: function () {
     let that = this
-    req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName,function (res) {
+    req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName,{},function (res) {
+    })
+  },
+  getCallMoney: function () {
+    let that = this
+    req.post('api/call/call/recordCallHistory',{
+      callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
+      clientId: that.data.task.outboundNameId,
+      clientName: that.data.task.contactName,
+      duration: that.data.duration,
+      phoneNum: that.data.task.phoneNo,
+      saleId: app.globalData.id,
+      source: 'miniProgram'
+    },function () {
+
     })
   }
+  // contactName: function (event) {
+  //   this.setData({
+  //     contactName: event.detail.value
+  //   })
+  // },
+  // phoneNo: function () {
+  //   this.setData({
+  //     phoneNo: vent.detail.value
+  //   })
+  // },
+  // wechatNo: function () {
+  //   this.setData({
+  //     wechatNo: vent.detail.value
+  //   })
+  // },
+  // common: function () {
+  //   this.setData({
+  //     phoneNo: vent.detail.value
+  //   })
+  // }
 })
