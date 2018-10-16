@@ -1,13 +1,6 @@
-<!-- <view class="page">
-  <view class="page__bd page-padding">
-    <view class="title">
-      <picker class="weui-btn" mode="date" value="{{initDate}}" start="" end="" bindchange="bindDateChange">
-        <button>{{initDate}}</button>
-      </picker>
-    </view> -->
 <view class="page">
   <view class="page__bd page-padding">
-    <picker mode="date" value="{{date}}" start="2018-09-01" end="2018-12-01" bindchange="bindDateChange">
+    <picker class="weui-btn" mode="date" value="{{initDate}}" start="" end="" bindchange="bindDateChange">
       <view class='picker'>
         <image class='arrow' src='/image/icon_back.png' />
         <text class="date">{{initDate}}</text>
@@ -23,42 +16,36 @@
         </block>
       </view>
       <view class="weui-tab__panel">
-        
         <view class="body-view">
-          <loading hidden="{{hidden}}" bindchange="loadingChange">
+          <loading hidden="{{hidden}}">
             加载中...
           </loading>
         </view>
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-          <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"  bindscroll="scroll">
-            <!-- <view class="item" wx:for="{{list}}">
-              <view class="text">
-                <text class="title">{{item.contactName}}</text>
-                <text class="description">{{item.lastCallResult}}</text>
-              </view>
-            </view> -->
+          <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"  bindscroll="scroll" data-type="dnf">
             <view class="weui-cells weui-cells_after-title">
               <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
                 <view class="weui-cell__bd text-left">{{item.contactName}}</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access">{{item.lastCallResult}}</view>
               </navigator>
             </view>
-            <view wx:if="{{isLast}}">我是有底线的</view>
+            <view wx:if="{{isLast}}" class="weui-loadmore weui-loadmore_line">
+              <view class="weui-loadmore__tips weui-loadmore__tips_in-line">这是底线了...</view>
+            </view>
           </scroll-view>
-          <!-- <view class="weui-cells weui-cells_after-title">
-            <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
-              <view class="weui-cell__bd text-left">{{item.contactName}}</view>
-              <view class="weui-cell__ft weui-cell__ft_in-access">{{item.lastCallResult}}</view>
-            </navigator>
-          </view> -->
         </view>
         <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-          <view class="weui-cells weui-cells_after-title">
-            <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
-              <view class="weui-cell__bd text-left">{{item.contactName}}</view>
-              <view class="weui-cell__ft weui-cell__ft_in-access">{{item.lastCallResult}}</view>
-            </navigator>
-          </view>
+          <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"  bindscroll="scroll" data-type="finish">
+            <view class="weui-cells weui-cells_after-title">
+              <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list1}}" wx:key="{{index}}">
+                <view class="weui-cell__bd text-left">{{item.contactName}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access">{{item.lastCallResult}}</view>
+              </navigator>
+            </view>
+            <view wx:if="{{isLast}}" class="weui-loadmore weui-loadmore_line">
+              <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+            </view>
+          </scroll-view>
         </view>
       </view>
     </view>

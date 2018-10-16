@@ -23,6 +23,12 @@ Page({
       type: 'dnf',
       createTime: ''
     },
+    listQuery1: {
+      pageIndex: 0,
+      pageSize: 10,
+      type: 'finish',
+      createTime: ''
+    },
     resultsColumns: [
       { label: '未外呼', value: 'NOT_CALL', id: 0 },
       { label: '空号', value: 'NOT_EXIST', id: 1 },
@@ -30,6 +36,7 @@ Page({
       { label: '已接通', value: 'CONNECTED', id: 3 }
     ],
     list: [],
+    list1: [],
     scrollTop: 0,
     scrollHeight: 0,
     hidden: true,
@@ -40,64 +47,103 @@ Page({
     var that = this
     wx.getSystemInfo({
       success: function(res) {
-        console.log(res.windowHeight)
         that.setData({
           scrollHeight: 824,
           groupId: options.id
         });
       }
     });
-    // this.setData({
-    //   groupId: options.id
-    // })
   },
   tabClick: function (e) {
-    this.data.listQuery.type = e.currentTarget.dataset.type
+    if (e.currentTarget.dataset.type === 'dnf') {
+      this.data.listQuery.type = 'dnf'
+    } else {
+      this.data.listQuery1.type = 'finish'
+    }
+    // this.data.listQuery.type = e.currentTarget.dataset.type
     this.setData({
-    //   sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
     this.onShow()
   },
   bindDateChange: function (e) {
     this.setData({
-      initDate: e.detail.value
+      initDate: e.detail.value,
+      list: [],
+      list1: [],
+      listQuery: {
+        pageIndex: 0,
+        pageSize: 10,
+        type: 'dnf',
+        createTime: ''
+      },
+      listQuery1: {
+        pageIndex: 0,
+        pageSize: 10,
+        type: 'finish',
+        createTime: ''
+      },
     })
     this.onShow()
   },
-  onShow: function () {
+  onShow: function (riskType) {
     var that = this
     var data = that.data
-    var listQuery = that.data.listQuery
+    var listQuery = {}
+    if (listQuery.type !== 'dnf') {
+      listQuery = that.data.listQuery
+    } else {
+      listQuery = that.data.listQuery1
+    }
     listQuery.createTime = data.initDate
+    this.data.hidden = false
     req.get(`api/app/tasks/${data.groupId}?pageIndex=${listQuery.pageIndex}&pageSize=${listQuery.pageSize}&type=${listQuery.type}&createTime=${listQuery.createTime}`, function (res) {
-      var list = that.data.list
-      if (res.data.last) {
-        that.setData({
-          isLast: true
-        })
-      }
+      
       res.data.content.forEach(item => {
         item.lastCallResult = util.transformText(that.data.resultsColumns, item.lastCallResult)
       })
-      for(var i =0; i < res.data.content.length; i++) {
-        list.push(res.data.content[i])
+      that.data.hidden = true
+      if (listQuery.type === 'dnf') {
+        var list = that.data.list
+        if (res.data.last) {
+          that.setData({
+            isLast: true
+          })
+        }
+        for (var i = 0; i < res.data.content.length; i++) {
+          list.push(res.data.content[i])
+        }
+        that.setData({
+          list: list
+        })
+        that.data.listQuery.pageIndex++
+      } else {
+        var list = that.data.list1
+        if (res.data.last) {
+          that.setData({
+            isLast1: true
+          })
+        }
+        for (var i = 0; i < res.data.content.length; i++) {
+          list.push(res.data.content[i])
+        }
+        that.setData({
+          list1: list
+        })
+        that.data.listQuery1.pageIndex++
       }
-      that.setData({
-        list: list
-      })
-      that.data.listQuery.pageIndex++
-      that.setData({
-        hidden: true
-      })
     }, false)
   },
-  //页面滑动到底部
-   bindDownLoad: function() {
-    var that = this;
-     if (that.data.isLast) return
-    that.onShow();
-    console.log("lower");
+  // 页面滑动到底部
+   bindDownLoad: function(e) {
+     this.onShow();
+     if (e.currentTarget.dataset.type === 'dnf') {
+       if (this.data.isLast) return
+      //  this.data.listQuery.pageIndex++
+     } else {
+       if (this.data.isLast1) return
+      //  this.data.listQuery1.pageIndex++
+     }
   },
   scroll: function (event) {
     //该方法绑定了页面滚动时的事件，我这里记录了当前的position.y的值,为了请求数据之后把页面定位到这里来。
@@ -105,14 +151,29 @@ Page({
       scrollTop : event.detail.scrollTop
     });
   },
-  topLoad: function(event) {
+  topLoad: function(e) {
     //该方法绑定了页面滑动到顶部的事件，然后做上拉刷新
-    page = 0;
+    // page = 0;
+    if (e.currentTarget.dataset.type === 'dnf') {
+      this.data.listQuery.pageIndex = 0
+      this.data.listQuery.type = 'dnf'
+      this.setData({
+        list: [],
+        scrollTop: 0
+      });
+    } else {
+      this.data.listQuery1.pageIndex = 0
+      this.data.listQuery1.type = 'finish'
+      this.setData({
+        list1: [],
+        scrollTop: 0
+      });
+    }
+    this.onShow();
+  },
+  loadingChange: function (falg) {
     this.setData({
-      list : [],
-      scrollTop : 0
+      hidden: true
     });
-    that.onShow();
-    console.log("lower");
   }
 })
