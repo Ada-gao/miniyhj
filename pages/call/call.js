@@ -16,23 +16,23 @@ Page({
     //获取随机任务详情
     let url = 'api/app/miniProgram/nextTask'
     if (options.groupId) {
-      if (options.groupId){
+      if (options.groupId) {
         url += '?groupId=' + options.groupId
       }
-      if (options.taskId){
+      if (options.taskId) {
         url += '&taskId=' + options.taskId
       }
     }
     req.get(url, function(res) {
-      if (options.taskId){
+      if (options.taskId) {
         delete options.taskId
       }
-      if(!res.data){
+      if (!res.data) {
         if (options.groupId) {
           wx.navigateTo({
             url: '/pages/task/task?id=' + options.groupId,
           })
-        }else{
+        } else {
           wx.switchTab({
             url: '/pages/index/index'
           })
@@ -65,27 +65,26 @@ Page({
   callPhone: function(e) {
     let that = this
     let phneNo = that.data.task.phoneNo
-    if (phneNo === '***********'){
+    if (phneNo === '***********') {
       that.setData({
-        callLogin : true
+        callLogin: true
       })
       let nameId = that.data.task.outboundNameId
       let taskId = that.data.task.taskId
-      req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {
-      },function (res) {
+      req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {}, function(res) {
         that.setData({
           callSid: res.data.callSid
         })
-        setTimeout(function(){
-            that.setData({
+        setTimeout(function() {
+          that.setData({
             callLogin: false
           })
           wx.navigateTo({
-            url: '/pages/result/result?task=' +JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid,
+            url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid,
           })
-        },2000)
-      },false)
-    }else{
+        }, 2000)
+      }, false)
+    } else {
       wx.makePhoneCall({
         phoneNumber: phneNo,
         success: function() {
@@ -96,13 +95,18 @@ Page({
       })
     }
   },
-  callRrturn: function () {
+  callRrturn: function() {
     let that = this
-    let callSid = that.data.callSid 
-    req.get('api/call/' + callSid, function () {
+    let callSid = that.data.callSid
+    req.get('api/call/' + callSid, function() {
       that.setData({
         callLogin: false
       })
+    })
+  },
+  back: function (e) {
+    wx.navigateBack({
+      delta: 1
     })
   }
 })

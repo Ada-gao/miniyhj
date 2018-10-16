@@ -1,4 +1,10 @@
 <view>
+  
+ <view class='head' bindtap='back'>
+    <image class='arrow' src='/image/icon_common_back_white.png'></image>
+    <text>返回</text>
+  </view>
+
   <view class='bg'>
     <image class='image' src='/image/icon_call_bg.png'></image>
   </view>
@@ -10,7 +16,7 @@
         <text class='txt' style='margin-top: 26rpx;margin-bottom: 26rpx;'>客户姓名：<text style='color:#252525'>{{task.contactName}}</text></text>
         <text class='txt'>客户电话：<text style='color:#252525'>{{task.phoneNo}}</text></text>
       </view>
-      
+
       <view class='split'></view>
       <view class='info2'>
         <view class='item'>
@@ -30,7 +36,7 @@
         </view>
       </view>
       <view class='log' wx:if="{{lastCallResult==='已接通'}}">最近外呼次数：{{task.callCount}}；最近一次外呼时间：{{lastCallDate}} </view>
-     
+
       <view>
         <view class='call' bindtap="callPhone">
           <image class='callicon' src='/image/icon_index_call.png'></image>
@@ -48,9 +54,9 @@
   </scroll-view>
 </view>
 <view wx:if="{{callLogin}}" class='call_login'>
-<image class='call_head' src='/image/icon_call_hand.png' />
-<view class='call_name'>姓名</view>
-<view class='call_phone'>13661876478</view>
-<image class='phone_login' src='/image/icon_call_phone.gif'></image>
-<image class='call_cancle' src='/image/icon_call-cancle.png'></image>
+  <image class='call_head' src='/image/icon_call_hand.png' />
+  <view class='call_name'>姓名</view>
+  <view class='call_phone'>13661876478</view>
+  <image class='phone_login' src='/image/icon_call_phone.gif'></image>
+  <image class='call_cancle' src='/image/icon_call-cancle.png'></image>
 </view>

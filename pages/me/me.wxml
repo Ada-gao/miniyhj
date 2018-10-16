@@ -1,4 +1,9 @@
 <view>
+  <view class='tabBar'>
+    <view class='tabBarTitle'>
+      <text>我的</text>
+    </view>
+  </view>
   <view class='head'>
     <image class='avatar' src= '/image/icon_me_avatar.png' />
     <text class='name'>{{ userName }}</text>

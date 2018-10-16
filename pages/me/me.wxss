@@ -1,10 +1,8 @@
-page {
-  background: #f4f5f7;
+page{
+  background: #f4f5f7
 }
-
 .head {
   background: #fff;
-  padding-top: 100rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,13 +11,13 @@ page {
 .avatar {
   width: 170rpx;
   height: 170rpx;
+    padding-top: 40rpx;
+  padding-bottom: 40rpx;
 }
 
 .name {
   font-size: 36rpx;
-  margin-top: 50rpx;
   color: #323232;
-  margin-bottom: 20rpx;
 }
 
 .item {
@@ -34,7 +32,7 @@ page {
   padding-top: 80rpx;
   display: flex;
   flex-direction: row;
-  padding-bottom: 59rpx;
+  padding-bottom: 80rpx;
 }
 
 .title {

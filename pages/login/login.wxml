@@ -1,5 +1,4 @@
-<!--pages/login/login.wxml-->
-<view class="container">
+<view>
   <image class='loginbg' src='/image/icon_login_bg.jpg' />
   <view class='loginicon'>
     <image class='logo' src='/image/icon_login_logo.png' />
