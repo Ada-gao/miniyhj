@@ -30,6 +30,7 @@ Page({
         wx.setStorageSync('token', res.data.token)
         app.globalData.token = wx.getStorageSync('token')
         req.get('api/app/me',function(res) {    
+          console.log(res.data)
           app.globalData.companyId = res.data.companyId
           app.globalData.userId = res.data.id
           app.globalData.mobile = res.data.mobile

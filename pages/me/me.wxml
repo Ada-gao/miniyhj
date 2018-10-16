@@ -1,6 +1,6 @@
 <view>
   <view class='head'>
-    <image class='avatar' src='{{ companyLogo }}' />
+    <image class='avatar' src= '/image/icon_me_avatar.png' />
     <text class='name'>{{ userName }}</text>
     <text class='title'>{{ companyName }}</text>
   </view>

@@ -4,7 +4,6 @@ const app = getApp()
 Page({
   data: {
     companyName: '',
-    companyLogo: '/image/icon_me_avatar.png',
     userName: '',
     totalTaskCompleteCnt: 0,
     rate: 0,
@@ -19,7 +18,6 @@ Page({
     req.get('/api/app/getLogoAndName', function(res) {
       that.setData({
         companyName: res.data.companyName || that.data.companyName,
-        companyLogo: utils.isNull(res.data.logo) ? that.data.companyLogo : res.data.logo
       })
     })
   },
