@@ -32,8 +32,8 @@ Page({
       }
       if (!res.data) {
         if (options.groupId) {
-          wx.navigateTo({
-            url: '/pages/task/task?id=' + options.groupId,
+          wx.navigateBack({
+            delta: 1
           })
         } else {
           wx.switchTab({
