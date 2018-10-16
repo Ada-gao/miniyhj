@@ -12,13 +12,34 @@ Page({
   },
   onLoad: function(options) {
     let that = this
-    // console.log(options)
+    console.log(options)
     //获取随机任务详情
     let url = 'api/app/nextTask'
     if (options.groupId) {
-      url += '?groupId=' + options.groupId + '&taskId=' + options.taskId
+      if (options.groupId){
+        url += '?groupId=' + options.groupId
+      }
+      if (options.taskId){
+        url += '&taskId=' + options.taskId
+      }
     }
     req.get(url, function(res) {
+      Toast.show(res)
+      if (options.taskId){
+        delete options.taskId
+      }
+      if(!res.data){
+        if (options.groupId) {
+          wx.navigateTo({
+            url: '/pages/task/task?id=' + options.groupId,
+          })
+        }else{
+          wx.switchTab({
+            url: '/pages/index/index'
+          })
+        }
+        return;
+      }
       console.log(res.data)
       let lastCallResult = res.data.lastCallResult;
       let icon = ''
