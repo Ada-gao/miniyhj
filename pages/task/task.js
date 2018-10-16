@@ -41,7 +41,11 @@ Page({
     scrollHeight: 0,
     hidden: true,
     isLast: false,
-    isLast1: false
+    isLast1: false,
+    loadMore: false,
+    loadMore1: false,
+    totalPages: false,
+    totalPages1: false
   },
   onLoad: function (options) {
     var that = this
@@ -64,7 +68,9 @@ Page({
     this.setData({
       activeIndex: e.currentTarget.id
     });
-    this.onShow()
+    this.data.loadMore = false
+    this.data.loadMore1 = false
+    this.onShow(e.currentTarget.dataset.type)
   },
   bindDateChange: function (e) {
     this.setData({
@@ -90,7 +96,8 @@ Page({
     var that = this
     var data = that.data
     var listQuery = {}
-    if (listQuery.type !== 'dnf') {
+    listQuery.type = riskType
+    if (listQuery.type !== 'finish') {
       listQuery = that.data.listQuery
     } else {
       listQuery = that.data.listQuery1
@@ -98,52 +105,57 @@ Page({
     listQuery.createTime = data.initDate
     this.data.hidden = false
     req.get(`api/app/tasks/${data.groupId}?pageIndex=${listQuery.pageIndex}&pageSize=${listQuery.pageSize}&type=${listQuery.type}&createTime=${listQuery.createTime}`, function (res) {
-      
       res.data.content.forEach(item => {
         item.lastCallResult = util.transformText(that.data.resultsColumns, item.lastCallResult)
       })
       that.data.hidden = true
       if (listQuery.type === 'dnf') {
         var list = that.data.list
-        if (res.data.last) {
+        if (!res.data.totalPages) {
           that.setData({
-            isLast: true
+            totalPages: true
           })
         }
+        that.setData({
+          isLast: res.data.last
+        })
         for (var i = 0; i < res.data.content.length; i++) {
           list.push(res.data.content[i])
         }
         that.setData({
           list: list
         })
-        that.data.listQuery.pageIndex++
+        if (that.data.loadMore) that.data.listQuery.pageIndex++
       } else {
         var list = that.data.list1
-        if (res.data.last) {
+        if (!res.data.totalPages) {
           that.setData({
-            isLast1: true
+            totalPages1: true
           })
         }
+        that.setData({
+          isLast1: res.data.last
+        })
         for (var i = 0; i < res.data.content.length; i++) {
           list.push(res.data.content[i])
         }
         that.setData({
           list1: list
         })
-        that.data.listQuery1.pageIndex++
+        if (that.data.loadMore1) that.data.listQuery1.pageIndex++
       }
     }, false)
   },
   // 页面滑动到底部
    bindDownLoad: function(e) {
-     this.onShow();
      if (e.currentTarget.dataset.type === 'dnf') {
        if (this.data.isLast) return
-      //  this.data.listQuery.pageIndex++
+       this.data.loadMore = true
      } else {
        if (this.data.isLast1) return
-      //  this.data.listQuery1.pageIndex++
+       this.data.loadMore1 = true
      }
+     this.onShow();
   },
   scroll: function (event) {
     //该方法绑定了页面滚动时的事件，我这里记录了当前的position.y的值,为了请求数据之后把页面定位到这里来。
