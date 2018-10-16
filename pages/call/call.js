@@ -72,7 +72,7 @@ Page({
       this.setData({
         callLogin : true
       })
-      console.log(that.data.callLogin)
+      // console.log(that.data.callLogin)
       let nameId = that.data.task.outboundNameId
       let taskId = that.data.task.taskId
       req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {
