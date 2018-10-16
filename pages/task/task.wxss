@@ -6,7 +6,7 @@
 }
 
 .arrow{
-width:18rpx;
+width:34rpx;
 height:34rpx;
 }
 
