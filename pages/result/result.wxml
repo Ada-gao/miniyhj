@@ -50,7 +50,7 @@
             <view class="weui-label">姓名</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入" value='{{task.contactName}}' name='contactName'/>
+            <input class="weui-input" placeholder="请输入" value='{{task.contactName}}' name='contactName' maxlength='20'/>
           </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -58,7 +58,7 @@
             <view class="weui-label">电话</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入" value='{{task.mobileNo}}' name='phoneNo'/>
+            <input class="weui-input" placeholder="请输入" value='{{task.mobileNo}}' maxlength='11' name='phoneNo'/>
           </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -66,7 +66,7 @@
             <view class="weui-label">微信</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入" value='{{task.wechatNo}}' name='wechatNo'/>
+            <input class="weui-input" placeholder="请输入" value='{{task.wechatNo}}' maxlength='20' name='wechatNo'/>
           </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -74,7 +74,7 @@
             <view class="weui-label">备注</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入" value='{{task.common}}' name='common'/>
+            <input class="weui-input" placeholder="请输入" maxlength='100' value='{{task.common}}' name='common'/>
           </view>
         </view>
       </view>

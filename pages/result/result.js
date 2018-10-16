@@ -51,13 +51,13 @@ Page({
     })
   },
   formSubmit: function (e) {
+    let that = this
     that.setData({
       contactName: e.detail.value.contactName,
       mobileNo: e.detail.value.mobileNo,
       wechatNo: e.detail.value.wechatNo,
       common: e.detail.value.common
     })
-    let that = this
     let phoneNo = that.data.task.phoneNo
     console.log(that.data.task.wechatNo)
     // this.setData({
@@ -117,7 +117,7 @@ Page({
         icon: 'success',
         duration: 2000
       });
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/call/call'
       })
     })
