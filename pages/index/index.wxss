@@ -242,6 +242,7 @@
   background: linear-gradient(-90deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));
   width: 80%;
   height: 98rpx;
-  color: #fff;
+  line-height: 98rpx;
+  color: #fff!important;
   font-size: 36rpx;
 }

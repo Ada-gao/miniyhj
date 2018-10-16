@@ -1,8 +1,8 @@
 <view class="page">
   <view class="page__bd page-padding">
     <view class="title">
-      <picker class="weui-btn" mode="date" value="{{date}}" start="2018-09-01" end="2018-12-01" bindchange="bindDateChange">
-        <button type="default">{{initDate}}</button>
+      <picker class="weui-btn" mode="date" value="{{initDate}}" start="" end="" bindchange="bindDateChange">
+        <button>{{initDate}}</button>
       </picker>
       <!-- <image class='arrow-left' src='/image/icon_back.png' /> -->
       <!-- <view class="text-center">{{initDate}}</view> -->
@@ -17,7 +17,36 @@
         </block>
       </view>
       <view class="weui-tab__panel">
+        
+        <view class="body-view">
+          <loading hidden="{{hidden}}" bindchange="loadingChange">
+            加载中...
+          </loading>
+        </view>
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+          <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"  bindscroll="scroll">
+            <!-- <view class="item" wx:for="{{list}}">
+              <view class="text">
+                <text class="title">{{item.contactName}}</text>
+                <text class="description">{{item.lastCallResult}}</text>
+              </view>
+            </view> -->
+            <view class="weui-cells weui-cells_after-title">
+              <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
+                <view class="weui-cell__bd text-left">{{item.contactName}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access">{{item.lastCallResult}}</view>
+              </navigator>
+            </view>
+            <view wx:if="{{isLast}}">我是有底线的</view>
+          </scroll-view>
+          <!-- <view class="weui-cells weui-cells_after-title">
+            <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
+              <view class="weui-cell__bd text-left">{{item.contactName}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access">{{item.lastCallResult}}</view>
+            </navigator>
+          </view> -->
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
           <view class="weui-cells weui-cells_after-title">
             <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
               <view class="weui-cell__bd text-left">{{item.contactName}}</view>
@@ -27,6 +56,5 @@
         </view>
       </view>
     </view>
-    
   </view>
 </view>

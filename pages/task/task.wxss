@@ -1,10 +1,18 @@
 /* pages/task/task.wxss */
 .page-padding {
-  padding: 72rpx;
+  padding: 30rpx 72rpx;
   font-family: PingFangSC-Regular;
 }
 .title {
   position: relative;
+  margin-bottom: 20rpx;
+  height: 93rpx;
+  line-height: 93rpx;
+  box-sizing: border-box;
+}
+.title button {
+  height: 93rpx;
+  line-height: 93rpx;
 }
 .title image {
   width: 18rpx;

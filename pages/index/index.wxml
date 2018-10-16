@@ -53,10 +53,10 @@
       </swiper-item>
     </block>
   </swiper>
-  <!-- <view class='button' bindtap="openCall">
+  <view class='button' bindtap="openCall">
     <image class='icon' src='/image/icon_index_call.png'></image>
     <text class='txt'>开始外呼</text>
-  </view> -->
+  </view>
   <view class="dialog-mask" wx:if="{{isComplete}}">
     <view class="dialog-content">
       <image class='complete-img' src='/image/task.png'></image>

@@ -6,10 +6,10 @@ const formatTime = (date, dateType) => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
   let timeStr = ''
-  if (dateType === 'date') {
-    timeStr = [year, month, day].map(formatNumber).join('/')
+  if (dateType === 'time') {
+    timeStr = [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
   } else {
-    timeStr = [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+    timeStr = [year, month, day].map(formatNumber).join('-')
   }
 
   return timeStr
