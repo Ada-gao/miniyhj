@@ -13,14 +13,13 @@ Page({
   },
   onLoad: function(options) {
     let that = this
-    that.setData({
-      groupId: options.groupId
-    })
-    // console.log(options.groupId)
     //获取随机任务详情
     let url = 'api/app/miniProgram/nextTask'
     if (options.groupId) {
       if (options.groupId) {
+        that.setData({
+          groupId: options.groupId
+        })
         url += '?groupId=' + options.groupId
       }
       if (options.taskId) {
