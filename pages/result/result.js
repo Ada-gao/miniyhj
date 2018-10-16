@@ -61,11 +61,10 @@ Page({
     } else {
       let acutalCallEndDate = new Date()
       if (that.data.actionIndex === 3) {
-        let sdate1 = new Date();
-            sdate1.setMinutes(sdate1.getMinutes() + 30);
-        acutalCallEndDate = sdate1.getHours() + ":" + sdate1.getMinutes();
+        that.callResult(that.data.actualCallStartDate, acutalCallEndDate)
+      } else {
+        that.callResult(that.data.actualCallStartDate, that.data.actualCallStartDate)
       }
-      that.callResult(that.data.actualCallStartDate, acutalCallEndDate)
     }
   },
   hangUp: function () {
@@ -107,12 +106,6 @@ Page({
         url: 'pages/call/call'
       })
     })
-  },
-  conversionTime(time) {
-    let times = time
-    times = times.replace(/-/g, '/')
-    let timeDate = new Date(Date.parse(times))
-    return timeDate
   },
   goMessage: function () {
     let that = this
