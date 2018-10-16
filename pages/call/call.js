@@ -8,11 +8,14 @@ Page({
     lastCallResult: '',
     icon: '',
     lastCallDate: '',
-    callSid: ''
+    callSid: '',
+    groupId:''
   },
   onLoad: function(options) {
     let that = this
-    console.log(options)
+    that.setData({
+      groupId: options.groupId
+    })
     //获取随机任务详情
     let url = 'api/app/miniProgram/nextTask'
     if (options.groupId) {
@@ -75,8 +78,8 @@ Page({
         })
         setTimeout(function() {
           if (that.data.callLogin === true)
-            wx.navigateTo({
-              url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid,
+            wx.redirectTo({
+              url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid + '&groupId=' + that.data.groupId,
             })
             that.setData({
               callLogin: false
@@ -87,8 +90,8 @@ Page({
       wx.makePhoneCall({
         phoneNumber: phneNo,
         success: function() {
-          wx.navigateTo({
-            url: '/pages/result/result?task=' + JSON.stringify(that.data.task),
+          wx.redirectTo({
+            url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&groupId=' + that.data.groupId,
           })
         }
       })

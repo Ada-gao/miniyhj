@@ -7,7 +7,7 @@
   <view class='head'>
     <image class='avatar' src= '/image/icon_me_avatar.png' />
     <text class='name'>{{ userName }}</text>
-    <text class='title'>{{ companyName }}</text>
+    <text class='title' style='padding-left: 40px;padding-right: 40px;'>{{ companyName }}</text>
   </view>
   <view class='info'>
     <view class='item'>

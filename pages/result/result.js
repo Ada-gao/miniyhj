@@ -1,5 +1,6 @@
 var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
+let Toast = require('../../utils/Toast.js')
 const app = getApp()
 Page({
   data: {
@@ -51,35 +52,39 @@ Page({
     })
   },
   formSubmit: function (e) {
+    let that = this
     that.setData({
       contactName: e.detail.value.contactName,
       mobileNo: e.detail.value.mobileNo,
       wechatNo: e.detail.value.wechatNo,
       common: e.detail.value.common
     })
-    let that = this
     let phoneNo = that.data.task.phoneNo
     console.log(that.data.task.wechatNo)
     // this.setData({
     //   wechatNo: that.data.task.wechatNo
     // })
-    if (phoneNo === '***********') {
-      let callsid = that.data.callsid
-      req.get('api/app/callStatusResult/' + callsid, function (res) {
-        that.callResult(res.data.start,res.data.end)
-        that.setData({
-          duration: res.data.duration
-        })
-    })
+    if (that.data.result === '' || that.data.status === '') {
+      Toast.show('标星为必填项')
     } else {
-      let acutalCallEndDate = new Date()
-      if (that.data.actionIndex === 3) {
-        that.callResult(that.data.actualCallStartDate, acutalCallEndDate)
+      if (phoneNo === '***********') {
+        let callsid = that.data.callsid
+        req.get('api/app/callStatusResult/' + callsid, function (res) {
+          that.callResult(res.data.start, res.data.end)
+          that.setData({
+            duration: res.data.duration
+          })
+        })
       } else {
-        that.callResult(that.data.actualCallStartDate, that.data.actualCallStartDate)
+        let acutalCallEndDate = new Date()
+        if (that.data.actionIndex === 3) {
+          that.callResult(that.data.actualCallStartDate, acutalCallEndDate)
+        } else {
+          that.callResult(that.data.actualCallStartDate, that.data.actualCallStartDate)
+        }
       }
+      that.getCallMoney()
     }
-    that.getCallMoney()
   },
   hangUp: function () {
     this.setData({
@@ -117,7 +122,7 @@ Page({
         icon: 'success',
         duration: 2000
       });
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/call/call'
       })
     })
