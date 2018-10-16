@@ -7,11 +7,12 @@ Page({
     task: '',
     lastCallResult: '',
     icon: '',
-    lastCallDate: ''
+    lastCallDate: '',
+    callSid: ''
   },
   onLoad: function(options) {
     let that = this
-    console.log(options)
+    // console.log(options)
     //获取随机任务详情
     let url = 'api/app/nextTask'
     if (options.groupId) {
@@ -34,7 +35,7 @@ Page({
         lastCallResult = '未接通'
         icon = '/image/icon_call_status_fail.png'
       }
-      console.log(lastCallResult)
+      // console.log(lastCallResult)
       that.setData({
         task: res.data,
         lastCallResult: lastCallResult,
@@ -55,13 +56,15 @@ Page({
       let taskId = that.data.task.taskId
       req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {
       },function (res) {
-        console.log(res.data.callSid)
+        this.setData({
+          callSid: res.data.callSid
+        })
         setTimeout(function(){
             that.setData({
             callLogin: false
           })
           wx.navigateTo({
-            url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid,
+            url: '/pages/result/result?task=' +JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid,
           })
         },2000)
       })
@@ -76,4 +79,13 @@ Page({
       })
     }
   },
+  callRrturn: function () {
+    let that = this
+    let callSid = that.data.callSid 
+    req.get('api/call/' + callSid, function () {
+      this.setData({
+        callLogin: false
+      })
+    })
+  }
 })

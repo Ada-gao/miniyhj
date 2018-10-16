@@ -52,7 +52,7 @@ Page({
   //任务详情
   openCall: function(e) {
     wx.navigateTo({
-      url: '/pages/call/call?title=' +1233,
+      url: '/pages/call/call',
     })
   },
   //分享

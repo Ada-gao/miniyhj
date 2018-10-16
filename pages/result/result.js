@@ -1,3 +1,5 @@
+var req = require('../../utils/request.js')
+var utils = require('../../utils/utils.js')
 Page({
   data: {
     resultsColumns: [
@@ -15,35 +17,106 @@ Page({
     actionIndex: -1,
     callStart: true,
     task:'',
-    callsid: ''
+    callsid: '',
+    result: '',
+    status: '',
+    actualCallStartDate: new Date,
+    acutalCallEndDate: '',
+    outboundTaskId: '',
+    common: ''
   },
   onLoad: function (data) {
     this.setData({
       task:JSON.parse(data.task),
       callsid:data.callsid
     })
+    this.goMessage()
   },
   bindCountryChange: function (e) {
-    console.log('picker country 发生选择改变，携带值为', e.detail.value);
+    let result = this.data.resultsColumns[e.detail.value].value
     this.setData({
+      result: result,
       resultIndex: e.detail.value
     })
   },
   bindActionChange: function (e) {
+    let status = this.data.actionColumns[e.detail.value].value
     this.setData({
+      status: status,
       actionIndex: e.detail.value
     })
   },
   openToast: function () {
-    wx.showToast({
-      title: '提交成功',
-      icon: 'success',
-      duration: 2000
-    });
+    let that = this
+    let phoneNo = that.data.task.phoneNo
+    console.log(that.data.task.wechatNo)
+    // this.setData({
+    //   wechatNo: that.data.task.wechatNo
+    // })
+    if (phoneNo === '***********') {
+      let callsid = that.data.callsid
+      req.get('api/app/callStatusResult/' + callsid, function (res) {
+        that.callResult(res.data.start,res.data.end)
+    })
+    } else {
+      let acutalCallEndDate = new Date()
+      if (that.data.actionIndex === 3) {
+        let sdate1 = new Date();
+            sdate1.setMinutes(sdate1.getMinutes() + 30);
+        acutalCallEndDate = sdate1.getHours() + ":" + sdate1.getMinutes();
+      }
+      that.callResult(that.data.actualCallStartDate, acutalCallEndDate)
+    }
   },
   hangUp: function () {
     this.setData({
       callStart: false
+    })
+  },
+  callResult: function (start,end) {
+    let that = this
+    req.post('api/app/tasks/history', {
+      result: that.data.result,
+      status: that.data.status,
+      actualCallStartDate: new Date(start),
+      acutalCallEndDate: new Date(end),
+      outboundTaskId: that.data.task.taskId,
+      common: that.data.common,
+      source: 'miniProgram'
+    }, function (res) {
+      that.outboundName()
+    })
+  },
+  outboundName: function () {
+    let that = this
+    let id = that.data.task.outboundNameId
+    req.put('api/app/outboundName/' + id,{
+      contactName: that.data.task.contactName,
+      gender: that.data.task.gender,
+      mobileNo: that.data.task.mobileNo,
+      wechatNo: that.data.wechatNo,
+      age: that.data.task.age
+    },function (res) {
+      that.goMessage()
+      wx.showToast({
+        title: '提交成功',
+        icon: 'success',
+        duration: 2000
+      });
+      wx.navigateTo({
+        url: 'pages/call/call'
+      })
+    })
+  },
+  conversionTime(time) {
+    let times = time
+    times = times.replace(/-/g, '/')
+    let timeDate = new Date(Date.parse(times))
+    return timeDate
+  },
+  goMessage: function () {
+    let that = this
+    req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName,function (res) {
     })
   }
 })

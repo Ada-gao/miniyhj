@@ -34,12 +34,14 @@ Page({
           app.globalData.userId = res.data.id
           app.globalData.mobile = res.data.mobile
           app.globalData.name = res.data.name
+          app.globalData.username = res.data.username
           //放在storage方便调试
           wx.setStorageSync('userInfo', {
             companyId: app.globalData.companyId,
             userId: app.globalData.userId,
             mobile: app.globalData.mobile,
             name: app.globalData.name,
+            username: app.globalData.username
           })
           //获取完用户信息后才能跳转页面
           if (that.data.isTab) {
