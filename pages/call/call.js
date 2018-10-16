@@ -14,7 +14,7 @@ Page({
     let that = this
     console.log(options)
     //获取随机任务详情
-    let url = 'api/app/nextTask'
+    let url = 'api/app/miniProgram/nextTask'
     if (options.groupId) {
       if (options.groupId){
         url += '?groupId=' + options.groupId
@@ -24,7 +24,6 @@ Page({
       }
     }
     req.get(url, function(res) {
-      Toast.show(res)
       if (options.taskId){
         delete options.taskId
       }
@@ -40,7 +39,6 @@ Page({
         }
         return;
       }
-      console.log(res.data)
       let lastCallResult = res.data.lastCallResult;
       let icon = ''
       if (lastCallResult === 'NOT_CALL') {
@@ -56,7 +54,6 @@ Page({
         lastCallResult = '未接通'
         icon = '/image/icon_call_status_fail.png'
       }
-      // console.log(lastCallResult)
       that.setData({
         task: res.data,
         lastCallResult: lastCallResult,
@@ -72,7 +69,6 @@ Page({
       this.setData({
         callLogin : true
       })
-      // console.log(that.data.callLogin)
       let nameId = that.data.task.outboundNameId
       let taskId = that.data.task.taskId
       req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {
