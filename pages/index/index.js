@@ -92,12 +92,9 @@ Page({
     });
   },
   closeDialog: function () {
-    this.setData({
-      isComplete: false
-    })
     wx.setStorageSync('isComplete', false)
     this.setData({
-      showComplete: wx.getStorageSync('isComplete')
+      showComplete: false
     })
   }
 })
