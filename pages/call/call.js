@@ -4,6 +4,7 @@ const app = getApp()
 Page({
   data: {
     callLogin: false,
+    gopage: true,
     task: '',
     lastCallResult: '',
     icon: '',
@@ -64,6 +65,9 @@ Page({
   },
   callPhone: function(e) {
     let that = this
+    that.setData({
+      gopage: true
+    })
     let phneNo = that.data.task.phoneNo
     if (phneNo === '***********') {
       that.setData({
@@ -76,11 +80,12 @@ Page({
           callSid: res.data.callSid
         })
         setTimeout(function() {
+          if (that.data.gopage === true)
+            wx.navigateTo({
+              url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid,
+            })
           that.setData({
             callLogin: false
-          })
-          wx.navigateTo({
-            url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid,
           })
         }, 2000)
       }, false)
@@ -100,7 +105,8 @@ Page({
     let callSid = that.data.callSid
     req.get('api/call/' + callSid, function() {
       that.setData({
-        callLogin: false
+        callLogin: false,
+        gopage: false
       })
     })
   },

@@ -25,7 +25,10 @@ Page({
     acutalCallEndDate: '',
     outboundTaskId: '',
     common: '',
-    duration: 0
+    duration: 0,
+    contactName: '',
+    phoneNo: '',
+    wechatNo: ''
   },
   onLoad: function (data) {
     this.setData({
@@ -48,7 +51,12 @@ Page({
     })
   },
   formSubmit: function (e) {
-    console.log(e.detail.value.contactName)
+    that.setData({
+      contactName: e.detail.value.contactName,
+      mobileNo: e.detail.value.mobileNo,
+      wechatNo: e.detail.value.wechatNo,
+      common: e.detail.value.common
+    })
     let that = this
     let phoneNo = that.data.task.phoneNo
     console.log(that.data.task.wechatNo)
@@ -87,6 +95,7 @@ Page({
       acutalCallEndDate: new Date(end),
       outboundTaskId: that.data.task.taskId,
       common: that.data.common,
+      callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
       source: 'miniProgram'
     }, function (res) {
       that.outboundName()
@@ -96,9 +105,9 @@ Page({
     let that = this
     let id = that.data.task.outboundNameId
     req.put('api/app/outboundName/' + id,{
-      contactName: that.data.task.contactName,
+      contactName: that.data.contactName,
       gender: that.data.task.gender,
-      mobileNo: that.data.task.mobileNo,
+      mobileNo: that.data.mobileNo,
       wechatNo: that.data.wechatNo,
       age: that.data.task.age
     },function (res) {
@@ -132,24 +141,4 @@ Page({
 
     })
   }
-  // contactName: function (event) {
-  //   this.setData({
-  //     contactName: event.detail.value
-  //   })
-  // },
-  // phoneNo: function () {
-  //   this.setData({
-  //     phoneNo: vent.detail.value
-  //   })
-  // },
-  // wechatNo: function () {
-  //   this.setData({
-  //     wechatNo: vent.detail.value
-  //   })
-  // },
-  // common: function () {
-  //   this.setData({
-  //     phoneNo: vent.detail.value
-  //   })
-  // }
 })
