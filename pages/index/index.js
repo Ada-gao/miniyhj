@@ -1,5 +1,6 @@
 var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
+var util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
@@ -34,7 +35,7 @@ Page({
     }, false)
     req.get('api/task/statisGroup', function(res) {
       for (var index in res.data) {
-        res.data[index].taskEndDate = new Date(res.data[index].taskEndDate).toLocaleDateString()
+        res.data[index].taskEndDate = util.formatTime(new Date(res.data[index].taskEndDate), '')
       }
       that.setData({
         isLoading: true,
