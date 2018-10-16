@@ -113,23 +113,20 @@ Page({
       that.data.hidden = true
       if (listQuery.type === 'dnf') {
         var list = that.data.list
-        if (!res.data.totalPages) {
-          that.setData({
-            totalPages: true
-          })
-        }
+        list = [...list, ...content]
         if (that.data.loadMore) {
-          for (var i = 0; i < content.length; i++) {
-            list.push(content[i])
-          }
-          list = [...list, ...content]
+          // for (var i = 0; i < content.length; i++) {
+          //   list.push(content[i])
+          // }
+          // list = [...list, ...content]
           that.data.listQuery.pageIndex++
         } else {
-          list = content
+          // list = content
         }
         that.setData({
           list: list,
-          isLast: res.data.last
+          isLast: res.data.last,
+          totalPages: res.data.totalPages ? false : true
         })
       } else {
         var list = that.data.list1
@@ -146,7 +143,8 @@ Page({
         }
         that.setData({
           list1: list,
-          isLast1: res.data.last
+          isLast1: res.data.last,
+          totalPages1: res.data.totalPages ? false : true
         })
       }
     }, false)
