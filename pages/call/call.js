@@ -8,11 +8,10 @@ Page({
     lastCallResult: '',
     icon: '',
     lastCallDate: '',
-    callSid: ''
+    callSid: '',
   },
   onLoad: function(options) {
     let that = this
-    console.log(options)
     //获取随机任务详情
     let url = 'api/app/miniProgram/nextTask'
     if (options.groupId) {
