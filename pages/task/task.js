@@ -93,6 +93,14 @@ Page({
     })
     this.onShow()
   },
+  onHide: function () {
+    this.setData({
+      list: [],
+      list1: []
+      // isLast: res.data.last,
+      // totalPages: res.data.totalPages ? false : true
+    })
+  },
   onShow: function (riskType) {
     var that = this
     var data = that.data
@@ -115,10 +123,6 @@ Page({
         var list = that.data.list
         list = [...list, ...content]
         if (that.data.loadMore) {
-          // for (var i = 0; i < content.length; i++) {
-          //   list.push(content[i])
-          // }
-          // list = [...list, ...content]
           that.data.listQuery.pageIndex++
         } else {
           // list = content

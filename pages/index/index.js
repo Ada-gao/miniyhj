@@ -9,15 +9,20 @@ Page({
     completeRate: 0, //完成率
     isLoading: false,
     tasks: [],
-    isComplete: false
+    isComplete: false,
+    showComplete: false
   },
   onLoad: function() {
+    var that = this
     if (!app.globalData.token) {
       wx.redirectTo({
         url: '/pages/login/login?redirect=' + this.route + '&isTab=' + true
       })
       return;
     }
+    this.setData({
+      showComplete: wx.getStorageSync('isComplete')
+    })
   },
   onShow: function() {
     var that = this
@@ -29,8 +34,7 @@ Page({
         isLoading: true,
         completeRate: completeRate,
         dailyTaskCnt: dailyTaskCnt,
-        dailyTaskCompleteCnt: dailyTaskCompleteCnt,
-        isComplete: completeRate === 100
+        dailyTaskCompleteCnt: dailyTaskCompleteCnt
       })
     }, false)
     req.get('api/task/statisGroup', function(res) {
@@ -40,6 +44,14 @@ Page({
       that.setData({
         isLoading: true,
         tasks: res.data
+      })
+    }, false)
+    req.get('api/task/saleDailyCompleteStatus?userId=' + app.globalData.userId, function(res) {
+      that.setData({
+        isComplete: res.data
+      })
+      that.setData({
+        showComplete: wx.getStorageSync('isComplete')
       })
     }, false)
   },
@@ -82,6 +94,10 @@ Page({
   closeDialog: function () {
     this.setData({
       isComplete: false
+    })
+    wx.setStorageSync('isComplete', false)
+    this.setData({
+      showComplete: wx.getStorageSync('isComplete')
     })
   }
 })
