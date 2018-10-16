@@ -151,7 +151,7 @@ icon {
   padding-bottom: 0;
 }
 .weui-label {
-  width: 105px;
+  width: 115px;
   word-wrap: break-word;
   word-break: break-all;
 }
