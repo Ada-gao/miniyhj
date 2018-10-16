@@ -1,6 +1,6 @@
 <view>
   
- <view class='head' bindtap='back'>
+ <view class='head' bindtap='back'  wx:if="{{!callLogin}}">
     <image class='arrow' src='/image/icon_common_back_white.png'></image>
     <text>返回</text>
   </view>

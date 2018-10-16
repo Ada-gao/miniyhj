@@ -16,7 +16,7 @@
         <image class='icon' src="{{isShowPassword?'/image/icon_login_pwd_hide.png':'/image/icon_login_pwd_show.png'}}" bindtap='switchPwd' />
       </view>
       <view>
-        <button class='button' formType="submit">登录</button>
+        <button class='login' formType="submit">登录</button>
       </view>
     </view>
   </form>

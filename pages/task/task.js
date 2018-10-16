@@ -114,5 +114,10 @@ Page({
     });
     that.onShow();
     console.log("lower");
-  }
+  },
+  back: function (e) {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 })
