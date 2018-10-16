@@ -1,7 +1,4 @@
 {
-  "usingComponents": {
-    "scrollView": "../../components/scrollView/scrollView"
-  },
   "navigationBarTitleText": "任务列表",
   "disableScroll": false
 }
