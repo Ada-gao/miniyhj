@@ -66,24 +66,23 @@ Page({
     let that = this
     let phneNo = that.data.task.phoneNo
     if (phneNo === '***********') {
-      that.setData({
-        callLogin: true
-      })
       let nameId = that.data.task.outboundNameId
       let taskId = that.data.task.taskId
       req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {}, function(res) {
         that.setData({
-          callSid: res.data.callSid
+          callSid: res.data.callSid,
+          callLogin: true
         })
         setTimeout(function() {
-          that.setData({
-            callLogin: false
-          })
-          wx.navigateTo({
-            url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid,
-          })
-        }, 2000)
-      }, false)
+          if (that.data.callLogin === true)
+            wx.navigateTo({
+              url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid,
+            })
+            that.setData({
+              callLogin: false
+            })
+          }, 5000)
+      })
     } else {
       wx.makePhoneCall({
         phoneNumber: phneNo,
@@ -100,11 +99,11 @@ Page({
     let callSid = that.data.callSid
     req.get('api/call/' + callSid, function() {
       that.setData({
-        callLogin: false
+        callLogin: false,
       })
-    })
+    }, false)
   },
-  back: function (e) {
+  back: function(e) {
     wx.navigateBack({
       delta: 1
     })
