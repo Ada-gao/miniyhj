@@ -53,7 +53,7 @@
       </swiper-item>
     </block>
   </swiper>
-  <view class='button' bindtap="openCall" wx:if="{{tasks.length>0 && !isComplete}}">
+  <view class='button' bindtap="openCall" wx:if="{{dailyTaskCnt>0 && !isComplete}}">
     <image class='icon' src='/image/icon_index_call.png'></image>
     <text class='txt'>开始外呼</text>
   </view>
