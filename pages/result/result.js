@@ -23,7 +23,8 @@ Page({
     actualCallStartDate: new Date,
     acutalCallEndDate: '',
     outboundTaskId: '',
-    common: ''
+    common: '',
+    duration: 0
   },
   onLoad: function (data) {
     this.setData({
@@ -110,6 +111,20 @@ Page({
   goMessage: function () {
     let that = this
     req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName,function (res) {
+    })
+  },
+  getCallMoney: function () {
+    let that = this
+    req.get('api/call/call/recordCallHistory',{
+      callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
+      clientId: that.data.task.outboundNameId,
+      clientName: that.data.task.contactName,
+      duration: that.data.duration,
+      phoneNum: that.data.task.phoneNo,
+      saleId: app.globalData.id,
+      source: 'miniProgram'
+    },function () {
+
     })
   }
 })
