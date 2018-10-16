@@ -20,6 +20,7 @@ Page({
     callStart: true,
     task:'',
     callsid: '',
+    groupId: '',
     result: '',
     status: '',
     actualCallStartDate: new Date,
@@ -34,8 +35,10 @@ Page({
   onLoad: function (data) {
     this.setData({
       task:JSON.parse(data.task),
-      callsid:data.callsid
+      callsid:data.callsid,
+      groupId: data.groupId
     })
+    // console.log(data.groupId)
   },
   bindCountryChange: function (e) {
     let result = this.data.resultsColumns[e.detail.value].value
@@ -123,7 +126,7 @@ Page({
         duration: 2000
       });
       wx.redirectTo({
-        url: '/pages/call/call'
+        url: '/pages/call/call?groupId' + that.data.groupId
       })
     })
   },

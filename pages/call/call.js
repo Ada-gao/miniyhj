@@ -16,6 +16,7 @@ Page({
     that.setData({
       groupId: options.groupId
     })
+    // console.log(options.groupId)
     //获取随机任务详情
     let url = 'api/app/miniProgram/nextTask'
     if (options.groupId) {
