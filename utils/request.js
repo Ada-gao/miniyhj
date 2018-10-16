@@ -13,6 +13,10 @@ function post(url, data, success, showLoading = true) {
   request(url, data, 'POST', success, showLoading)
 }
 
+function put(url, data, success, showLoading = true) {
+  request(url, data, 'PUT', success, showLoading)
+}
+
 function request(url, data, method, success, showLoading = true) {
   var requestURL = url
   if (!isAbsoluteURL(url)) {
@@ -42,6 +46,8 @@ function request(url, data, method, success, showLoading = true) {
       } else if (res.statusCode == 401) {
         // TODO 待测试
         Toast.show('会话已过期，请重新登录。')
+        wx.removeStorageSync('token')
+        wx.removeStorageSync('userInfo')
         wx.redirectTo({
           url: '/pages/login/login'
         })
@@ -54,6 +60,7 @@ function request(url, data, method, success, showLoading = true) {
 
 module.exports = { 
   get: get,
-  post: post
+  post: post,
+  put: put
 }
 

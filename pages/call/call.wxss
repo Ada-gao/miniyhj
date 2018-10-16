@@ -132,16 +132,30 @@ page {
 
 
 .call_head{
-  width: 150rpx;
-  height: 150rpx;
+  width: 170rpx;
+  height: 170rpx;
   margin: 160rpx auto 40rpx;
   display: block;
 }
 .call_login{
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
-  z-index: 510;
+  z-index: 3;
   width: 100%;
-  background: rgba(0, 0, 0, 0.61);
+  background: #191919
+}
+.call_name,.call_phone{
+  text-align: center;
+  color: #dee2ed
+}
+.phone_login{
+  width: 100%;
+  height: 90rpx
+}
+.call_cancle{
+  width: 130rpx;
+  height: 130rpx;
+  display: block;
+  margin: 230rpx auto 30rpx;
 }

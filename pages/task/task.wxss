@@ -1,9 +1,25 @@
-/* pages/task/task.wxss */
+.picker{
+  display: flex;
+  flex-direction: row;
+  height: 154rpx;
+  align-items: center;
+}
+
+.arrow{
+width:18rpx;
+height:34rpx;
+}
+
+.date{
+  flex: 1;
+ text-align: center;
+}
+
 .page-padding {
   padding: 30rpx 72rpx;
   font-family: PingFangSC-Regular;
 }
-.title {
+/* .title {
   position: relative;
   margin-bottom: 20rpx;
   height: 93rpx;
@@ -17,16 +33,10 @@
 .title image {
   width: 18rpx;
   height: 34rpx;
-  /* background-color: #2F6BE2; */
   position: absolute;
   top: 0
-}
-.arrow-right {
-  right: 0;
-}
-.arrow-left {
-  left: 0;
-}
+} */
+
 .weui-navbar {
   border: none;
   border-radius: 6rpx;

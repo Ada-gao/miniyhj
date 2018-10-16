@@ -7,11 +7,12 @@ Page({
     task: '',
     lastCallResult: '',
     icon: '',
-    lastCallDate: ''
+    lastCallDate: '',
+    callSid: ''
   },
   onLoad: function(options) {
     let that = this
-    console.log(options)
+    // console.log(options)
     //获取随机任务详情
     let url = 'api/app/nextTask'
     if (options.groupId) {
@@ -34,7 +35,7 @@ Page({
         lastCallResult = '未接通'
         icon = '/image/icon_call_status_fail.png'
       }
-      console.log(lastCallResult)
+      // console.log(lastCallResult)
       that.setData({
         task: res.data,
         lastCallResult: lastCallResult,
@@ -44,17 +45,30 @@ Page({
     })
   },
   callPhone: function(e) {
-    let phneNo = this.data.task.phoneNo
-    if (phneNo === '***********') {
-      wx.makePhoneCall({
-        phoneNumber: '18916797460',
-        success: function() {
-          wx.navigateTo({
-            url: '/pages/result/result',
-          })
-        }
+    let that = this
+    let phneNo = that.data.task.phoneNo
+    if (phneNo === '***********'){
+      this.setData({
+        callLogin : true
       })
-    } else {
+      // console.log(that.data.callLogin)
+      let nameId = that.data.task.outboundNameId
+      let taskId = that.data.task.taskId
+      req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {
+      },function (res) {
+        this.setData({
+          callSid: res.data.callSid
+        })
+        setTimeout(function(){
+            that.setData({
+            callLogin: false
+          })
+          wx.navigateTo({
+            url: '/pages/result/result?task=' +JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid,
+          })
+        },2000)
+      })
+    }else{
       wx.makePhoneCall({
         phoneNumber: phneNo,
         success: function() {
@@ -65,4 +79,13 @@ Page({
       })
     }
   },
+  callRrturn: function () {
+    let that = this
+    let callSid = that.data.callSid 
+    req.get('api/call/' + callSid, function () {
+      this.setData({
+        callLogin: false
+      })
+    })
+  }
 })
