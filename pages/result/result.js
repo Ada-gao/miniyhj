@@ -126,7 +126,7 @@ Page({
         duration: 2000
       });
       wx.redirectTo({
-        url: '/pages/call/call?groupId' + that.data.groupId
+        url: '/pages/call/call?groupId=' + that.data.groupId
       })
     })
   },
