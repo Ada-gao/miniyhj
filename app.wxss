@@ -19,6 +19,7 @@ page {
   height: 85rpx;
   text-align: center;
   line-height: 85rpx;
+  padding-top: 15rpx;
   position: fixed;
 }
 
