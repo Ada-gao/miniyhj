@@ -79,7 +79,7 @@ Page({
         })
         setTimeout(function() {
           if (that.data.callLogin === true)
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid + '&groupId=' + that.data.groupId,
             })
             that.setData({
@@ -91,7 +91,7 @@ Page({
       wx.makePhoneCall({
         phoneNumber: phneNo,
         success: function() {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&groupId=' + that.data.groupId,
           })
         }
