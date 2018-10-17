@@ -92,7 +92,7 @@ Page({
         phoneNumber: phneNo,
         success: function() {
           wx.redirectTo({
-            url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&groupId=' + that.data.groupId,
+            url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid='+ 0 + '&groupId=' + that.data.groupId,
           })
         }
       })
