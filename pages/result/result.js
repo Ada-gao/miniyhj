@@ -79,10 +79,10 @@ Page({
           })
         })
       } else {
-        let acutalCallEndDate = new Date
+        // let acutalCallEndDate = new Date
         // console.log('状态' + that.data.resultIndex)
         if (that.data.resultIndex == 3) {
-          that.callResult(that.data.actualCallStartDate, acutalCallEndDate)
+          that.callResult(that.data.actualCallStartDate, new Date())
         } else {
           that.callResult(that.data.actualCallStartDate, that.data.actualCallStartDate)
         }
@@ -138,6 +138,7 @@ Page({
   },
   getCallMoney: function () {
     let that = this
+    // console.log('通话时长' + that.data.duration)
     req.post('api/call/call/recordCallHistory',{
       callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
       clientId: that.data.task.outboundNameId,
