@@ -48,15 +48,22 @@ Page({
           //获取完用户信息后才能跳转页面
           if (that.data.isTab) {
             wx.switchTab({
-              url: "/" + that.data.redirect
+              url: '/pages/index/index',
             })
           } else {
-            wx.navigateTo({
+            wx.redirectTo({
               url: that.data.redirect
             })
           }
         })
       })      
+    }
+  },
+  //分享
+  onShareAppMessage: function () {
+    return {
+      title: '闪电呼',
+      path: '/pages/index/index'
     }
   },
   switchPwd: function(e) {

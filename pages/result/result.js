@@ -23,7 +23,7 @@ Page({
     groupId: '',
     result: '',
     status: '',
-    actualCallStartDate: new Date,
+    actualCallStartDate: '',
     acutalCallEndDate: '',
     outboundTaskId: '',
     common: '',
@@ -36,7 +36,9 @@ Page({
     this.setData({
       task:JSON.parse(data.task),
       callsid:data.callsid,
-      groupId: data.groupId
+      groupId: data.groupId,
+      actualCallStartDate: new Date,
+      acutalCallEndDate: new Date
     })
     // console.log(data.groupId)
   },
@@ -80,11 +82,11 @@ Page({
         })
       } else {
         let acutalCallEndDate = new Date
-        // console.log('状态' + that.data.resultIndex)
+        // console.log('时间' + acutalCallEndDate)
         if (that.data.resultIndex == 3) {
           that.callResult(that.data.actualCallStartDate, acutalCallEndDate)
         } else {
-          that.callResult(that.data.actualCallStartDate, that.data.actualCallStartDate)
+          that.callResult(that.data.actualCallStartDate, that.data.acutalCallEndDate)
         }
       }
       that.getCallMoney()
@@ -131,6 +133,13 @@ Page({
       })
     })
   },
+  //分享
+  onShareAppMessage: function () {
+    return {
+      title: '闪电呼',
+      path: '/pages/index/index'
+    }
+  },
   goMessage: function () {
     let that = this
     req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName,{},function (res) {
@@ -138,6 +147,7 @@ Page({
   },
   getCallMoney: function () {
     let that = this
+    // console.log('通话时长' + that.data.duration)
     req.post('api/call/call/recordCallHistory',{
       callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
       clientId: that.data.task.outboundNameId,
