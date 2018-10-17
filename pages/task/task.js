@@ -45,7 +45,9 @@ Page({
     loadMore: false,
     loadMore1: false,
     totalPages: false,
-    totalPages1: false
+    totalPages1: false,
+    dnfFirstClick: true,
+    finishFirstClick: true
   },
   onLoad: function (options) {
     var that = this
@@ -59,17 +61,16 @@ Page({
     });
   },
   tabClick: function (e) {
-    if (e.currentTarget.dataset.type === 'dnf') {
-      this.data.listQuery.type = 'dnf'
-      if (!this.data.list.length && !this.data.totalPages) this.onShow(e.currentTarget.dataset.type)
-    } else {
-      this.data.listQuery1.type = 'finish'
-      if (!this.data.list1.length && !this.data.totalPages1) this.onShow(e.currentTarget.dataset.type)
-    }
-    // this.data.listQuery.type = e.currentTarget.dataset.type
     this.setData({
       activeIndex: e.currentTarget.id
     });
+    if (this.data.activeIndex === 'dnf') {
+      this.data.listQuery.type = 'dnf'
+      if (this.data.dnfFirstClick) this.onShow(this.data.activeIndex)
+    } else {
+      this.data.listQuery1.type = 'finish'
+      if (this.data.finishFirstClick) this.onShow(this.data.activeIndex)
+    }
     this.data.loadMore = false
     this.data.loadMore1 = false
   },
@@ -90,39 +91,57 @@ Page({
         type: 'finish',
         createTime: ''
       },
+      dnfFirstClick: true,
+      finishFirstClick: true
     })
-    this.onShow()
+    var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
+    this.onShow(riskType)
   },
   bindLastDay: function () {
     var date = new Date(new Date(this.data.initDate).getTime() - 24 * 60 * 60 * 1000)
     this.setData({
-      initDate: util.formatTime(date)
+      initDate: util.formatTime(date),
+      totalPages: false,
+      list: [],
+      list1: [],
+      dnfFirstClick: true,
+      finishFirstClick: true
     })
-    this.onShow()
+    var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
+    this.onShow(riskType)
   },
   bindNextDay: function () {
     var date1 = new Date(new Date(this.data.initDate).getTime() + 24 * 60 * 60 * 1000)
     this.setData({
-      initDate: util.formatTime(date1)
+      initDate: util.formatTime(date1),
+      totalPages1: false,
+      list: [],
+      list1: [],
+      dnfFirstClick: true,
+      finishFirstClick: true
     })
-    this.onShow()
+    var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
+    this.onShow(riskType)
   },
   onHide: function () {
     this.setData({
       list: [],
       list1: [],
-      activeIndex: 0
+      dnfFirstClick: true,
+      finishFirstClick: true
+      // activeIndex: 0
     })
   },
   onShow: function (riskType) {
     var that = this
-    this.setData({
-      list: [],
-      list1: [],
-      activeIndex: 0
-    })
     var data = that.data
     var listQuery = {}
+    console.log('activeIndex :' + this.data.activeIndex)
+    if (this.data.activeIndex - 0 === 0) {
+      riskType = 'dnf'
+    } else if (this.data.activeIndex - 0 === 1) {
+      riskType = 'finish'
+    }
     listQuery.type = riskType
     if (listQuery.type !== 'finish') {
       listQuery = that.data.listQuery
@@ -148,7 +167,8 @@ Page({
         that.setData({
           list: list,
           isLast: res.data.last,
-          totalPages: res.data.totalPages ? false : true
+          totalPages: res.data.totalPages ? false : true,
+          dnfFirstClick: false
         })
       } else {
         var list = that.data.list1
@@ -166,7 +186,8 @@ Page({
         that.setData({
           list1: list,
           isLast1: res.data.last,
-          totalPages1: res.data.totalPages ? false : true
+          totalPages1: res.data.totalPages ? false : true,
+          finishFirstClick: false
         })
       }
     }, false)
