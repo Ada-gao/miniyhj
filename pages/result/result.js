@@ -23,7 +23,7 @@ Page({
     groupId: '',
     result: '',
     status: '',
-    actualCallStartDate: new Date,
+    actualCallStartDate: '',
     acutalCallEndDate: '',
     outboundTaskId: '',
     common: '',
@@ -36,7 +36,9 @@ Page({
     this.setData({
       task:JSON.parse(data.task),
       callsid:data.callsid,
-      groupId: data.groupId
+      groupId: data.groupId,
+      actualCallStartDate: new Date,
+      acutalCallEndDate: new Date
     })
     // console.log(data.groupId)
   },
@@ -79,12 +81,12 @@ Page({
           })
         })
       } else {
-        // let acutalCallEndDate = new Date
-        // console.log('状态' + that.data.resultIndex)
+        let acutalCallEndDate = new Date
+        // console.log('时间' + acutalCallEndDate)
         if (that.data.resultIndex == 3) {
-          that.callResult(that.data.actualCallStartDate, new Date())
+          that.callResult(that.data.actualCallStartDate, acutalCallEndDate)
         } else {
-          that.callResult(that.data.actualCallStartDate, that.data.actualCallStartDate)
+          that.callResult(that.data.actualCallStartDate, that.data.acutalCallEndDate)
         }
       }
       that.getCallMoney()
