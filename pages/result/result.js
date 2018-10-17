@@ -86,6 +86,7 @@ Page({
     if (that.data.result === '' || that.data.status === '') {
       Toast.show('标星为必填项')
     } else {
+      wx.showLoading()
       that.setData({
         contactName: e.detail.value.contactName,
         mobileNo: e.detail.value.mobileNo,
@@ -95,12 +96,12 @@ Page({
       let phoneNo = that.data.task.phoneNo
       if (phoneNo === '***********') {
         let callsid = that.data.callsid
-        req.get('api/app/callStatusResult/' + callsid, function (res) {
+        req.get('api/app/callStatusResult/' + callsid, function(res) {
           that.setData({
             duration: res.data.duration
           })
           that.callResult(new Date(res.data.start), new Date(res.data.end))
-        })
+        }, false)
       } else {
         if (that.data.resultIndex == 3) {
           that.callResult(that.data.actualCallStartDate, new Date)
@@ -111,7 +112,6 @@ Page({
     }
   },
   callResult: function(start, end) {
-    this.getCallMoney()
     let that = this
     req.post('api/app/tasks/history', {
       result: that.data.result,
@@ -124,7 +124,7 @@ Page({
       source: 'miniProgram'
     }, function(res) {
       that.outboundName()
-    })
+    }, false)
   },
   outboundName: function() {
     let that = this
@@ -137,9 +137,15 @@ Page({
       age: that.data.task.age
     }, function(res) {
       that.goMessage()
-    })
+    }, false)
   },
-  getCallMoney: function () {
+  goMessage: function() {
+    let that = this
+    req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName, {}, function(res) {
+      that.getCallMoney()
+    }, false)
+  },
+  getCallMoney: function() {
     let that = this
     req.post('api/call/call/recordCallHistory', {
       callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
@@ -149,12 +155,7 @@ Page({
       phoneNum: that.data.task.phoneNo,
       saleId: app.globalData.id,
       source: 'miniProgram'
-    }, function (res) {
-    })
-  },
-  goMessage: function() {
-    let that = this
-    req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName, {}, function(res) {
+    }, function(res) {
       req.get('api/app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
         Toast.show('提交成功')
         getApp().globalData.groupId = that.data.groupId
@@ -165,8 +166,9 @@ Page({
           url: '/pages/index/index',
         })
       })
-    })
+    }, false)
   },
+
   //分享
   onShareAppMessage: function() {
     return {
