@@ -15,7 +15,9 @@ App({
     companyId: null,
     userId: null,
     mobile: null,
-    name: null
+    name: null,
+    groupId:null,
+    openCall:false
   },
   onPageNotFound(res) {
     wx.redirectTo({

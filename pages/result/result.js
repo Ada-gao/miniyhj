@@ -156,19 +156,14 @@ Page({
     let that = this
     req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName, {}, function(res) {
       req.get('api/app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
+        Toast.show('提交成功')
+        getApp().globalData.groupId = that.data.groupId
+        if (res.data) {
+          getApp().globalData.openCall = true
+        }
         wx.switchTab({
           url: '/pages/index/index',
         })
-        if (that.data.groupId) {
-          wx.navigateTo({
-            url: '/pages/task/task?groupId=' + that.data.groupId
-          })
-        }
-        if (res.data) {
-          wx.navigateTo({
-            url: '/pages/call/call?groupId=' + that.data.groupId
-          })
-        }
       })
     })
   },

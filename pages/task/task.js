@@ -1,5 +1,6 @@
 var req = require('../../utils/request.js')
 var util = require('../../utils/util.js')
+const app = getApp()
 Page({
   data: {
     tabs: [
@@ -57,6 +58,13 @@ Page({
         });
       }
     });
+    if (app.globalData.openCall) {
+      wx.navigateTo({
+        url: '/pages/call/call?groupId=' + app.globalData.groupId
+      })
+    }
+    delete app.globalData.groupId
+    delete app.globalData.openCall
   },
   tabClick: function (e) {
     if (e.currentTarget.dataset.type === 'dnf') {
