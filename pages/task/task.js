@@ -53,7 +53,7 @@ Page({
       success: function(res) {
         that.setData({
           scrollHeight: 824,
-          groupId: options.id
+          groupId: options.groupId
         });
       }
     });
