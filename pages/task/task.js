@@ -72,10 +72,10 @@ Page({
     this.setData({
       activeIndex: e.currentTarget.id
     });
-    if (this.data.activeIndex === 'dnf') {
+    if (this.data.activeIndex - 0 === 0) {
       this.data.listQuery.type = 'dnf'
       if (this.data.dnfFirstClick) this.onShow(this.data.activeIndex)
-    } else {
+    } else if (this.data.activeIndex - 0 === 1) {
       this.data.listQuery1.type = 'finish'
       if (this.data.finishFirstClick) this.onShow(this.data.activeIndex)
     }
