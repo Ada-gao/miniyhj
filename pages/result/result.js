@@ -82,33 +82,20 @@ Page({
     })
   },
   formSubmit: function(e) {
-    if (this.data.result === '' || this.data.status === '') {
+    let that = this
+    if (that.data.result === '' || that.data.status === '') {
       Toast.show('标星为必填项')
     } else {
-      this.setData({
+      that.setData({
         contactName: e.detail.value.contactName,
         mobileNo: e.detail.value.mobileNo,
         wechatNo: e.detail.value.wechatNo,
         common: e.detail.value.common
       })
-      this.getCallMoney()
-    }
-  },
-  getCallMoney: function() {
-    let that = this
-    req.post('api/call/call/recordCallHistory', {
-      callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
-      clientId: that.data.task.outboundNameId,
-      clientName: that.data.task.contactName,
-      duration: that.data.duration,
-      phoneNum: that.data.task.phoneNo,
-      saleId: app.globalData.id,
-      source: 'miniProgram'
-    }, function(res) {
       let phoneNo = that.data.task.phoneNo
       if (phoneNo === '***********') {
         let callsid = that.data.callsid
-        req.get('api/app/callStatusResult/' + callsid, function(res) {
+        req.get('api/app/callStatusResult/' + callsid, function (res) {
           that.setData({
             duration: res.data.duration
           })
@@ -121,9 +108,10 @@ Page({
           that.callResult(that.data.actualCallStartDate, that.data.acutalCallEndDate)
         }
       }
-    })
+    }
   },
   callResult: function(start, end) {
+    this.getCallMoney()
     let that = this
     req.post('api/app/tasks/history', {
       result: that.data.result,
@@ -149,6 +137,19 @@ Page({
       age: that.data.task.age
     }, function(res) {
       that.goMessage()
+    })
+  },
+  getCallMoney: function () {
+    let that = this
+    req.post('api/call/call/recordCallHistory', {
+      callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
+      clientId: that.data.task.outboundNameId,
+      clientName: that.data.task.contactName,
+      duration: that.data.duration,
+      phoneNum: that.data.task.phoneNo,
+      saleId: app.globalData.id,
+      source: 'miniProgram'
+    }, function (res) {
     })
   },
   goMessage: function() {
