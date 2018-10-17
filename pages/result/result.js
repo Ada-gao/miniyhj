@@ -131,6 +131,13 @@ Page({
       })
     })
   },
+  //分享
+  onShareAppMessage: function () {
+    return {
+      title: '闪电呼',
+      path: '/pages/index/index'
+    }
+  },
   goMessage: function () {
     let that = this
     req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName,{},function (res) {
