@@ -2,6 +2,7 @@ var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
 var util = require('../../utils/util.js')
 const app = getApp()
+var timer;
 Page({
   data: {
     callLogin: false,
@@ -11,7 +12,9 @@ Page({
     lastCallDate: '',
     callSid: '',
     groupId: '',
-    isLoading: false
+    isLoading: false,
+    
+
   },
   onLoad: function(options) {
     let that = this
@@ -62,12 +65,10 @@ Page({
           callSid: res.data.callSid,
           callLogin: true
         })
-        setTimeout(function() {
-          if (that.data.callLogin){
+        timer = setTimeout(function() {
             wx.reLaunch({
               url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid + '&groupId=' + that.data.groupId,
             })
-          }
         }, 5000)
       })
     } else {
@@ -85,6 +86,7 @@ Page({
       that.setData({
         callLogin: false,
       })
+      clearTimeout(timer)
     })
   },
   //分享
