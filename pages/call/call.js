@@ -10,39 +10,23 @@ Page({
     icon: '',
     lastCallDate: '',
     callSid: '',
-    groupId:''
+    groupId: '',
+    isLoading: false
   },
   onLoad: function(options) {
     let that = this
     //获取随机任务详情
     let url = 'api/app/miniProgram/nextTask'
     if (options.groupId) {
-      if (options.groupId) {
-        that.setData({
-          groupId: options.groupId
-        })
-        url += '?groupId=' + options.groupId
-      }
+      url += '?groupId=' + options.groupId
       if (options.taskId) {
         url += '&taskId=' + options.taskId
       }
+      that.setData({
+        groupId: options.groupId
+      })
     }
     req.get(url, function(res) {
-      if (options.taskId) {
-        delete options.taskId
-      }
-      if (!res.data) {
-        if (options.groupId) {
-          wx.navigateBack({
-            delta: 1
-          })
-        } else {
-          wx.switchTab({
-            url: '/pages/index/index'
-          })
-        }
-        return;
-      }
       let lastCallResult = res.data.lastCallResult;
       let icon = ''
       if (lastCallResult === 'NOT_CALL') {
@@ -59,6 +43,7 @@ Page({
         icon = '/image/icon_call_status_fail.png'
       }
       that.setData({
+        isLoading:false,
         task: res.data,
         lastCallResult: lastCallResult,
         icon: icon,
@@ -78,37 +63,32 @@ Page({
           callLogin: true
         })
         setTimeout(function() {
-          if (that.data.callLogin === true)
-            wx.redirectTo({
+          if (that.data.callLogin){
+            wx.reLaunch({
               url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid + '&groupId=' + that.data.groupId,
             })
-            that.setData({
-              callLogin: false
-            })
-          }, 5000)
+          }
+        }, 5000)
       })
     } else {
+      wx.reLaunch({
+        url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + 0 + '&groupId=' + that.data.groupId,
+      })
       wx.makePhoneCall({
-        phoneNumber: phneNo,
-        success: function() {
-          wx.redirectTo({
-            url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid='+ 0 + '&groupId=' + that.data.groupId,
-          })
-        }
+        phoneNumber: phneNo
       })
     }
   },
   callRrturn: function() {
     let that = this
-    let callSid = that.data.callSid
-    req.get('api/call/' + callSid, function() {
+    req.get('api/call/' + that.data.callSid, function() {
       that.setData({
         callLogin: false,
       })
-    }, false)
+    })
   },
   //分享
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: '闪电呼',
       path: '/pages/index/index'

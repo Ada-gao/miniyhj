@@ -221,8 +221,8 @@ Page({
     }
   },
   back: function (e) {
-    wx.switchTab({
-      url: '/pages/index/index',
+    wx.navigateBack({
+      delta: 1
     })
   },
 })
