@@ -9,6 +9,7 @@ Page({
     isShowPassword: true
   },
   onLoad: function(options) {
+    wx.clearStorageSync()
     this.setData({
       redirect: options.redirect || 'pages/index/index',
       isTab: options.isTab || true

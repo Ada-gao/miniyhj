@@ -10,15 +10,22 @@ Page({
     isLoading: false,
     tasks: [],
     isComplete: false,
-    showComplete: false
+    showComplete: false,
+    isReturn:false
   },
   onLoad: function() {
     var that = this
-    if (!app.globalData.token) {
+    if (app.globalData.token) {
+      that.setData({
+        showComplete: wx.getStorageSync('isComplete')
+      })
+    }else{
+      that.setData({
+        isReturn: true
+      })
       wx.redirectTo({
         url: '/pages/login/login?redirect=' + this.route + '&isTab=' + true
       })
-      return;
     }
     if (wx.getStorageSync('isComplete')) {
       this.setData({
@@ -28,6 +35,9 @@ Page({
   },
   onShow: function() {
     var that = this
+    if (that.data.isReturn){
+      return;
+    }
     req.get('api/task/statisBySales?userId=' + app.globalData.userId, function(res) {
       let dailyTaskCnt = res.data.dailyTaskCnt;
       let dailyTaskCompleteCnt = res.data.dailyTaskCompleteCnt;

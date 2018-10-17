@@ -1,5 +1,6 @@
 var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
+var util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
@@ -32,8 +33,8 @@ Page({
       }
       if (!res.data) {
         if (options.groupId) {
-          wx.navigateTo({
-            url: '/pages/task/task?id=' + options.groupId,
+          wx.navigateBack({
+            delta: 1
           })
         } else {
           wx.switchTab({
@@ -61,7 +62,7 @@ Page({
         task: res.data,
         lastCallResult: lastCallResult,
         icon: icon,
-        lastCallDate: new Date(res.data.lastCallDate).toLocaleDateString()
+        lastCallDate: util.formatTime(new Date(res.data.lastCallDate), '')
       })
     })
   },

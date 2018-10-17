@@ -35,6 +35,7 @@ function request(url, data, method, success, showLoading = true) {
     data: data,
     method: method,
     header: headers,
+    //请求成功后调用
     success: function(res) {
       if (res.statusCode == 200) {
         if (showLoading) {
@@ -46,14 +47,20 @@ function request(url, data, method, success, showLoading = true) {
       } else if (res.statusCode == 401) {
         // TODO 待测试
         Toast.show('会话已过期，请重新登录。')
-        wx.removeStorageSync('token')
-        wx.removeStorageSync('userInfo')
         wx.redirectTo({
           url: '/pages/login/login'
         })
       } else {
-        Toast.show('未知错误。')       
+        Toast.show('服务器错误')       
       } 
+    },
+    //请求失败后调用
+    fail:function(res){
+      Toast.show(res.errMsg)  
+    } ,
+     //请求完成后调用
+    complete: function (res) {
+     
     }   
   })
 }

@@ -73,14 +73,15 @@ Page({
       if (phoneNo === '***********') {
         let callsid = that.data.callsid
         req.get('api/app/callStatusResult/' + callsid, function (res) {
-          that.callResult(res.data.start, res.data.end)
+          that.callResult(new Date(res.data.start), new Date(res.data.end))
           that.setData({
             duration: res.data.duration
           })
         })
       } else {
-        let acutalCallEndDate = new Date()
-        if (that.data.actionIndex === 3) {
+        let acutalCallEndDate = new Date
+        // console.log('状态' + that.data.resultIndex)
+        if (that.data.resultIndex == 3) {
           that.callResult(that.data.actualCallStartDate, acutalCallEndDate)
         } else {
           that.callResult(that.data.actualCallStartDate, that.data.actualCallStartDate)
@@ -99,8 +100,8 @@ Page({
     req.post('api/app/tasks/history', {
       result: that.data.result,
       status: that.data.status,
-      actualCallStartDate: new Date(start),
-      acutalCallEndDate: new Date(end),
+      actualCallStartDate: start,
+      acutalCallEndDate: end,
       outboundTaskId: that.data.task.taskId,
       common: that.data.common,
       callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
@@ -126,7 +127,7 @@ Page({
         duration: 2000
       });
       wx.redirectTo({
-        url: '/pages/call/call?groupId' + that.data.groupId
+        url: '/pages/call/call?groupId=' + that.data.groupId
       })
     })
   },
