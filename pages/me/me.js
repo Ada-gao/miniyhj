@@ -25,9 +25,9 @@ Page({
     let that = this
     req.get('api/task/statisBySales?userId=' + app.globalData.userId, function(res) {
       that.setData({
-        totalTaskCompleteCnt: res.data.totalTaskCompleteCnt,
-        rate: utils.percent(res.data.totalTaskCompleteCnt, res.data.totalTaskCnt),
-        rank: res.data.rank
+        totalTaskCompleteCnt: res.data.totalTaskCompleteCnt || 0,
+        rate: utils.percent(res.data.totalTaskCompleteCnt, res.data.totalTaskCnt) || 0,
+        rank: res.data.rank || 0
       })
     }, false)
   },

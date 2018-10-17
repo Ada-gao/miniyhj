@@ -13,12 +13,25 @@ Page({
     showComplete: false,
     isReturn:false
   },
-  onLoad: function() {
+  onLoad: function (options) {
     var that = this
     if (app.globalData.token) {
       that.setData({
         showComplete: wx.getStorageSync('isComplete')
       })
+      if (app.globalData.groupId) {
+        wx.navigateTo({
+          url: '/pages/task/task?groupId=' + app.globalData.groupId
+        })
+      }else{
+        if (app.globalData.openCall) {
+          wx.navigateTo({
+            url: '/pages/call/call'
+          })
+          delete app.globalData.groupId
+          delete app.globalData.openCall
+        }
+      }
     }else{
       that.setData({
         isReturn: true
@@ -39,8 +52,8 @@ Page({
       return;
     }
     req.get('api/task/statisBySales?userId=' + app.globalData.userId, function(res) {
-      let dailyTaskCnt = res.data.dailyTaskCnt;
-      let dailyTaskCompleteCnt = res.data.dailyTaskCompleteCnt;
+      let dailyTaskCnt = res.data.dailyTaskCnt || 0;
+      let dailyTaskCompleteCnt = res.data.dailyTaskCompleteCnt || 0;
       let completeRate = dailyTaskCnt > 0 ? (dailyTaskCompleteCnt * 100 / dailyTaskCnt) : 0;
       that.setData({
         isLoading: true,
@@ -74,7 +87,7 @@ Page({
   openTask: function(e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/task/task?id=' + id,
+      url: '/pages/task/task?groupId=' + id,
     })
   },
   //任务详情

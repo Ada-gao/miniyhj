@@ -1,5 +1,6 @@
 var req = require('../../utils/request.js')
 var util = require('../../utils/util.js')
+const app = getApp()
 Page({
   data: {
     tabs: [
@@ -55,10 +56,17 @@ Page({
       success: function(res) {
         that.setData({
           scrollHeight: 824,
-          groupId: options.id
+          groupId: options.groupId
         });
       }
     });
+    if (app.globalData.openCall) {
+      wx.navigateTo({
+        url: '/pages/call/call?groupId=' + app.globalData.groupId
+      })
+    }
+    delete app.globalData.groupId
+    delete app.globalData.openCall
   },
   tabClick: function (e) {
     this.setData({
