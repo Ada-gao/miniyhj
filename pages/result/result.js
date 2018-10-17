@@ -136,13 +136,12 @@ Page({
       wechatNo: that.data.wechatNo,
       age: that.data.task.age
     }, function(res) {
-      that.goMessage()
+      that.getCallMoney()
     }, false)
   },
   goMessage: function() {
     let that = this
     req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName, {}, function(res) {
-      that.getCallMoney()
     }, false)
   },
   getCallMoney: function() {
@@ -156,6 +155,7 @@ Page({
       saleId: app.globalData.id,
       source: 'miniProgram'
     }, function(res) {
+      that.goMessage()
       req.get('api/app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
         Toast.show('提交成功')
         getApp().globalData.groupId = that.data.groupId
