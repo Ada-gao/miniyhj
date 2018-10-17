@@ -1,5 +1,6 @@
 var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
+var util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
@@ -61,7 +62,7 @@ Page({
         task: res.data,
         lastCallResult: lastCallResult,
         icon: icon,
-        lastCallDate: new Date(res.data.lastCallDate).toLocaleDateString()
+        lastCallDate: util.formatTime(new Date(res.data.lastCallDate), '')
       })
     })
   },
