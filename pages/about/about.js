@@ -9,6 +9,13 @@ Page({
       duration: 1500,
     })
   },
+  //分享
+  onShareAppMessage: function () {
+    return {
+      title: '闪电呼',
+      path: '/pages/index/index'
+    }
+  },
   back: function (e) {
     wx.navigateBack({
       delta: 1

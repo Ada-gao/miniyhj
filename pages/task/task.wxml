@@ -10,13 +10,17 @@
 
   <view class="page__bd page-padding">
     <view class='time-bar'>
-      <image class='arrow' bindtap="bindLastDay" src='/image/icon_back.png' />
+      <view class='padding20' bindtap="bindLastDay">
+        <image class='arrow' src='/image/icon_back.png' />
+      </view>
       <picker class="" mode="date" value="{{initDate}}" start="2018-01-01" end="2038-01-01" bindchange="bindDateChange">
         <view class='picker'>
           <text class="date">{{initDate}}</text>
         </view>
       </picker>
-      <image class='arrow' bindtap="bindNextDay" src='/image/icon_next.png' /></view>
+      <view class='padding20' bindtap="bindNextDay">
+        <image class='arrow' src='/image/icon_next.png' /></view>
+      </view>
     <view class="weui-tab">
       <view class="weui-navbar">
         <block wx:for-items="{{tabs}}" wx:key="{{index}}">

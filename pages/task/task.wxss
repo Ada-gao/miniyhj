@@ -1,9 +1,3 @@
-.picker{
-  /* display: flex;
-  flex-direction: row;
-  height: 154rpx;
-  align-items: center; */
-}
 
 .arrow{
   width:34rpx;
@@ -25,6 +19,9 @@
   height: 154rpx;
   align-items: center;
   justify-content: space-around;
+}
+.padding20 {
+  padding: 0 20rpx;
 }
 /* .title {
   position: relative;

@@ -59,6 +59,13 @@ Page({
       })      
     }
   },
+  //分享
+  onShareAppMessage: function () {
+    return {
+      title: '闪电呼',
+      path: '/pages/index/index'
+    }
+  },
   switchPwd: function(e) {
     if (this.data.isShowPassword) {
       this.setData({
