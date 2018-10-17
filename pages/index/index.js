@@ -20,9 +20,11 @@ Page({
       })
       return;
     }
-    this.setData({
-      showComplete: wx.getStorageSync('isComplete')
-    })
+    if (wx.getStorageSync('isComplete')) {
+      this.setData({
+        showComplete: wx.getStorageSync('isComplete')
+      })
+    }
   },
   onShow: function() {
     var that = this
@@ -50,6 +52,9 @@ Page({
       that.setData({
         isComplete: res.data
       })
+      if (!wx.getStorageSync('clickComplete')) {
+        wx.setStorageSync('isComplete', that.data.isComplete)
+      }
       that.setData({
         showComplete: wx.getStorageSync('isComplete')
       })
@@ -93,6 +98,7 @@ Page({
   },
   closeDialog: function () {
     wx.setStorageSync('isComplete', false)
+    wx.setStorageSync('clickComplete', 1)
     this.setData({
       showComplete: false
     })

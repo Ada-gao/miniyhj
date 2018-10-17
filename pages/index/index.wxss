@@ -203,16 +203,15 @@
   position: absolute;
   top: 0;
   left: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 .dialog-content {
   width: 623rpx;
   height: 706rpx;
   background-color: #fff;
-  position: absolute;
-  top: 176rpx;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   justify-content: center;

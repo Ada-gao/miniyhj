@@ -1,23 +1,30 @@
 .picker{
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   height: 154rpx;
-  align-items: center;
+  align-items: center; */
 }
 
 .arrow{
-width:34rpx;
-height:34rpx;
+  width:34rpx;
+  height:34rpx;
 }
 
 .date{
   flex: 1;
- text-align: center;
+  text-align: center;
 }
 
 .page-padding {
   padding: 30rpx 72rpx;
   font-family: PingFangSC-Regular;
+}
+.time-bar {
+  display: flex;
+  flex-direction: row;
+  height: 154rpx;
+  align-items: center;
+  justify-content: space-around;
 }
 /* .title {
   position: relative;

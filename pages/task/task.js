@@ -93,16 +93,33 @@ Page({
     })
     this.onShow()
   },
-  onHide: function () {
+  bindLastDay: function () {
+    var date = new Date(new Date(this.data.initDate).getTime() - 24 * 60 * 60 * 1000)
+    this.setData({
+      initDate: util.formatTime(date)
+    })
+    this.onShow()
+  },
+  bindNextDay: function () {
+    console.log(this.data.initDate)
+    var date1 = new Date(new Date(this.data.initDate).getTime() + 24 * 60 * 60 * 1000)
+    this.setData({
+      initDate: util.formatTime(date1)
+    })
+    this.onShow()
+  },
+  // onHide: function () {
+  //   this.setData({
+  //     list: [],
+  //     list1: []
+  //   })
+  // },
+  onShow: function (riskType) {
+    var that = this
     this.setData({
       list: [],
       list1: []
-      // isLast: res.data.last,
-      // totalPages: res.data.totalPages ? false : true
     })
-  },
-  onShow: function (riskType) {
-    var that = this
     var data = that.data
     var listQuery = {}
     listQuery.type = riskType

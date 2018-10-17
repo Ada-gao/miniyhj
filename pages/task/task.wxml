@@ -1,21 +1,22 @@
 <view class="page">
     <view class='tabBar'>
-  <view class='tabBarBack' bindtap='back'>
-    <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
-  </view>
-  <view class='tabBarTitle'>
-    <text>任务列表</text>
-  </view>
-</view>
+      <view class='tabBarBack' bindtap='back'>
+        <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
+      </view>
+      <view class='tabBarTitle'>
+        <text>任务列表</text>
+      </view>
+    </view>
 
   <view class="page__bd page-padding">
-    <picker class="weui-btn" mode="date" value="{{initDate}}" start="2018-01-01" end="2038-01-01" bindchange="bindDateChange">
-      <view class='picker'>
-        <image class='arrow' src='/image/icon_back.png' />
-        <text class="date">{{initDate}}</text>
-        <image class='arrow' src='/image/icon_next.png' />
-      </view>
-    </picker>
+    <view class='time-bar'>
+      <image class='arrow' bindtap="bindLastDay" src='/image/icon_back.png' />
+      <picker class="" mode="date" value="{{initDate}}" start="2018-01-01" end="2038-01-01" bindchange="bindDateChange">
+        <view class='picker'>
+          <text class="date">{{initDate}}</text>
+        </view>
+      </picker>
+      <image class='arrow' bindtap="bindNextDay" src='/image/icon_next.png' /></view>
     <view class="weui-tab">
       <view class="weui-navbar">
         <block wx:for-items="{{tabs}}" wx:key="{{index}}">

@@ -44,6 +44,9 @@ Page({
         if (res.confirm) {
           delete app.globalData.token
           wx.removeStorageSync('token')
+          wx.removeStorageSync('isComplete')
+          wx.removeStorageSync('userInfo')
+          wx.removeStorageSync('clickComplete')
           wx.reLaunch({
             url: '/pages/login/login',
           })
