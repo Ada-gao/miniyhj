@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -36,49 +36,60 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 9,
 			"list": [
 				{
-					"id": -1,
+					"id": 1,
 					"name": "login",
 					"pathName": "pages/login/login",
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "index",
 					"pathName": "pages/index/index",
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "me",
 					"pathName": "pages/me/me",
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "about",
 					"pathName": "pages/about/about",
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 5,
 					"name": "call",
 					"pathName": "pages/call/call",
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "result",
 					"pathName": "pages/result/result",
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 7,
 					"name": "task",
 					"pathName": "pages/task/task",
 					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "404",
+					"pathName": "pages/404/404",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "start",
+					"pathName": "pages/start/start"
 				}
 			]
 		}
