@@ -48,7 +48,7 @@ Page({
         task: res.data,
         lastCallResult: lastCallResult,
         icon: icon,
-        lastCallDate: util.formatTime(new Date(res.data.lastCallDate), '')
+        lastCallDate: util.formatTime(new Date(res.data.lastCallDate), 'time')
       })
     })
   },
@@ -68,7 +68,7 @@ Page({
             callLogin: false
           })
           that.openResult()
-        }, 10000)
+        }, 3000)
       })
     } else {
       that.openResult()
