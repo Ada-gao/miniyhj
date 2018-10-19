@@ -1,0 +1,31 @@
+.splash {
+  position: fixed;
+  bottom: 134rpx;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 38rpx;
+  color: #306ce2;
+  margin-bottom: 23rpx;
+}
+
+.name1 {
+  font-size: 51rpx;
+}
+
+.name2 {
+  margin-top: 10rpx;
+  font-size: 20rpx;
+}
