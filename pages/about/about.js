@@ -1,23 +1,22 @@
-const app = getApp()
+let Toast = require('../../utils/Toast.js')
 Page({
-  copy: function (e) {
+  copy: function(e) {
     wx.setClipboardData({
       data: 'gh_374030c43f3c',
-    })
-    wx.showToast({
-      title: '复制成功',
-      icon: 'none',
-      duration: 1500,
+      success: function() {
+        Toast.show('复制成功')
+      }
     })
   },
   //分享
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: '闪电呼',
-      path: '/pages/index/index'
+      path: '/pages/start/start'
     }
   },
-  back: function (e) {
+  //返回
+  back: function(e) {
     wx.navigateBack({
       delta: 1
     })
