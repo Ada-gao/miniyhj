@@ -163,9 +163,20 @@ Page({
       req.get('api/app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
         Toast.show('提交成功')
         getApp().globalData.isCommit = false
-        wx.navigateBack({
-          delta: res.data ? 1 : 2
-        })
+        if (res.data) {
+          let pages = getCurrentPages()
+          var beforePage = pages[pages.length - 2]
+          wx.navigateBack({
+            delta: 1,
+            success: function() {
+              beforePage.onLoad(that.data.groupId);
+            }
+          });
+        } else {
+          wx.navigateBack({
+            delta: 2
+          })
+        }
       })
     }, false)
   },
