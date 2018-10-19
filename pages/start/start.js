@@ -6,7 +6,7 @@ Page({
   onLoad: function(options) {
     let that = this
     timer = setTimeout(function() {
-      if (app.globalData.token) {
+      if (app.globalData.token && app.globalData.userId) {
         that.getUserInfo()
       } else {
         wx.reLaunch({
