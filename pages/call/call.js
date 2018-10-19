@@ -88,7 +88,6 @@ Page({
     if (this.data.groupId) {
       url += '&groupId=' + this.data.groupId
     }
-    app.globalData.commitData = url
     wx.navigateTo({
       url: url,
     })
@@ -115,10 +114,8 @@ Page({
     })
   },
   onShow: function() {
-    if (app.globalData.commitData) {
-      wx.navigateTo({
-        url: app.globalData.commitData,
-      })
+    if (app.globalData.isCommit) {
+      this.openResult()
     }
   }
 })

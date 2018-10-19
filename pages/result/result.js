@@ -59,6 +59,11 @@ Page({
     wechatNo: ''
   },
   onLoad: function(data) {
+    if (app.globalData.isCommit) {
+      Toast.show('您还有任务未提交！')
+    } else {
+      app.globalData.isCommit = true
+    }
     this.setData({
       task: JSON.parse(data.task),
       callsid: data.callsid || '',
@@ -157,7 +162,7 @@ Page({
       that.goMessage()
       req.get('api/app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
         Toast.show('提交成功')
-        getApp().globalData.commitData = null
+        getApp().globalData.isCommit = false
         wx.navigateBack({
           delta: res.data ? 1 : 2
         })
