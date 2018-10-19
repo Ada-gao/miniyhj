@@ -1,4 +1,4 @@
-<view wx:if="{{isLoading}}">
+<view>
   <view class='tabBar'>
     <view class='tabBarTitle'>
       <text>闪电呼</text>

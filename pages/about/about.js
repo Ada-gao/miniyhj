@@ -1,3 +1,4 @@
+const app = getApp()
 Page({
   copy: function (e) {
     wx.setClipboardData({
@@ -14,6 +15,13 @@ Page({
     return {
       title: '闪电呼',
       path: '/pages/index/index'
+    }
+  },
+  onShow: function () {
+    if (app.globalData.commitData) {
+      wx.navigateTo({
+        url: app.globalData.commitData,
+      })
     }
   },
   back: function (e) {

@@ -7,7 +7,6 @@ Page({
     dailyTaskCompleteCnt: 0, //完成的数量
     dailyTaskCnt: 0, //总数量
     completeRate: 0, //完成率
-    isLoading: false,
     tasks: [],
     isComplete: false,
     showComplete: false,
@@ -19,19 +18,6 @@ Page({
       that.setData({
         showComplete: wx.getStorageSync('isComplete')
       })
-      if (app.globalData.groupId) {
-        wx.navigateTo({
-          url: '/pages/task/task?groupId=' + app.globalData.groupId
-        })
-      }else{
-        if (app.globalData.openCall) {
-          wx.navigateTo({
-            url: '/pages/call/call'
-          })
-          delete app.globalData.groupId
-          delete app.globalData.openCall
-        }
-      }
     }else{
       that.setData({
         isReturn: true
@@ -47,6 +33,11 @@ Page({
     }
   },
   onShow: function() {
+    if (app.globalData.commitData) {
+      wx.navigateTo({
+        url: app.globalData.commitData,
+      })
+    }
     var that = this
     if (that.data.isReturn){
       return;
@@ -67,7 +58,6 @@ Page({
         res.data[index].taskEndDate = util.formatTime(new Date(res.data[index].taskEndDate), '')
       }
       that.setData({
-        isLoading: true,
         tasks: res.data
       })
     }, false)

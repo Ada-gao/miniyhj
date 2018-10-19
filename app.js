@@ -14,8 +14,7 @@ App({
     userId: null,//用户id
     name: null,//用户昵称
     username:null,//用户名
-    groupId:null,
-    openCall:false
+    commitData:null,//要提交的数据
   },
   onPageNotFound(res) {
     wx.redirectTo({

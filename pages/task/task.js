@@ -60,13 +60,6 @@ Page({
         });
       }
     });
-    if (app.globalData.openCall) {
-      wx.navigateTo({
-        url: '/pages/call/call?groupId=' + app.globalData.groupId
-      })
-    }
-    delete app.globalData.groupId
-    delete app.globalData.openCall
   },
   tabClick: function (e) {
     this.setData({
@@ -199,6 +192,11 @@ Page({
         })
       }
     }, false)
+    if (app.globalData.commitData) {
+      wx.navigateTo({
+        url: app.globalData.commitData,
+      })
+    }
   },
   // 页面滑动到底部
    bindDownLoad: function(e) {

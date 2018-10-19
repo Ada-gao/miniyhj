@@ -13,8 +13,6 @@ Page({
     callSid: '',
     groupId: '',
     isLoading: false,
-    
-
   },
   onLoad: function(options) {
     let that = this
@@ -46,7 +44,7 @@ Page({
         icon = '/image/icon_call_status_fail.png'
       }
       that.setData({
-        isLoading:false,
+        isLoading: false,
         task: res.data,
         lastCallResult: lastCallResult,
         icon: icon,
@@ -66,19 +64,31 @@ Page({
           callLogin: true
         })
         timer = setTimeout(function() {
-            wx.reLaunch({
-              url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid + '&groupId=' + that.data.groupId,
-            })
+          that.openResult()
         }, 5000)
       })
     } else {
-      wx.reLaunch({
-        url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + 0 + '&groupId=' + that.data.groupId,
-      })
+      that.openResult()
       wx.makePhoneCall({
         phoneNumber: phneNo
       })
     }
+  },
+  openResult:function(){
+    let url = '/pages/result/result'
+    if (this.data.task){
+      url += '?task=' + JSON.stringify(this.data.task)
+    }
+    if (this.data.callSid){
+      url += '&callsid=' + this.data.callSid
+    }
+    if (this.data.groupId) {
+      url += '&groupId=' + this.data.groupId
+    }
+    app.globalData.commitData = url
+    wx.navigateTo({
+      url: url,
+    })
   },
   callRrturn: function() {
     let that = this
@@ -100,5 +110,12 @@ Page({
     wx.navigateBack({
       delta: 1
     })
+  },
+  onShow: function() {
+    if (app.globalData.commitData) {
+      wx.navigateTo({
+        url: app.globalData.commitData,
+      })
+    }
   }
 })

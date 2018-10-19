@@ -61,8 +61,8 @@ Page({
   onLoad: function(data) {
     this.setData({
       task: JSON.parse(data.task),
-      callsid: data.callsid,
-      groupId: data.groupId,
+      callsid: data.callsid || '',
+      groupId: data.groupId || '',
       actualCallStartDate: new Date,
       acutalCallEndDate: new Date
     })
@@ -141,8 +141,7 @@ Page({
   },
   goMessage: function() {
     let that = this
-    req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName, {}, function(res) {
-    }, false)
+    req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName, {}, function(res) {}, false)
   },
   getCallMoney: function() {
     let that = this
@@ -158,12 +157,9 @@ Page({
       that.goMessage()
       req.get('api/app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
         Toast.show('提交成功')
-        getApp().globalData.groupId = that.data.groupId
-        if (res.data) {
-          getApp().globalData.openCall = true
-        }
-        wx.switchTab({
-          url: '/pages/index/index',
+        getApp().globalData.commitData = null
+        wx.navigateBack({
+          delta: res.data ? 1 : 2
         })
       })
     }, false)
