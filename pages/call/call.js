@@ -68,7 +68,7 @@ Page({
             callLogin: false
           })
           that.openResult()
-        }, 3000)
+        }, 10000)
       })
     } else {
       that.openResult()
