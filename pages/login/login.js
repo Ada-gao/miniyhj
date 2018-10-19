@@ -1,4 +1,3 @@
-// pages/login/login.js
 var req = require('../../utils/request.js')
 const app = getApp()
 let Toast = require('../../utils/Toast.js')
@@ -32,15 +31,15 @@ Page({
         let token = res.data.token
         wx.setStorageSync('token', token)
         app.globalData.token = token
-        req.get('api/app/me', function(res) {
+        req.get('/api/app/me', function(res) {
           console.debug(JSON.stringify(res.data))
           let userinfo = res.data
+          wx.setStorageSync('userInfo', userinfo)
           app.globalData.companyId = userinfo.companyId
           app.globalData.userId = userinfo.id
           app.globalData.name = userinfo.name
           app.globalData.username = userinfo.username
           //放在storage方便调试
-          wx.setStorageSync('userInfo', userinfo)
           //获取完用户信息后才能跳转页面
           if (that.data.isTab) {
             wx.switchTab({

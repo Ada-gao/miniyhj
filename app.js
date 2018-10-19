@@ -1,4 +1,3 @@
-//app.js
 App({
   onLaunch: function () {
     this.globalData.token = wx.getStorageSync('token')

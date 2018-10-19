@@ -1,5 +1,4 @@
 var req = require('../../utils/request.js')
-var api = require('../../api/api.js')
 const app = getApp()
 var timer
 Page({
@@ -7,7 +6,18 @@ Page({
     let that = this
     timer = setTimeout(function() {
       if (app.globalData.token && app.globalData.userId) {
-        that.getUserInfo()
+        req.get('/api/app/me', function (res) {
+          //保存token信息
+          let userinfo = res.data
+          wx.setStorageSync('userInfo', userinfo)
+          app.globalData.companyId = userinfo.companyId
+          app.globalData.userId = userinfo.id
+          app.globalData.name = userinfo.name
+          app.globalData.username = userinfo.username
+          wx.switchTab({
+            url: '/pages/index/index',
+          })
+        }, false)
       } else {
         wx.reLaunch({
           url: '/pages/login/login',
@@ -17,18 +27,6 @@ Page({
   },
   onUnload: function() {
     clearTimeout(timer)
-  },
-  //获取用户信息
-  getUserInfo: function() {
-    let that = this
-    req.get(api.me, function(res) {
-      //保存token信息
-      wx.setStorageSync('userInfo', JSON.stringify(res.data))
-      app.globalData.userInfo = res.data
-      wx.switchTab({
-        url: '/pages/index/index',
-      })
-    }, false)
   },
   //分享
   onShareAppMessage: function() {
