@@ -31,7 +31,7 @@
           <text class='label'>{{task.source}}</text>
         </view>
       </view>
-      <view class='log' wx:if="{{task.callCount>0}}">最近外呼：{{task.callCount}}次，最近一次外呼时间：{{lastCallDate}} </view>
+      <view class='log' wx:if="{{task.callCount>0}}">最近外呼：{{task.callCount}}次，最近外呼时间：{{lastCallDate}} </view>
       <view>
         <view class='call' bindtap="callPhone">
           <image class='callicon' src='/image/icon_index_call.png'></image>
