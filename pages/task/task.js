@@ -192,11 +192,6 @@ Page({
         })
       }
     }, false)
-    if (app.globalData.commitData) {
-      wx.navigateTo({
-        url: app.globalData.commitData,
-      })
-    }
   },
   // 页面滑动到底部
    bindDownLoad: function(e) {

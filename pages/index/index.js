@@ -33,11 +33,6 @@ Page({
     }
   },
   onShow: function() {
-    if (app.globalData.commitData) {
-      wx.navigateTo({
-        url: app.globalData.commitData,
-      })
-    }
     var that = this
     if (that.data.isReturn){
       return;

@@ -17,13 +17,6 @@ Page({
       path: '/pages/index/index'
     }
   },
-  onShow: function () {
-    if (app.globalData.commitData) {
-      wx.navigateTo({
-        url: app.globalData.commitData,
-      })
-    }
-  },
   back: function (e) {
     wx.navigateBack({
       delta: 1

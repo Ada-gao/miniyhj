@@ -22,11 +22,6 @@ Page({
     })
   },
   onShow: function() {
-    if (app.globalData.commitData) {
-      wx.navigateTo({
-        url: app.globalData.commitData,
-      })
-    }
     let that = this
     req.get('api/task/statisBySales?userId=' + app.globalData.userId, function(res) {
       that.setData({

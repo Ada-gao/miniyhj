@@ -77,7 +77,10 @@ Page({
   openResult:function(){
     let url = '/pages/result/result'
     if (this.data.task){
-      url += '?task=' + JSON.stringify(this.data.task)
+      let task = JSON.parse(JSON.stringify(this.data.task))
+      delete task.common
+      delete task.salesTalk
+      url += '?task=' + JSON.stringify(task)
     }
     if (this.data.callSid){
       url += '&callsid=' + this.data.callSid
