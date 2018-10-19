@@ -23,7 +23,7 @@ Page({
           url: '/pages/login/login',
         })
       }
-    }, 1500)
+    }, 2000)
   },
   onUnload: function() {
     clearTimeout(timer)
