@@ -1,21 +1,19 @@
 //app.js
 App({
   onLaunch: function () {
-    var token = wx.getStorageSync('token')
-    this.globalData.token = token
-    console.log('token:', token)
+    this.globalData.token = wx.getStorageSync('token')
     var userInfo = wx.getStorageSync('userInfo')
     this.globalData.companyId = userInfo.companyId
-    this.globalData.userId = userInfo.userId
-    this.globalData.mobile = userInfo.mobile
+    this.globalData.userId = userInfo.id
     this.globalData.name = userInfo.name
+    this.globalData.username = userInfo.username
   },
   globalData: {
     token: null,
-    companyId: null,
-    userId: null,
-    mobile: null,
-    name: null,
+    companyId: null,//公司Id
+    userId: null,//用户id
+    name: null,//用户昵称
+    username:null,//用户名
     groupId:null,
     openCall:false
   },

@@ -1,4 +1,4 @@
-var req = require('../../api/request.js')
+var req = require('../../utils/request.js')
 var api = require('../../api/api.js')
 const app = getApp()
 var timer

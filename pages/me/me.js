@@ -17,7 +17,7 @@ Page({
     // Get company name and Logo url,基本不变的放在onLoad方法内，只需一次加载
     req.get('/api/app/getLogoAndName', function(res) {
       that.setData({
-        companyName: res.data.companyName || that.data.companyName,
+        companyName: res.data.companyName
       })
     })
   },
@@ -42,11 +42,6 @@ Page({
       content: '您确定要退出登录吗？',
       success: function(res) {
         if (res.confirm) {
-          delete app.globalData.token
-          wx.removeStorageSync('token')
-          wx.removeStorageSync('isComplete')
-          wx.removeStorageSync('userInfo')
-          wx.removeStorageSync('clickComplete')
           wx.reLaunch({
             url: '/pages/login/login',
           })

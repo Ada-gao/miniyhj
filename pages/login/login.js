@@ -5,10 +5,11 @@ let Toast = require('../../utils/Toast.js')
 Page({
   data: {
     redirect: '',
-    isTab: false,   
+    isTab: false,
     isShowPassword: true
   },
   onLoad: function(options) {
+    delete app.globalData.token
     wx.clearStorageSync()
     this.setData({
       redirect: options.redirect || 'pages/index/index',
@@ -19,32 +20,27 @@ Page({
     let account = e.detail.value.account;
     let password = e.detail.value.password;
     if (account.length < 4) {
-      Toast.show('用户名不合法')     
+      Toast.show('用户名不合法')
     } else if (password.length < 6) {
-      Toast.show('密码不合法')     
-    } else {    
-      let that = this      
+      Toast.show('密码不合法')
+    } else {
+      let that = this
       req.post('/api/auth/login', {
         username: account,
         password: password
-      }, function (res){       
-        wx.setStorageSync('token', res.data.token)
-        app.globalData.token = wx.getStorageSync('token')
-        req.get('api/app/me',function(res) {    
-          console.log(res.data)
-          app.globalData.companyId = res.data.companyId
-          app.globalData.userId = res.data.id
-          app.globalData.mobile = res.data.mobile
-          app.globalData.name = res.data.name
-          app.globalData.username = res.data.username
+      }, function(res) {
+        let token = res.data.token
+        wx.setStorageSync('token', token)
+        app.globalData.token = token
+        req.get('api/app/me', function(res) {
+          console.debug(JSON.stringify(res.data))
+          let userinfo = res.data
+          app.globalData.companyId = userinfo.companyId
+          app.globalData.userId = userinfo.id
+          app.globalData.name = userinfo.name
+          app.globalData.username = userinfo.username
           //放在storage方便调试
-          wx.setStorageSync('userInfo', {
-            companyId: app.globalData.companyId,
-            userId: app.globalData.userId,
-            mobile: app.globalData.mobile,
-            name: app.globalData.name,
-            username: app.globalData.username
-          })
+          wx.setStorageSync('userInfo', userinfo)
           //获取完用户信息后才能跳转页面
           if (that.data.isTab) {
             wx.switchTab({
@@ -56,25 +52,20 @@ Page({
             })
           }
         })
-      })      
+      })
     }
   },
   //分享
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: '闪电呼',
       path: '/pages/index/index'
     }
   },
   switchPwd: function(e) {
-    if (this.data.isShowPassword) {
-      this.setData({
-        isShowPassword: false
-      })
-    } else {
-      this.setData({
-        isShowPassword: true
-      })
-    }
+    let isShowPassword = !this.data.isShowPassword
+    this.setData({
+      isShowPassword: isShowPassword
+    })
   }
 })
