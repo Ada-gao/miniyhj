@@ -1,6 +1,6 @@
 .txt {
   position: fixed;
-  top: 50%;
+  top: 200rpx;
   width: 100%;
   font-weight: bold;
   font-size: 120rpx;
