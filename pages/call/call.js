@@ -64,8 +64,11 @@ Page({
           callLogin: true
         })
         timer = setTimeout(function() {
+          that.setData({
+            callLogin: false
+          })
           that.openResult()
-        }, 5000)
+        }, 10000)
       })
     } else {
       that.openResult()
