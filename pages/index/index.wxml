@@ -34,23 +34,26 @@
   <swiper wx:if="{{tasks.length>0}}" current="{{current}}" class='card'>
     <block wx:for="{{tasks}}" wx:key="{{item.taskGroupId}}">
       <swiper-item>
-        <view bindtap='openTask' class='carditem' data-id="{{item.taskGroupId}}">
+        <view class='carditem' data-id="{{item.taskGroupId}}">
           <text class='txt1'>{{ item.taskName }}</text>
           <view class='line'></view>
           <view class='carditem2'>
             <view class='cardsub'>
               <text class='txt3'>{{ item.totalTaskCnt }}<text style='font-size:32rpx;'>个</text></text>
-              <text class='txt2'>客户总数</text>
+              <text class='txt2'>客户数</text>
             </view>
-            <view class='cardsub'></view>
-            <view class='cardsub'>
+            <view class='cardsub' bindtap='completeList' data-id='{{ item.taskGroupId }}'>
+              <text class='txt3'>{{ item.totalTaskCompleteCnt }}<text style='font-size:32rpx;'>个</text></text>
+              <text class='txt2'>继续跟进</text>
+            </view>
+            <view class='cardsub' bindtap='list' data-id='{{ item.taskGroupId }}'>
               <text class='txt3'>{{ item.totalTaskCnt - item.totalTaskCompleteCnt }}<text style='font-size:32rpx;'>个</text></text>
               <text class='txt2'>剩余未呼</text>
             </view>
           </view>
           <view class='line'></view>
           <text class='txt4'>计划完成时间：{{item.taskEndDate}}</text>
-          <view class='detail'>
+          <view class='detail' bindtap='openTask' data-id='{{ item.taskGroupId }}'>
             <text class='txt5'>点击查看客户列表</text>
             <image class='arrow' src='/image/icon_common_arrow.png' />
           </view>

@@ -1,14 +1,12 @@
-<view>
-  <view class='tabBar'>
-    <view class='tabBarBack' bindtap='back'>
-      <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
-    </view>
-    <view class='tabBarTitle'>
-      <text>备注</text>
-    </view>
+<view class='tabBar'>
+  <view class='tabBarBack' bindtap='back'>
+    <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
   </view>
-  <form bindsubmit="formSubmit">
-    <textarea class='info' placeholder='请输入备注信息...' maxlength='100' name='memo' value="{{memo}}" />
-    <button class='button' formType="submit">提交</button>
-  </form>
+  <view class='tabBarTitle'>
+    <text>备注</text>
+  </view>
 </view>
+<form bindsubmit="formSubmit">
+  <textarea class='info' placeholder='请输入备注信息...' maxlength='100' name='memo' value="{{memo}}" />
+  <button class='button' formType="submit">提交</button>
+</form>

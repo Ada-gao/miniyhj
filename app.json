@@ -1,21 +1,23 @@
 {
   "pages": [
     "pages/start/start",
-    "pages/index/index",
-    "pages/me/me",
     "pages/404/404",
-    "pages/about/about",
+    "pages/login/login",
+    "pages/trial/trial",
+    "pages/index/index",
+    "pages/index/completeList",
+    "pages/index/list",
     "pages/task/task",
     "pages/call/call",
-    "pages/login/login",
+    "pages/memo/memo",    
     "pages/result/result",
-    "pages/trial/trial",
-    "pages/feedback/feedback",
-    "pages/memo/memo",
     "pages/customer/customer",
+    "pages/me/me",
     "pages/setting/setting",
     "pages/setting/updateName",
-    "pages/setting/updatePwd"
+    "pages/setting/updatePwd",
+    "pages/feedback/feedback",
+    "pages/about/about"
   ],
   "window": {
     "navigationBarTextStyle": "white",

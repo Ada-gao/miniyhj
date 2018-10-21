@@ -33,6 +33,15 @@
           </picker>
         </view>
       </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">添加为星标客户</view>
+        </view>
+        <view class="weui-cell__bd">
+          <switch bindchange="switchChange" color="#2F6BE2"/>
+        </view>
+      </view>
     </view>
     <!-- 客户信息 -->
     <form bindsubmit="formSubmit">

@@ -83,6 +83,20 @@ Page({
       url: '/pages/task/task?groupId=' + id,
     })
   },
+  //跟进列表
+  completeList: function (e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/index/completeList?groupId=' + id,
+    })
+  },
+  //未外呼列表
+  list: function (e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/index/list?groupId=' + id,
+    })
+  },
   //任务详情
   openCall: function(e) {
     wx.navigateTo({

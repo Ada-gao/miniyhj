@@ -141,24 +141,26 @@
 .txt2 {
   font-size: 28rpx;
   color: #9c9c9c;
+  font-weight:300;
 }
 
 .txt3 {
   font-size: 64rpx;
   color: #222;
+  font-weight:500;
 }
 
 .txt4 {
   font-size: 32rpx;
   color: #222;
-  margin-top: 50rpx;
-  margin-bottom: 50rpx;
+  padding-top: 50rpx;
 }
 
 .detail {
   display: flex;
   flex-direction: row;
-  margin-bottom: 50rpx;
+  padding-top: 50rpx;
+  padding-bottom: 50rpx;
 }
 
 .txt5 {
