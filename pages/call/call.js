@@ -15,7 +15,7 @@ Page({
     groupId: '',
     taskId: '',
     isLoading: true,
-    opacity:0,
+    opacity: 0,
     winHeight: app.globalData.winHeight
   },
   onLoad: function(options) {
@@ -43,7 +43,7 @@ Page({
       url += 'taskId=' + that.data.taskId
     }
     req.get(url, function(res) {
-      if(!res.data){
+      if (!res.data) {
         return
       }
       let lastCallResult = res.data.lastCallResult;
@@ -71,10 +71,12 @@ Page({
       })
     })
   },
-  scrollChange:function(e){
-    console.log(e.detail.scrollTop)
+  collectChange: function() {
+    common.showToast('已添加星标客户')
+  },
+  scrollChange: function(e) {
     let opacity = e.detail.scrollTop / 150
-    if(opacity > 1){
+    if (opacity > 1) {
       opacity = 1
     }
     this.setData({
