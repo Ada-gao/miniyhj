@@ -61,7 +61,7 @@
               <view class="weui-label">电话</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入" value='{{task.mobileNo}}' maxlength='11' name='mobileNo' />
+              <input class="weui-input" placeholder="请输入" value='{{task.mobileNo}}' maxlength='11' type='number' name='mobileNo' />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
