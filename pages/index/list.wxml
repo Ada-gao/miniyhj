@@ -6,3 +6,10 @@
     <text>未外呼列表</text>
   </view>
 </view>
+<view class='list' wx:for="{{tasks}}">
+  <view class='module' bindtap='openTask'>
+    <text class='name'>{{item.contactName}}</text>
+    <text class='value'>2018-12-14</text>
+    <image class='arrow' src='/image/icon_common_arrow.png' />
+  </view>
+</view>

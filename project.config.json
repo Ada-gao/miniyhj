@@ -115,6 +115,18 @@
 					"name": "setting",
 					"pathName": "pages/setting/setting",
 					"query": ""
+				},
+				{
+					"id": 14,
+					"name": "list",
+					"pathName": "pages/index/list",
+					"query": ""
+				},
+				{
+					"id": 15,
+					"name": "completeList",
+					"pathName": "pages/index/completeList",
+					"query": ""
 				}
 			]
 		}
