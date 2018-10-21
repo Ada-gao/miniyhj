@@ -1,5 +1,29 @@
 <view class='tabBar'>
-    <view class='tabBarTitle'>
-      <text>潜客列表</text>
+  <view class='tabBarTitle'>
+    <text>潜客列表</text>
+  </view>
+</view>
+<view class='list'>
+  <view class='search' bindtap='openSearch'>
+    <image class='icon' src='/image/icon_customer_search.png'></image>
+    <text class='txt'>搜索</text>
+  </view>
+  <view class='tab'>
+    <view class='head'>
+      <view class="{{tabIndex==='1'?'active':'default'}}" bindtap='switchTab' data-index='1'>
+        <text>意向客户（66）</text>
+      </view>
+      <view class="{{tabIndex==='2'?'active':'default'}}" bindtap='switchTab' data-index='2'>
+        <text>星标客户（18）</text>
+      </view>
     </view>
   </view>
+</view>
+<view class='content'>
+  <block wx:for="{{tasks}}">
+    <view class='module' bindtap='openTask'>
+      <text class='name'>{{item.contactName}}</text>
+      <image class='arrow' src='/image/icon_common_arrow.png' />
+    </view>
+  </block>
+</view>

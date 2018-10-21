@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 16,
 			"list": [
 				{
 					"id": 1,
@@ -127,6 +127,17 @@
 					"name": "completeList",
 					"pathName": "pages/index/completeList",
 					"query": ""
+				},
+				{
+					"id": 16,
+					"name": "customer",
+					"pathName": "pages/customer/customer",
+					"query": ""
+				},
+				{
+					"id": 17,
+					"name": "search",
+					"pathName": "pages/customer/search"
 				}
 			]
 		}

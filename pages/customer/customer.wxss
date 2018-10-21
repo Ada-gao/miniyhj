@@ -1,1 +1,92 @@
-/* pages/customer/customer.wxss */
+page {
+  background: #fff;
+}
+
+.list {
+  width: 100%;
+  background: #f4f5f7;
+  position: fixed;
+}
+
+.list .tab {
+  background: #fff;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  padding-left: 74rpx;
+  padding-right: 74rpx;
+}
+
+.search {
+  background: #fff;
+  height: 56rpx;
+  margin: 20rpx;
+  display: flex;
+  flex-direction: row;
+  border-radius: 4rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.search .icon {
+  width: 26rpx;
+  height: 26rpx;
+}
+
+.search .txt {
+  font-size: 26rpx;
+  color: #b2b2b2;
+  margin-left: 8rpx;
+}
+
+.head {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #9c9c9c;
+  border: 1rpx solid #b8b8b8;
+  border-radius: 6rpx;
+  background: #fff;
+}
+
+.head .active {
+  background: linear-gradient(-90deg, #2f6be2, #5d90f4);
+  color: #fff;
+  flex: 1;
+  line-height: 64rpx;
+  text-align: center;
+}
+
+.head .default {
+  flex: 1;
+  line-height: 64rpx;
+  text-align: center;
+}
+
+.module {
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  height: 94rpx;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: 1rpx #e9e9e9 solid;
+}
+
+.module .name {
+  font-size: 32rpx;
+  color: #323232;
+  flex: 1;
+}
+
+.module .arrow {
+  width: 33rpx;
+  height: 33rpx;
+}
+
+.content {
+  margin-top: 200rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
