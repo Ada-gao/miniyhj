@@ -67,7 +67,7 @@
   </view>
   <view class="dialog-mask" wx:if="{{showComplete}}">
     <view class="dialog-content">
-      <image class='complete-img' src='/image/task.png'></image>
+      <image class='complete-img' src='/image/icon_index_task.png'></image>
       <text class="dialog-txt1">今天的任务已完成！</text>
       <text class="dialog-txt2">请继续加油哦！</text>
       <button class="dialog-btn" type="default" bindtap="closeDialog">知道了</button>
