@@ -150,6 +150,7 @@ page {
   padding-left: 46rpx;
   padding-right: 34rpx;
   padding-bottom: 25rpx;
+  word-break: break-all;
 }
 
 .call_head {
