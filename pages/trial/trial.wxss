@@ -104,6 +104,7 @@ page {
   line-height: 48rpx;
   text-align: center;
   color: #3772e5;
+  padding: 0rpx;
   font-size: 28rpx;
   border: 1px solid rgba(55, 114, 229, 1);
   border-radius: 6rpx;

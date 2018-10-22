@@ -27,33 +27,39 @@
     <view class='form'>
       <label class='title'>公司信息</label>
       <view class='inputItem'>
-        <input class='input' placeholder='请输入公司名称' maxlength='50'></input>
+        <input class='input' placeholder='输入公司名称' maxlength='50' name='companyName'></input>
       </view>
-      <view class='inputItem'>
-        <input class='input' disabled='true' placeholder='请选择公司所在地'></input>
-        <image class='arrow' src='/image/icon_common_arrow.png' />
-      </view>
-      <view class='inputItem'>
-        <input class='input' disabled='true' placeholder='请选择所属行业'></input>
-        <image class='arrow' src='/image/icon_common_arrow.png' />
-      </view>
-      <view class='inputItem'>
-        <input class='input' disabled='true' placeholder='请选择公司规模'></input>
-        <image class='arrow' src='/image/icon_common_arrow.png' />
-      </view>
+      <picker mode="region" bindchange="cityChange">
+        <view class='inputItem'>
+          <input class='input' disabled='true' placeholder='请选择公司所在地' value="{{address?address[0] + '-' + address[1] + '-' + address[2]:''}}"></input>
+          <image class='arrow' src='/image/icon_common_arrow.png' />
+        </view>
+      </picker>
+      <picker range="{{types}}" range-key="name" bindchange="typeChange">
+        <view class='inputItem'>
+          <input class='input' disabled='true' placeholder='请选择所属行业' value='{{industryType}}'></input>
+          <image class='arrow' src='/image/icon_common_arrow.png' />
+        </view>
+      </picker>
+      <picker range="{{scales}}" range-key="label" bindchange="scaleChange">
+        <view class='inputItem'>
+          <input class='input' disabled='true' placeholder='请选择公司规模' value='{{orgSize}}'></input>
+          <image class='arrow' src='/image/icon_common_arrow.png' />
+        </view>
+      </picker>
     </view>
     <view class='line'></view>
     <view class='form'>
       <label class='title'>联系人信息</label>
       <view class='inputItem'>
-        <input class='input' placeholder='请输入联系人姓名' maxlength='10'></input>
+        <input class='input' placeholder='输入联系人姓名' maxlength='10' name='contact'></input>
       </view>
       <view class='inputItem'>
-        <input class='input' placeholder='输入联系人电话' maxlength='11' type='number'></input>
+        <input class='input' placeholder='输入联系人电话' maxlength='11' type='number' bindinput='phoneInput'></input>
       </view>
       <view class='inputItem'>
-        <input class='input' placeholder='输入验证码' maxlength='6' type='number'></input>
-        <label class='code' bindtap='getCode'>获取验证码</label>
+        <input class='input' placeholder='输入验证码' maxlength='4' type='number' name='verifyCode'></input>
+        <label class='code' bindtap='getCode'>{{isSend?time:'获取验证码'}}</label>
       </view>
     </view>
     <view class='item'>
