@@ -1,4 +1,5 @@
 var req = require('../../utils/request.js')
+var common = require('../../common/common.js')
 const app = getApp()
 var timer
 Page({
@@ -6,14 +7,8 @@ Page({
     let that = this
     timer = setTimeout(function() {
       if (app.globalData.token && app.globalData.userId) {
-        req.get('/api/app/me', function (res) {
-          //保存token信息
-          let userinfo = res.data
-          wx.setStorageSync('userInfo', userinfo)
-          app.globalData.companyId = userinfo.companyId
-          app.globalData.userId = userinfo.id
-          app.globalData.name = userinfo.name
-          app.globalData.username = userinfo.username
+        req.get('app/me', function (res) {
+          common.saveUserInfo(res.data)
           wx.switchTab({
             url: '/pages/index/index',
           })
@@ -28,11 +23,7 @@ Page({
   onUnload: function() {
     clearTimeout(timer)
   },
-  //分享
-  onShareAppMessage: function() {
-    return {
-      title: '闪电呼',
-      path: '/pages/start/start'
-    }
+  onShareAppMessage: function () {
+    return common.onShareAppMessage()
   }
 })

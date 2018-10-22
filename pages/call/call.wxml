@@ -1,5 +1,5 @@
 <view>
- <view class='head' bindtap='back'  wx:if="{{!callLogin}}">
+  <view class='head' bindtap='back' wx:if="{{!callLogin}}">
     <image class='arrow' src='/image/icon_common_back_white.png'></image>
     <text>返回</text>
   </view>
@@ -40,18 +40,18 @@
       </view>
     </view>
     <view style='margin-top: 30rpx;background: #fff;' wx:if="{{task.common}}">
-          <view class='tip'>
-            <view class='line'></view>
-            <text class='name'>备注</text>
-          </view>
-          <view class='term'>{{task.common}}</view>
+      <view class='tip'>
+        <view class='line'></view>
+        <text class='name'>备注</text>
+      </view>
+      <view class='term'>{{task.common}}</view>
     </view>
     <view style='margin-top: 30rpx;background: #fff;'>
-          <view class='tip'>
-            <view class='line'></view>
-            <text class='name'>外呼话术</text>
-          </view>
-          <view class='term'>{{task.salesTalk}}</view>
+      <view class='tip'>
+        <view class='line'></view>
+        <text class='name'>外呼话术</text>
+      </view>
+      <view class='term'>{{task.salesTalk}}</view>
     </view>
   </scroll-view>
 </view>

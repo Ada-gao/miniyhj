@@ -1,4 +1,6 @@
+var common = require('../../common/common.js')
 Page({
-  onLoad: function (options) {
-  },
+  onShareAppMessage: function() {
+    return common.onShareAppMessage()
+  }
 })

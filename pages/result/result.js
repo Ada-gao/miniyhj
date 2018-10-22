@@ -1,6 +1,6 @@
 var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
-let Toast = require('../../utils/Toast.js')
+var common = require('../../common/common.js')
 const app = getApp()
 Page({
   data: {
@@ -60,7 +60,7 @@ Page({
   },
   onLoad: function(data) {
     if (app.globalData.isCommit) {
-      Toast.show('您还有任务未提交！')
+      common.showTast('您还有任务未提交！')
     } else {
       app.globalData.isCommit = true
     }
@@ -89,7 +89,7 @@ Page({
   formSubmit: function(e) {
     let that = this
     if (that.data.result === '' || that.data.status === '') {
-      Toast.show('标星为必填项')
+      common.showTast('标星为必填项')
     } else {
       wx.showLoading()
       that.setData({
@@ -118,7 +118,7 @@ Page({
   },
   callResult: function(start, end) {
     let that = this
-    req.post('api/app/tasks/history', {
+    req.post('app/tasks/history', {
       result: that.data.result,
       status: that.data.status,
       actualCallStartDate: start,
@@ -134,7 +134,7 @@ Page({
   outboundName: function() {
     let that = this
     let id = that.data.task.outboundNameId
-    req.put('api/app/outboundName/' + id, {
+    req.put('app/outboundName/' + id, {
       contactName: that.data.contactName,
       gender: that.data.task.gender,
       mobileNo: that.data.mobileNo,
@@ -146,11 +146,11 @@ Page({
   },
   goMessage: function() {
     let that = this
-    req.post('api/message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName, {}, function(res) {}, false)
+    req.post('message/delaySend?companyId=' + app.globalData.companyId + '&outboundNameId=' + that.data.task.outboundNameId + '&userName=' + app.globalData.username + '&contactName=' + that.data.task.contactName, {}, function(res) {}, false)
   },
   getCallMoney: function() {
     let that = this
-    req.post('api/call/call/recordCallHistory', {
+    req.post('call/call/recordCallHistory', {
       callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
       clientId: that.data.task.outboundNameId,
       clientName: that.data.task.contactName,
@@ -160,8 +160,8 @@ Page({
       source: 'miniProgram'
     }, function(res) {
       that.goMessage()
-      req.get('api/app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
-        Toast.show('提交成功')
+      req.get('app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
+        common.showTast('提交成功')
         getApp().globalData.isCommit = false
         if (res.data) {
           let pages = getCurrentPages()
@@ -180,12 +180,7 @@ Page({
       })
     }, false)
   },
-
-  //分享
-  onShareAppMessage: function() {
-    return {
-      title: '闪电呼',
-      path: '/pages/index/index'
-    }
-  },
+  onShareAppMessage: function () {
+    return common.onShareAppMessage()
+  }
 })

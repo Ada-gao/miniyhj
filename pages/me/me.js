@@ -1,5 +1,6 @@
 var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
+var common = require('../../common/common.js')
 const app = getApp()
 Page({
   data: {
@@ -14,8 +15,7 @@ Page({
     that.setData({
       userName: app.globalData.name,
     })
-    // Get company name and Logo url,基本不变的放在onLoad方法内，只需一次加载
-    req.get('/api/app/getLogoAndName', function(res) {
+    req.get('app/getLogoAndName', function(res) {
       that.setData({
         companyName: res.data.companyName
       })
@@ -23,7 +23,7 @@ Page({
   },
   onShow: function() {
     let that = this
-    req.get('api/task/statisBySales?userId=' + app.globalData.userId, function(res) {
+    req.get('task/statisBySales?userId=' + app.globalData.userId, function(res) {
       that.setData({
         totalTaskCompleteCnt: res.data.totalTaskCompleteCnt || 0,
         rate: utils.percent(res.data.totalTaskCompleteCnt, res.data.totalTaskCnt) || 0,
@@ -49,10 +49,7 @@ Page({
       }
     })
   },
-  onShareAppMessage: function() {
-    return {
-      title: '闪电呼',
-      path: '/pages/index/index'
-    }
+  onShareAppMessage: function () {
+    return common.onShareAppMessage()
   }
 })

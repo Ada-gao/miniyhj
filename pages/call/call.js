@@ -1,6 +1,7 @@
 var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
 var util = require('../../utils/util.js')
+var common = require('../../common/common.js')
 const app = getApp()
 var timer;
 Page({
@@ -17,7 +18,7 @@ Page({
   onLoad: function(options) {
     let that = this
     //获取随机任务详情
-    let url = 'api/app/miniProgram/nextTask'
+    let url = 'app/miniProgram/nextTask'
     if (options.groupId) {
       url += '?groupId=' + options.groupId
       if (options.taskId) {
@@ -58,7 +59,7 @@ Page({
     if (phneNo === '***********') {
       let nameId = that.data.task.outboundNameId
       let taskId = that.data.task.taskId
-      req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {}, function(res) {
+      req.post('app/call?nameId=' + nameId + '&taskId=' + taskId, {}, function(res) {
         that.setData({
           callSid: res.data.callSid,
           callLogin: true
@@ -77,15 +78,15 @@ Page({
       })
     }
   },
-  openResult:function(){
+  openResult: function() {
     let url = '/pages/result/result'
-    if (this.data.task){
+    if (this.data.task) {
       let task = JSON.parse(JSON.stringify(this.data.task))
       delete task.common
       delete task.salesTalk
       url += '?task=' + JSON.stringify(task)
     }
-    if (this.data.callSid){
+    if (this.data.callSid) {
       url += '&callsid=' + this.data.callSid
     }
     if (this.data.groupId) {
@@ -97,28 +98,22 @@ Page({
   },
   callRrturn: function() {
     let that = this
-    req.get('api/call/' + that.data.callSid, function() {
+    req.get('call/' + that.data.callSid, function() {
       that.setData({
         callLogin: false,
       })
       clearTimeout(timer)
     })
   },
-  //分享
-  onShareAppMessage: function() {
-    return {
-      title: '闪电呼',
-      path: '/pages/index/index'
-    }
-  },
-  back: function(e) {
-    wx.navigateBack({
-      delta: 1
-    })
-  },
   onShow: function() {
     if (app.globalData.isCommit) {
       this.openResult()
     }
+  },
+  onShareAppMessage: function () {
+    return common.onShareAppMessage()
+  },
+  back: function () {
+    common.back()
   }
 })
