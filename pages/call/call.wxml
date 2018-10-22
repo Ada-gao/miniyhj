@@ -46,7 +46,7 @@
         <image style='width:37rpx;height:38rpx;' src='/image/icon_call_edit.png'></image>
         <text style='font-size:26rpx;color:#2F6BE2;margin-right:44rpx;margin-left:10rpx'>编辑</text>
       </view>
-      <view class='term'>{{task.common}}</view>
+      <view class='term' wx:if="{{task.common}}">{{task.common}}</view>
     </view>
     <view style='margin-top: 30rpx;background: #fff;'>
       <view class='tip'>

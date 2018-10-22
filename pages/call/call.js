@@ -13,20 +13,26 @@ Page({
     lastCallDate: '',
     callSid: '',
     groupId: '',
+    taskId: '',
     isLoading: false,
   },
   onLoad: function(options) {
+    this.setData({
+      groupId: options.groupId,
+      taskId: options.taskId
+    })
+  },
+  onShow: function() {
+    if (app.globalData.isCommit) {
+      this.openResult()
+    }
     let that = this
-    //获取随机任务详情
     let url = 'app/miniProgram/nextTask'
-    if (options.groupId) {
-      url += '?groupId=' + options.groupId
-      if (options.taskId) {
-        url += '&taskId=' + options.taskId
+    if (that.data.groupId) {
+      url += '?groupId=' + that.data.groupId
+      if (that.data.taskId) {
+        url += '&taskId=' + that.data.taskId
       }
-      that.setData({
-        groupId: options.groupId
-      })
     }
     req.get(url, function(res) {
       let lastCallResult = res.data.lastCallResult;
@@ -80,7 +86,7 @@ Page({
   },
   openMemo: function() {
     wx.navigateTo({
-      url: '/pages/memo/memo',
+      url: '/pages/memo/memo?taskId=' + this.data.task.taskId + '&memo=' + this.data.task.common,
     })
   },
   openResult: function() {
@@ -109,11 +115,6 @@ Page({
       })
       clearTimeout(timer)
     })
-  },
-  onShow: function() {
-    if (app.globalData.isCommit) {
-      this.openResult()
-    }
   },
   onShareAppMessage: function() {
     return common.onShareAppMessage()
