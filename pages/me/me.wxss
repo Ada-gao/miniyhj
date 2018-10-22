@@ -1,6 +1,7 @@
-page{
-  background: #f4f5f7
+page {
+  background: #f4f5f7;
 }
+
 .head {
   background: #fff;
   display: flex;
@@ -11,7 +12,7 @@ page{
 .avatar {
   width: 170rpx;
   height: 170rpx;
-    padding-top: 40rpx;
+  padding-top: 40rpx;
   padding-bottom: 40rpx;
 }
 
@@ -58,6 +59,17 @@ page{
 
 .about {
   background: #fff;
+  display: flex;
+  margin-top: 1rpx;
+  flex-direction: row;
+  height: 100rpx;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.feedback {
+  background: #fff;
   margin-top: 30rpx;
   display: flex;
   flex-direction: row;
@@ -94,4 +106,3 @@ page{
   color: #3a74e6;
   font-size: 32rpx;
 }
-

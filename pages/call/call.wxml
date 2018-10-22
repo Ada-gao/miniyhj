@@ -1,5 +1,5 @@
 <view>
- <view class='head' bindtap='back'  wx:if="{{!callLogin}}">
+  <view class='head' bindtap='back' wx:if="{{!callLogin}}">
     <image class='arrow' src='/image/icon_common_back_white.png'></image>
     <text>返回</text>
   </view>
@@ -31,7 +31,7 @@
           <text class='label'>{{task.source}}</text>
         </view>
       </view>
-      <view class='log' wx:if="{{lastCallResult==='已接通'}}">最近外呼次数：{{task.callCount}}；最近一次外呼时间：{{lastCallDate}} </view>
+      <view class='log' wx:if="{{task.callCount>0}}">最近外呼：{{task.callCount}}次，最近外呼时间：{{lastCallDate}} </view>
       <view>
         <view class='call' bindtap="callPhone">
           <image class='callicon' src='/image/icon_index_call.png'></image>
@@ -39,19 +39,21 @@
         </view>
       </view>
     </view>
-    <view style='margin-top: 30rpx;background: #fff;' wx:if="{{task.common}}">
-          <view class='tip'>
-            <view class='line'></view>
-            <text class='name'>备注</text>
-          </view>
-          <view class='term'>{{task.common}}</view>
+    <view style='margin-top: 30rpx;background: #fff;'>
+      <view class='tip' bindtap='openMemo'>
+        <view class='line'></view>
+        <text class='name' style='flex:1'>备注</text>
+        <image style='width:37rpx;height:38rpx;' src='/image/icon_call_edit.png'></image>
+        <text style='font-size:26rpx;color:#2F6BE2;margin-right:44rpx;margin-left:10rpx'>编辑</text>
+      </view>
+      <view class='term' wx:if="{{task.common}}">{{task.common}}</view>
     </view>
     <view style='margin-top: 30rpx;background: #fff;'>
-          <view class='tip'>
-            <view class='line'></view>
-            <text class='name'>外呼话术</text>
-          </view>
-          <view class='term'>{{task.salesTalk}}</view>
+      <view class='tip'>
+        <view class='line'></view>
+        <text class='name'>外呼话术</text>
+      </view>
+      <view class='term'>{{task.salesTalk}}</view>
     </view>
   </scroll-view>
 </view>

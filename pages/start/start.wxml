@@ -1,0 +1,9 @@
+<view class='splash'>
+  <view>
+    <image class='logo' src='/image/icon_about_logo.png' />
+  </view>
+  <view class='info'>
+    <text class='name1'>闪电呼</text>
+    <text class='name2'>快如闪电 一击必中</text>
+  </view>
+</view>

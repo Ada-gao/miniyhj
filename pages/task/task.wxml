@@ -1,13 +1,12 @@
 <view class="page">
-    <view class='tabBar'>
-      <view class='tabBarBack' bindtap='back'>
-        <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
-      </view>
-      <view class='tabBarTitle'>
-        <text>任务列表</text>
-      </view>
+  <view class='tabBar'>
+    <view class='tabBarBack' bindtap='back'>
+      <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
     </view>
-
+    <view class='tabBarTitle'>
+      <text>任务列表</text>
+    </view>
+  </view>
   <view class="page__bd page-padding">
     <view class='time-bar'>
       <view class='padding20' bindtap="bindLastDay">
@@ -19,8 +18,9 @@
         </view>
       </picker>
       <view class='padding20' bindtap="bindNextDay">
-        <image class='arrow' src='/image/icon_next.png' /></view>
+        <image class='arrow' src='/image/icon_next.png' />
       </view>
+    </view>
     <view class="weui-tab">
       <view class="weui-navbar">
         <block wx:for-items="{{tabs}}" wx:key="{{index}}">
@@ -39,7 +39,7 @@
           <view wx:if="{{totalPages}}" class="weui-loadmore weui-loadmore_line">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
           </view>
-          <scroll-view wx:if="{{!totalPages}}" scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"  bindscroll="scroll" data-type="dnf">
+          <scroll-view wx:if="{{!totalPages}}" scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" bindscroll="scroll" data-type="dnf">
             <view class="weui-cells weui-cells_after-title">
               <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
                 <view class="weui-cell__bd text-left">{{item.contactName}}</view>
@@ -55,7 +55,7 @@
           <view wx:if="{{totalPages1}}" class="weui-loadmore weui-loadmore_line">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
           </view>
-          <scroll-view wx:if="{{!totalPages1}}" scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"  bindscroll="scroll" data-type="finish">
+          <scroll-view wx:if="{{!totalPages1}}" scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" bindscroll="scroll" data-type="finish">
             <view class="weui-cells weui-cells_after-title">
               <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list1}}" wx:key="{{index}}">
                 <view class="weui-cell__bd text-left">{{item.contactName}}</view>

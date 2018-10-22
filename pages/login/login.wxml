@@ -20,4 +20,7 @@
       </view>
     </view>
   </form>
+  <view class='trial' bindtap='openTrial'>
+    申请体验
+  </view>
 </view>

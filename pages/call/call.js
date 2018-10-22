@@ -1,6 +1,7 @@
 var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
 var util = require('../../utils/util.js')
+var common = require('../../common/common.js')
 const app = getApp()
 var timer;
 Page({
@@ -12,22 +13,26 @@ Page({
     lastCallDate: '',
     callSid: '',
     groupId: '',
+    taskId: '',
     isLoading: false,
-    
-
   },
   onLoad: function(options) {
+    this.setData({
+      groupId: options.groupId,
+      taskId: options.taskId
+    })
+  },
+  onShow: function() {
+    if (app.globalData.isCommit) {
+      this.openResult()
+    }
     let that = this
-    //获取随机任务详情
-    let url = 'api/app/miniProgram/nextTask'
-    if (options.groupId) {
-      url += '?groupId=' + options.groupId
-      if (options.taskId) {
-        url += '&taskId=' + options.taskId
+    let url = 'app/miniProgram/nextTask'
+    if (that.data.groupId) {
+      url += '?groupId=' + that.data.groupId
+      if (that.data.taskId) {
+        url += '&taskId=' + that.data.taskId
       }
-      that.setData({
-        groupId: options.groupId
-      })
     }
     req.get(url, function(res) {
       let lastCallResult = res.data.lastCallResult;
@@ -46,11 +51,11 @@ Page({
         icon = '/image/icon_call_status_fail.png'
       }
       that.setData({
-        isLoading:false,
+        isLoading: false,
         task: res.data,
         lastCallResult: lastCallResult,
         icon: icon,
-        lastCallDate: util.formatTime(new Date(res.data.lastCallDate), '')
+        lastCallDate: util.formatTime(new Date(res.data.lastCallDate), 'time')
       })
     })
   },
@@ -60,45 +65,61 @@ Page({
     if (phneNo === '***********') {
       let nameId = that.data.task.outboundNameId
       let taskId = that.data.task.taskId
-      req.post('api/app/call?nameId=' + nameId + '&taskId=' + taskId, {}, function(res) {
+      req.post('app/call?nameId=' + nameId + '&taskId=' + taskId, {}, function(res) {
         that.setData({
           callSid: res.data.callSid,
           callLogin: true
         })
         timer = setTimeout(function() {
-            wx.reLaunch({
-              url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + res.data.callSid + '&groupId=' + that.data.groupId,
-            })
-        }, 5000)
+          that.setData({
+            callLogin: false
+          })
+          that.openResult()
+        }, 10000)
       })
     } else {
-      wx.reLaunch({
-        url: '/pages/result/result?task=' + JSON.stringify(that.data.task) + '&callsid=' + 0 + '&groupId=' + that.data.groupId,
-      })
+      that.openResult()
       wx.makePhoneCall({
         phoneNumber: phneNo
       })
     }
   },
+  openMemo: function() {
+    wx.navigateTo({
+      url: '/pages/memo/memo?taskId=' + this.data.task.taskId + '&memo=' + this.data.task.common,
+    })
+  },
+  openResult: function() {
+    let url = '/pages/result/result'
+    if (this.data.task) {
+      let task = JSON.parse(JSON.stringify(this.data.task))
+      delete task.common
+      delete task.salesTalk
+      url += '?task=' + JSON.stringify(task)
+    }
+    if (this.data.callSid) {
+      url += '&callsid=' + this.data.callSid
+    }
+    if (this.data.groupId) {
+      url += '&groupId=' + this.data.groupId
+    }
+    wx.navigateTo({
+      url: url,
+    })
+  },
   callRrturn: function() {
     let that = this
-    req.get('api/call/' + that.data.callSid, function() {
+    req.get('call/' + that.data.callSid, function() {
       that.setData({
         callLogin: false,
       })
       clearTimeout(timer)
     })
   },
-  //分享
   onShareAppMessage: function() {
-    return {
-      title: '闪电呼',
-      path: '/pages/index/index'
-    }
+    return common.onShareAppMessage()
   },
-  back: function(e) {
-    wx.navigateBack({
-      delta: 1
-    })
+  back: function() {
+    common.back()
   }
 })

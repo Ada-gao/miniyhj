@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/start/start",
     "pages/index/index",
     "pages/me/me",
     "pages/404/404",
@@ -7,7 +8,10 @@
     "pages/task/task",
     "pages/call/call",
     "pages/login/login",
-    "pages/result/result"
+    "pages/result/result",
+    "pages/trial/trial",
+    "pages/feedback/feedback",
+    "pages/memo/memo"
   ],
   "window": {
     "navigationBarTextStyle": "black",

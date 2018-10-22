@@ -99,8 +99,8 @@ page {
   font-size: 24rpx;
   color: #3570e5;
   margin-bottom: 40rpx;
-  margin-left: 50rpx;
-  margin-right: 50rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
 }
 
 .call {
@@ -150,6 +150,7 @@ page {
   padding-left: 46rpx;
   padding-right: 34rpx;
   padding-bottom: 25rpx;
+  word-break: break-all;
 }
 
 .call_head {

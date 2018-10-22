@@ -1,38 +1,25 @@
 var req = require('../../utils/request.js')
 var utils = require('../../utils/utils.js')
 var util = require('../../utils/util.js')
+var common = require('../../common/common.js')
 const app = getApp()
 Page({
   data: {
     dailyTaskCompleteCnt: 0, //完成的数量
     dailyTaskCnt: 0, //总数量
     completeRate: 0, //完成率
-    isLoading: false,
     tasks: [],
     isComplete: false,
     showComplete: false,
-    isReturn:false
+    isReturn: false
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this
     if (app.globalData.token) {
       that.setData({
         showComplete: wx.getStorageSync('isComplete')
       })
-      if (app.globalData.groupId) {
-        wx.navigateTo({
-          url: '/pages/task/task?groupId=' + app.globalData.groupId
-        })
-      }else{
-        if (app.globalData.openCall) {
-          wx.navigateTo({
-            url: '/pages/call/call'
-          })
-          delete app.globalData.groupId
-          delete app.globalData.openCall
-        }
-      }
-    }else{
+    } else {
       that.setData({
         isReturn: true
       })
@@ -48,10 +35,10 @@ Page({
   },
   onShow: function() {
     var that = this
-    if (that.data.isReturn){
+    if (that.data.isReturn) {
       return;
     }
-    req.get('api/task/statisBySales?userId=' + app.globalData.userId, function(res) {
+    req.get('task/statisBySales?userId=' + app.globalData.userId, function(res) {
       let dailyTaskCnt = res.data.dailyTaskCnt || 0;
       let dailyTaskCompleteCnt = res.data.dailyTaskCompleteCnt || 0;
       let completeRate = dailyTaskCnt > 0 ? (dailyTaskCompleteCnt * 100 / dailyTaskCnt) : 0;
@@ -62,16 +49,15 @@ Page({
         dailyTaskCompleteCnt: dailyTaskCompleteCnt
       })
     }, false)
-    req.get('api/task/statisGroup', function(res) {
+    req.get('task/statisGroup', function(res) {
       for (var index in res.data) {
         res.data[index].taskEndDate = util.formatTime(new Date(res.data[index].taskEndDate), '')
       }
       that.setData({
-        isLoading: true,
         tasks: res.data
       })
     }, false)
-    req.get('api/task/saleDailyCompleteStatus?userId=' + app.globalData.userId, function(res) {
+    req.get('task/saleDailyCompleteStatus?userId=' + app.globalData.userId, function(res) {
       that.setData({
         isComplete: res.data
       })
@@ -96,34 +82,14 @@ Page({
       url: '/pages/call/call',
     })
   },
-  //分享
-  onShareAppMessage: function() {
-    return {
-      title: '闪电呼',
-      path: '/pages/index/index'
-    }
-  },
-  openConfirm: function () {
-    wx.showModal({
-      title: '弹窗标题',
-      content: '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内',
-      confirmText: "主操作",
-      cancelText: "辅助操作",
-      success: function (res) {
-        console.log(res);
-        if (res.confirm) {
-          console.log('用户点击主操作')
-        } else {
-          console.log('用户点击辅助操作')
-        }
-      }
-    });
-  },
-  closeDialog: function () {
+  closeDialog: function() {
     wx.setStorageSync('isComplete', false)
     wx.setStorageSync('clickComplete', 1)
     this.setData({
       showComplete: false
     })
+  },
+  onShareAppMessage: function() {
+    return common.onShareAppMessage()
   }
 })
