@@ -59,6 +59,17 @@ page {
 
 .about {
   background: #fff;
+  display: flex;
+  margin-top: 1rpx;
+  flex-direction: row;
+  height: 100rpx;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.feedback {
+  background: #fff;
   margin-top: 30rpx;
   display: flex;
   flex-direction: row;

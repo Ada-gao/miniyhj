@@ -31,7 +31,12 @@ Page({
       })
     }, false)
   },
-  openAbout: function(e) {
+  openFeedback: function() {
+    wx.navigateTo({
+      url: '/pages/feedback/feedback',
+    })
+  },
+  openAbout: function () {
     wx.navigateTo({
       url: '/pages/about/about',
     })

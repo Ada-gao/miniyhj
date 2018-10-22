@@ -78,6 +78,11 @@ Page({
       })
     }
   },
+  openMemo: function() {
+    wx.navigateTo({
+      url: '/pages/memo/memo',
+    })
+  },
   openResult: function() {
     let url = '/pages/result/result'
     if (this.data.task) {
@@ -110,10 +115,10 @@ Page({
       this.openResult()
     }
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return common.onShareAppMessage()
   },
-  back: function () {
+  back: function() {
     common.back()
   }
 })

@@ -1,103 +1,115 @@
 {
-  "description": "项目配置文件",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": true,
-    "es6": true,
-    "postcss": true,
-    "minified": true,
-    "newFeature": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.3.0",
-  "appid": "wxf3792b2329e28d0c",
-  "projectname": "miniyhj",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "isGameTourist": false,
-  "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "plugin": {
-      "current": -1,
-      "list": []
-    },
-    "game": {
-      "currentL": -1,
-      "list": []
-    },
-    "miniprogram": {
-      "current": 1,
-      "list": [
-        {
-          "id": 1,
-          "name": "start",
-          "pathName": "pages/start/start",
-          "query": ""
-        },
-        {
-          "id": 2,
-          "name": "login",
-          "pathName": "pages/login/login",
-          "query": ""
-        },
-        {
-          "id": 3,
-          "name": "index",
-          "pathName": "pages/index/index",
-          "query": ""
-        },
-        {
-          "id": 4,
-          "name": "me",
-          "pathName": "pages/me/me",
-          "query": ""
-        },
-        {
-          "id": 5,
-          "name": "about",
-          "pathName": "pages/about/about",
-          "query": ""
-        },
-        {
-          "id": 6,
-          "name": "task",
-          "pathName": "pages/task/task",
-          "query": ""
-        },
-        {
-          "id": 7,
-          "name": "call",
-          "pathName": "pages/call/call",
-          "query": ""
-        },
-        {
-          "id": 8,
-          "name": "result",
-          "pathName": "pages/result/result",
-          "query": ""
-        },
-        {
-          "id": 9,
-          "name": "404",
-          "pathName": "pages/404/404",
-          "query": ""
-        },
-        {
-          "id": 10,
-          "name": "trial",
-          "pathName": "pages/trial/trial"
-        }
-      ]
-    }
-  }
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.0",
+	"appid": "wxf3792b2329e28d0c",
+	"projectname": "miniyhj",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 11,
+			"list": [
+				{
+					"id": 1,
+					"name": "start",
+					"pathName": "pages/start/start",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "index",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "me",
+					"pathName": "pages/me/me",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "about",
+					"pathName": "pages/about/about",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "task",
+					"pathName": "pages/task/task",
+					"query": ""
+				},
+				{
+					"id": 7,
+					"name": "call",
+					"pathName": "pages/call/call",
+					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "result",
+					"pathName": "pages/result/result",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "404",
+					"pathName": "pages/404/404",
+					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "trial",
+					"pathName": "pages/trial/trial",
+					"query": ""
+				},
+				{
+					"id": 11,
+					"name": "feedback",
+					"pathName": "pages/feedback/feedback",
+					"query": ""
+				},
+				{
+					"id": 12,
+					"name": "memo",
+					"pathName": "pages/memo/memo"
+				}
+			]
+		}
+	}
 }

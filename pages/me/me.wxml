@@ -23,10 +23,16 @@
       <text class='title'>团队排名</text>
     </view>
   </view>
+  <view class='feedback' bindtap='openFeedback'>
+    <image class='icon' src='/image/icon_me_feedback.png' />
+    <text class='value'>意见反馈</text>
+    <image class='arrow' src='/image/icon_common_arrow.png' />
+  </view>
   <view class='about' bindtap='openAbout'>
     <image class='icon' src='/image/icon_me_about.png' />
     <text class='value'>关于闪电呼</text>
     <image class='arrow' src='/image/icon_common_arrow.png' />
   </view>
+
   <view class='logout_button' bindtap="logout">退出</view>
 </view>
