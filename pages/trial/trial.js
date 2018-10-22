@@ -9,6 +9,9 @@ Page({
   formSubmit: function(e) {
     common.log(e)
   },
+  getCode: function(e) {
+    common.log(e)
+  },
   onShareAppMessage: function() {
     return common.onShareAppMessage()
   },
