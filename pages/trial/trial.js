@@ -99,9 +99,9 @@ Page({
             wx.showModal({
               content: "提交成功",
               showCancel: false,
-              success: function(res) {
-                wx.reLaunch({
-                  url: '/pages/login/login',
+              success: function (res) {
+                wx.navigateBack({
+                  delta: 1
                 })
               }
             })

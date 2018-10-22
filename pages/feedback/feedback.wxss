@@ -1,1 +1,48 @@
-/* pages/feedback/feedback.wxss */
+page {
+  background: #f4f5f7;
+}
+
+.info {
+  margin-top: 20rpx;
+  background: #fff;
+  height: 222rpx;
+  font-size: 28rpx;
+  padding: 40rpx;
+  color: #9c9c9c;
+  width: 90%;
+}
+
+.list{
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  padding-bottom: 100rpx;
+  padding-left: 40rpx;
+}
+
+.img {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.del {
+  position: relative;
+  width: 30rpx;
+  height: 30rpx;
+  left: -15rpx;
+  top: -131rpx;
+}
+
+.button {
+  margin-top: 100rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  line-height: 98rpx;
+  background: linear-gradient(-90deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));
+  box-shadow: 0px 0px 0px 0px rgba(13, 67, 173, 0.3);
+  border-radius: 6rpx;
+  color: #fff;
+  font-size: 36rpx;
+}
+
+

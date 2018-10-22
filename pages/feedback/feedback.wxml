@@ -7,4 +7,17 @@
       <text>问题反馈</text>
     </view>
   </view>
+  <form bindsubmit="formSubmit">
+    <textarea class='info' placeholder='请输入您要反馈的问题...' maxlength='200' name='content'/>
+    <view class='list'>
+      <block wx:for="{{imgs}}" wx:key='{{index}}'>
+        <view>
+          <image class='img' src='{{item}}'></image>
+          <image class='del' src='/image/icon_feedback_del.png' data-index='{{index}}' bindtap="delPic"></image>
+        </view>
+      </block>
+      <image class='img' src='/image/icon_feedback_add.png' bindtap="addPic"></image>
+    </view>
+    <button class='button' formType="submit">提交</button>
+  </form>
 </view>
