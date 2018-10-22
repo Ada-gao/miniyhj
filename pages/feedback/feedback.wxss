@@ -12,12 +12,12 @@ page {
   width: 90%;
 }
 
-.list{
+.list {
   display: flex;
   flex-direction: row;
   background: #fff;
   padding-bottom: 100rpx;
-  padding-left: 40rpx;
+  padding-left: 20rpx;
 }
 
 .img {
@@ -27,10 +27,10 @@ page {
 
 .del {
   position: relative;
-  width: 30rpx;
-  height: 30rpx;
-  left: -15rpx;
-  top: -131rpx;
+  width: 40rpx;
+  height: 40rpx;
+  right: 20rpx;
+  bottom: 130rpx;
 }
 
 .button {
@@ -44,5 +44,3 @@ page {
   color: #fff;
   font-size: 36rpx;
 }
-
-
