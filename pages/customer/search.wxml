@@ -6,10 +6,36 @@
     <text>搜索</text>
   </view>
 </view>
-<view class='list' wx:for="{{tasks}}">
-  <view class='module' bindtap='openTask'>
-    <text class='name'>{{item.contactName}}</text>
-    <text class='value'>2018-12-14</text>
-    <image class='arrow' src='/image/icon_common_arrow.png' />
+<view class='head'>
+  <view class='search' bindtap='openSearch'>
+    <image class='icon' src='/image/icon_customer_search.png'></image>
+    <input class='input' placeholder='搜索'></input>
   </view>
 </view>
+<view class='list'>
+  <view class='title'>
+    <text>意向客户</text>
+  </view>
+  <view wx:for="{{completeList}}">
+    <view class='module' bindtap='openTask'>
+      <text class='name'>{{item.contactName}}</text>
+      <image class='arrow' src='/image/icon_common_arrow.png' />
+    </view>
+  </view>
+</view>
+<view class='list'>
+  <view class='title'>
+    <text>星标客户</text>
+  </view>
+  <view wx:for="{{list}}">
+    <view class='module' bindtap='openTask'>
+      <text class='name'>{{item.contactName}}</text>
+      <image class='arrow' src='/image/icon_common_arrow.png' />
+    </view>
+  </view>
+</view>
+
+
+
+
+、

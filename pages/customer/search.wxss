@@ -1,5 +1,48 @@
 page {
   background: #f4f5f7;
+  padding-top: 234rpx;
+}
+
+.head {
+  background: #2f6be2;
+  position: fixed;
+  width: 100%;
+  top: 128rpx;
+}
+
+.search {
+  background: #fff;
+  height: 66rpx;
+  margin: 20rpx;
+  display: flex;
+  flex-direction: row;
+  border-radius: 33rpx;
+  align-items: center;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.search .icon {
+  width: 26rpx;
+  height: 26rpx;
+}
+
+.search .input {
+  margin-left: 20rpx;
+  width: 100%;
+  font-size: 26rpx;
+  color: #b2b2b2;
+}
+
+.list {
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.list .title {
+  color: #323232;
+  padding: 20rpx;
+  font-size: 26rpx;
 }
 
 .module {
@@ -8,24 +51,18 @@ page {
   flex-direction: row;
   height: 94rpx;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-bottom: 1rpx #f5f5f5 solid;
+  border-bottom: 1rpx #e9e9e9 solid;
 }
 
 .module .name {
-  font-size: 32rpx;
-  color: #323232;
-  flex: 1;
-}
-
-.module .value {
   font-size: 26rpx;
-  margin-right: 20rpx;
-  color: #9c9c9c;
+  color: #7c7c7c;
+  flex: 1;
+  margin-left: 20rpx;
 }
 
 .module .arrow {
+  margin-right: 20rpx;
   width: 33rpx;
   height: 33rpx;
 }
