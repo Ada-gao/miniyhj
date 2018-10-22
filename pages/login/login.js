@@ -50,6 +50,11 @@ Page({
       isShowPassword: isShowPassword
     })
   },
+  openTrial: function() {
+    wx.navigateTo({
+      url: '/pages/trial/trial',
+    })
+  },
   onShareAppMessage: function() {
     return common.onShareAppMessage()
   }
