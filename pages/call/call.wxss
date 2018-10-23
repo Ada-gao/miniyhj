@@ -139,8 +139,8 @@ page {
 }
 
 .memoicon {
-  width: 48rpx;
-  height: 48rpx;
+  width: 31rpx;
+  height: 31rpx;
   margin-right: 22rpx;
 }
 
