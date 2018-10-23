@@ -126,15 +126,7 @@ Page({
       outboundTaskId: that.data.task.taskId,
       common: that.data.common,
       callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
-      source: 'miniProgram'
-    }, function(res) {
-      that.outboundName()
-    }, false)
-  },
-  outboundName: function() {
-    let that = this
-    let id = that.data.task.outboundNameId
-    req.put('app/outboundName/' + id, {
+      source: 'miniProgram',
       contactName: that.data.contactName,
       gender: that.data.task.gender,
       mobileNo: that.data.mobileNo,
