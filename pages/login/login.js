@@ -9,6 +9,11 @@ Page({
   },
   onLoad: function(options) {
     delete app.globalData.token
+    delete app.globalData.companyId
+    delete app.globalData.userId
+    delete app.globalData.name
+    delete app.globalData.username
+    delete app.globalData.isCommit
     wx.clearStorageSync()
     this.setData({
       redirect: options.redirect || 'pages/index/index',
