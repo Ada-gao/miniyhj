@@ -112,7 +112,7 @@ Page({
   },
   callRrturn: function() {
     let that = this
-    req.get('call/' + that.data.callSid, function() {
+    req.get('call/' + that.data.callSid, function() {},true, function(res){
       that.setData({
         callLogin: false,
       })

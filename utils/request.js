@@ -5,19 +5,19 @@ let env = require('../config/env.js')
 const baseURL = env.BASE_API
 const app = getApp()
 
-function get(url, success, showLoading = true) {
-  request(url, {}, 'GET', success, showLoading)
+function get(url, success, showLoading = true, complete = function() {}) {
+  request(url, {}, 'GET', success, showLoading, complete)
 }
 
-function post(url, data, success, showLoading = true) {
-  request(url, data, 'POST', success, showLoading)
+function post(url, data, success, showLoading = true, complete = function() {}) {
+  request(url, data, 'POST', success, showLoading, complete)
 }
 
-function put(url, data, success, showLoading = true) {
-  request(url, data, 'PUT', success, showLoading)
+function put(url, data, success, showLoading = true, complete = function() {}) {
+  request(url, data, 'PUT', success, showLoading, complete)
 }
 
-function request(url, data, method, success, showLoading = true) {
+function request(url, data, method, success, showLoading = true, complete) {
   var requestURL = url
   if (!isAbsoluteURL(url)) {
     requestURL = combineURLs(baseURL, url)
@@ -43,12 +43,12 @@ function request(url, data, method, success, showLoading = true) {
       handleFail(res)
     },
     complete: function(res) {
-      handleComplete(res)
+      handleComplete(res, complete)
     }
   })
 }
 
-function upload(url, file, success, showLoading = true) {
+function upload(url, file, success, showLoading = true, complete = function() {}) {
   var requestURL = url
   if (!isAbsoluteURL(url)) {
     requestURL = combineURLs(baseURL, url)
@@ -71,7 +71,7 @@ function upload(url, file, success, showLoading = true) {
       handleFail(res)
     },
     complete: function(res) {
-      handleComplete(res)
+      handleComplete(res, complete)
     }
   })
 }
@@ -83,11 +83,12 @@ function handleFail(res) {
 
 //请求成功
 function handleSuccess(res, success, showLoading) {
+  console.log('success:' + utils.isFunction(success))
   if (res.statusCode == 200) {
     if (showLoading) {
       wx.hideLoading()
     }
-    if (success) {
+    if(success){
       success(res)
     }
   } else if (res.statusCode == 400) {
@@ -103,7 +104,11 @@ function handleSuccess(res, success, showLoading) {
 }
 
 //请求完成
-function handleComplete(res) {}
+function handleComplete(res, complete) {
+  if(complete){
+    complete(res)
+  }
+}
 
 module.exports = {
   get: get,
