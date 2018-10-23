@@ -85,8 +85,9 @@ Page({
     }
   },
   openMemo: function() {
+    let memo = this.data.task.common || ''
     wx.navigateTo({
-      url: '/pages/memo/memo?taskId=' + this.data.task.taskId + '&memo=' + this.data.task.common,
+      url: '/pages/memo/memo?taskId=' + this.data.task.taskId + '&memo=' + memo,
     })
   },
   openResult: function() {
