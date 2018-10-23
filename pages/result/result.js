@@ -60,7 +60,7 @@ Page({
   },
   onLoad: function(data) {
     if (app.globalData.isCommit) {
-      common.showTast('您还有任务未提交！')
+      common.showToast('您还有任务未提交！')
     } else {
       app.globalData.isCommit = true
     }

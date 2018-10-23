@@ -123,6 +123,28 @@ page {
   margin-right: 22rpx;
 }
 
+.memo {
+  margin-top: 30rpx;
+  line-height: 98rpx;
+  border:1px solid #3570E4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.memotxt {
+  color: #2F6BE2;
+  font-size: 36rpx;
+}
+
+.memoicon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 22rpx;
+}
+
+
 .tip {
   display: flex;
   flex-direction: row;

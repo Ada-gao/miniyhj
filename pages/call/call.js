@@ -25,14 +25,15 @@ Page({
   onShow: function() {
     if (app.globalData.isCommit) {
       this.openResult()
+      return
     }
     let that = this
-    let url = 'app/miniProgram/nextTask'
+    let url = 'app/miniProgram/nextTask?'
     if (that.data.groupId) {
-      url += '?groupId=' + that.data.groupId
-      if (that.data.taskId) {
-        url += '&taskId=' + that.data.taskId
-      }
+      url += 'groupId=' + that.data.groupId + '&'
+    }
+    if (that.data.taskId) {
+      url += 'taskId=' + that.data.taskId
     }
     req.get(url, function(res) {
       let lastCallResult = res.data.lastCallResult;
@@ -53,6 +54,7 @@ Page({
       that.setData({
         isLoading: false,
         task: res.data,
+        taskId: res.data.taskId,
         lastCallResult: lastCallResult,
         icon: icon,
         lastCallDate: util.formatTime(new Date(res.data.lastCallDate), 'time')
