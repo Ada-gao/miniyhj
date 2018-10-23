@@ -83,7 +83,6 @@ function handleFail(res) {
 
 //请求成功
 function handleSuccess(res, success, showLoading) {
-  console.log('success:' + utils.isFunction(success))
   if (res.statusCode == 200) {
     if (showLoading) {
       wx.hideLoading()
