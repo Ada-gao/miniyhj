@@ -12,25 +12,17 @@ Page({
   upload: function() {
     let that = this
     let file = that.data.imgs[that.data.files.length]
-    wx.uploadFile({
-      url: baseURL + 'app/upload',
-      filePath: file,
-      name: 'file',
-      header: {
-        'Authorization': app.globalData.token
-      },
-      success(res) {
-        that.data.files[that.data.files.length] = res.data
-        that.setData({
-          files: that.data.files
-        })
-        if (that.data.files.length != that.data.imgs.length) {
-          that.upload()
-        } else {
-          that.feedback()
-        }
+    req.upload('app/upload', file, function(res) {
+      that.data.files[that.data.files.length] = res.data
+      that.setData({
+        files: that.data.files
+      })
+      if (that.data.files.length != that.data.imgs.length) {
+        that.upload()
+      } else {
+        that.feedback()
       }
-    })
+    }, false)
   },
   addPic: function(e) {
     let that = this
@@ -89,19 +81,19 @@ Page({
     req.post('app/feedback?uuids=' + uuids + '&content=' + content, {
       uuids: uuids,
       content: content
-    }, function (res) {
+    }, function(res) {
       wx.hideLoading()
       wx.showModal({
         content: "提交成功",
         showCancel: false,
-        success: function (res) {
+        success: function(res) {
           wx.navigateBack({
             delta: 1
           })
         }
       })
     }, false)
-    
+
   },
   onShareAppMessage: function() {
     return common.onShareAppMessage()
