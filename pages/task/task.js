@@ -1,7 +1,7 @@
 var req = require('../../utils/request.js')
 var util = require('../../utils/util.js')
 var common = require('../../common/common.js')
-const app = getApp()
+// const app = getApp()
 Page({
   data: {
     tabs: [{
@@ -63,7 +63,9 @@ Page({
     totalPages: false,
     totalPages1: false,
     dnfFirstClick: true,
-    finishFirstClick: true
+    finishFirstClick: true,
+    dnfCount: 0,
+    finishCount: 0
   },
   onLoad: function(options) {
     var that = this
@@ -77,6 +79,7 @@ Page({
     });
   },
   tabClick: function(e) {
+    console.log(e)
     this.setData({
       activeIndex: e.currentTarget.id
     });
@@ -152,7 +155,7 @@ Page({
     var that = this
     var data = that.data
     var listQuery = {}
-    common.log('activeIndex :' + this.data.activeIndex)
+    // common.log('activeIndex :' + this.data.activeIndex)
     if (this.data.activeIndex - 0 === 0) {
       riskType = 'dnf'
     } else if (this.data.activeIndex - 0 === 1) {
@@ -184,7 +187,8 @@ Page({
           list: list,
           isLast: res.data.last,
           totalPages: res.data.totalPages ? false : true,
-          dnfFirstClick: false
+          dnfFirstClick: false,
+          dnfCount: res.data.totalElements
         })
       } else {
         var list = that.data.list1
@@ -203,7 +207,8 @@ Page({
           list1: list,
           isLast1: res.data.last,
           totalPages1: res.data.totalPages ? false : true,
-          finishFirstClick: false
+          finishFirstClick: false,
+          finishCount: res.data.totalElements
         })
       }
     }, false)
