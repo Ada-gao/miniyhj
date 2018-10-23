@@ -158,11 +158,12 @@ Page({
         if (res.data) {
           let pages = getCurrentPages()
           var beforePage = pages[pages.length - 2]
+          beforePage.setData({
+            groupId: that.data.groupId,
+            taskId: 0
+          })
           wx.navigateBack({
-            delta: 1,
-            success: function() {
-              beforePage.onLoad(that.data.groupId);
-            }
+            delta: 1
           });
         } else {
           wx.navigateBack({
