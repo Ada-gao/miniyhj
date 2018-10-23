@@ -14,7 +14,7 @@ Page({
     callSid: '',
     groupId: '',
     taskId: '',
-    isLoading: false,
+    isLoading: true,
   },
   onLoad: function(options) {
     this.setData({
