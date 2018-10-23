@@ -18,9 +18,14 @@ Page({
   },
   onLoad: function(options) {
     this.setData({
-      groupId: options.groupId,
-      taskId: options.taskId
+      groupId: options.groupId || 0,
+      taskId: options.taskId || 0
     })
+  },
+  onUnload: function() {
+    if (app.globalData.isCommit) {
+      delete app.globalData.isCommit
+    }
   },
   onShow: function() {
     if (app.globalData.isCommit) {
@@ -106,13 +111,14 @@ Page({
     if (this.data.groupId) {
       url += '&groupId=' + this.data.groupId
     }
+    let that = this
     wx.navigateTo({
       url: url,
     })
   },
   callRrturn: function() {
     let that = this
-    req.get('call/' + that.data.callSid, function() {},true, function(res){
+    req.get('call/' + that.data.callSid, function() {}, true, function(res) {
       that.setData({
         callLogin: false,
       })

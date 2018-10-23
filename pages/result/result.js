@@ -89,7 +89,7 @@ Page({
   formSubmit: function(e) {
     let that = this
     if (that.data.result === '' || that.data.status === '') {
-      common.showTast('标星为必填项')
+      common.showToast('标星为必填项')
     } else {
       wx.showLoading()
       that.setData({
@@ -101,7 +101,7 @@ Page({
       let phoneNo = that.data.task.phoneNo
       if (phoneNo === '***********') {
         let callsid = that.data.callsid
-        req.get('api/app/callStatusResult/' + callsid, function(res) {
+        req.get('app/callStatusResult/' + callsid, function(res) {
           that.setData({
             duration: res.data.duration
           })
@@ -153,7 +153,7 @@ Page({
     }, function(res) {
       that.goMessage()
       req.get('app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
-        common.showTast('提交成功')
+        common.showToast('提交成功')
         getApp().globalData.isCommit = false
         if (res.data) {
           let pages = getCurrentPages()
