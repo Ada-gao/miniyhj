@@ -1,4 +1,4 @@
-page{
+page {
   padding-top: 125rpx;
 }
 
@@ -69,7 +69,17 @@ page{
   margin-top: 80rpx;
   line-height: 98rpx;
   background: linear-gradient(-90deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));
+  box-shadow: 0px 0px 0px 0px rgba(13, 67, 173, 0.3);
   border-radius: 6rpx;
   color: #fff;
   font-size: 36rpx;
+}
+
+.trial {
+  font-size: 32rpx;
+  color: #e6e6e6;
+  position: fixed;
+  padding: 40rpx;
+  right: 0;
+  bottom: 20rpx;
 }

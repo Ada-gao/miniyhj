@@ -1,5 +1,5 @@
 <view class="page">
-<view class='tabBar'>
+  <view class='tabBar'>
     <view class='tabBarTitle'>
       <text>外呼记录</text>
     </view>
@@ -9,7 +9,8 @@
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
-          <view class="weui-label"> <text style='color:red'>*</text> 外呼结果</view>
+          <view class="weui-label">
+            <text style='color:red'>*</text> 外呼结果</view>
         </view>
         <view class="weui-cell__bd">
           <picker bindchange="bindCountryChange" value="{{resultIndex}}" range="{{resultsColumns}}" range-key="label">
@@ -21,7 +22,8 @@
       </view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
-          <view class="weui-label"><text style='color:red'>*</text> 下一步行动计划</view>
+          <view class="weui-label">
+            <text style='color:red'>*</text> 下一步行动计划</view>
         </view>
         <view class="weui-cell__bd">
           <picker bindchange="bindActionChange" value="{{actionIndex}}" range="{{actionColumns}}" range-key="label">
@@ -34,44 +36,44 @@
     </view>
     <!-- 客户信息 -->
     <form bindsubmit="formSubmit">
-    <view class="shadow">
-      <view class="weui-cells__title">客户信息</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__hd">
-            <view class="weui-label">姓名</view>
+      <view class="shadow">
+        <view class="weui-cells__title">客户信息</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">姓名</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="请输入" value='{{task.contactName}}' name='contactName' maxlength='20' />
+            </view>
           </view>
-          <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入" value='{{task.contactName}}' name='contactName' maxlength='20'/>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">电话</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="请输入" value='{{task.mobileNo}}' maxlength='11' name='mobileNo' />
+            </view>
           </view>
-        </view>
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__hd">
-            <view class="weui-label">电话</view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">微信</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="请输入" value='{{task.wechatNo}}' maxlength='20' name='wechatNo' />
+            </view>
           </view>
-          <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入" value='{{task.mobileNo}}' maxlength='11' name='mobileNo'/>
-          </view>
-        </view>
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__hd">
-            <view class="weui-label">微信</view>
-          </view>
-          <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入" value='{{task.wechatNo}}' maxlength='20' name='wechatNo'/>
-          </view>
-        </view>
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__hd">
-            <view class="weui-label">备注</view>
-          </view>
-          <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入" maxlength='100' value='{{task.common}}' name='common'/>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">备注</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="请输入" maxlength='100' value='{{task.common}}' name='common' />
+            </view>
           </view>
         </view>
       </view>
-    </view>
-    <button class="button" formType="submit">提交</button>
+      <button class="button" formType="submit">提交</button>
     </form>
   </view>
 </view>

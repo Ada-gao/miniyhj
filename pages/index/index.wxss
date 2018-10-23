@@ -132,9 +132,9 @@
   color: #000;
   height: 150rpx;
   line-height: 150rpx;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-  -o-text-overflow:ellipsis;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
   overflow: hidden;
 }
 
@@ -226,7 +226,7 @@
 }
 
 .dialog-txt1 {
-  color: #316DE3;
+  color: #316de3;
   font-size: 36rpx;
   margin-bottom: 39rpx;
   margin-top: 40rpx;
@@ -243,6 +243,6 @@
   width: 80%;
   height: 98rpx;
   line-height: 98rpx;
-  color: #fff!important;
+  color: #fff !important;
   font-size: 36rpx;
 }

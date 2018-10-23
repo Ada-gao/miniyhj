@@ -1,10 +1,10 @@
 var req = require('../../utils/request.js')
 var util = require('../../utils/util.js')
-const app = getApp()
+var common = require('../../common/common.js')
+// const app = getApp()
 Page({
   data: {
-    tabs: [
-      {
+    tabs: [{
         label: '未完成',
         value: 'dnf',
         id: 0
@@ -30,11 +30,26 @@ Page({
       type: 'finish',
       createTime: ''
     },
-    resultsColumns: [
-      { label: '未外呼', value: 'NOT_CALL', id: 0 },
-      { label: '空号', value: 'NOT_EXIST', id: 1 },
-      { label: '未接通', value: 'UNCONNECTED', id: 2 },
-      { label: '已接通', value: 'CONNECTED', id: 3 }
+    resultsColumns: [{
+        label: '未外呼',
+        value: 'NOT_CALL',
+        id: 0
+      },
+      {
+        label: '空号',
+        value: 'NOT_EXIST',
+        id: 1
+      },
+      {
+        label: '未接通',
+        value: 'UNCONNECTED',
+        id: 2
+      },
+      {
+        label: '已接通',
+        value: 'CONNECTED',
+        id: 3
+      }
     ],
     list: [],
     list1: [],
@@ -48,9 +63,11 @@ Page({
     totalPages: false,
     totalPages1: false,
     dnfFirstClick: true,
-    finishFirstClick: true
+    finishFirstClick: true,
+    dnfCount: 0,
+    finishCount: 0
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this
     wx.getSystemInfo({
       success: function(res) {
@@ -61,7 +78,8 @@ Page({
       }
     });
   },
-  tabClick: function (e) {
+  tabClick: function(e) {
+    console.log(e)
     this.setData({
       activeIndex: e.currentTarget.id
     });
@@ -75,7 +93,7 @@ Page({
     this.data.loadMore = false
     this.data.loadMore1 = false
   },
-  bindDateChange: function (e) {
+  bindDateChange: function(e) {
     this.setData({
       initDate: e.detail.value,
       list: [],
@@ -98,7 +116,7 @@ Page({
     var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
     this.onShow(riskType)
   },
-  bindLastDay: function () {
+  bindLastDay: function() {
     var date = new Date(new Date(this.data.initDate).getTime() - 24 * 60 * 60 * 1000)
     this.setData({
       initDate: util.formatTime(date),
@@ -111,7 +129,7 @@ Page({
     var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
     this.onShow(riskType)
   },
-  bindNextDay: function () {
+  bindNextDay: function() {
     var date1 = new Date(new Date(this.data.initDate).getTime() + 24 * 60 * 60 * 1000)
     this.setData({
       initDate: util.formatTime(date1),
@@ -124,7 +142,7 @@ Page({
     var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
     this.onShow(riskType)
   },
-  onHide: function () {
+  onHide: function() {
     this.setData({
       list: [],
       list1: [],
@@ -133,11 +151,11 @@ Page({
       // activeIndex: 0
     })
   },
-  onShow: function (riskType) {
+  onShow: function(riskType) {
     var that = this
     var data = that.data
     var listQuery = {}
-    console.log('activeIndex :' + this.data.activeIndex)
+    // common.log('activeIndex :' + this.data.activeIndex)
     if (this.data.activeIndex - 0 === 0) {
       riskType = 'dnf'
     } else if (this.data.activeIndex - 0 === 1) {
@@ -151,7 +169,7 @@ Page({
     }
     listQuery.createTime = data.initDate
     this.data.hidden = false
-    req.get(`api/app/tasks/${data.groupId}?pageIndex=${listQuery.pageIndex}&pageSize=${listQuery.pageSize}&type=${listQuery.type}&createTime=${listQuery.createTime}`, function (res) {
+    req.get(`app/tasks/${data.groupId}?pageIndex=${listQuery.pageIndex}&pageSize=${listQuery.pageSize}&type=${listQuery.type}&createTime=${listQuery.createTime}`, function(res) {
       var content = res.data.content
       content.forEach(item => {
         item.lastCallResult = util.transformText(that.data.resultsColumns, item.lastCallResult)
@@ -169,7 +187,8 @@ Page({
           list: list,
           isLast: res.data.last,
           totalPages: res.data.totalPages ? false : true,
-          dnfFirstClick: false
+          dnfFirstClick: false,
+          dnfCount: res.data.totalElements
         })
       } else {
         var list = that.data.list1
@@ -188,26 +207,27 @@ Page({
           list1: list,
           isLast1: res.data.last,
           totalPages1: res.data.totalPages ? false : true,
-          finishFirstClick: false
+          finishFirstClick: false,
+          finishCount: res.data.totalElements
         })
       }
     }, false)
   },
   // 页面滑动到底部
-   bindDownLoad: function(e) {
-     if (e.currentTarget.dataset.type === 'dnf') {
-       if (this.data.isLast) return
-       this.data.loadMore = true
-     } else {
-       if (this.data.isLast1) return
-       this.data.loadMore1 = true
-     }
-     this.onShow();
+  bindDownLoad: function(e) {
+    if (e.currentTarget.dataset.type === 'dnf') {
+      if (this.data.isLast) return
+      this.data.loadMore = true
+    } else {
+      if (this.data.isLast1) return
+      this.data.loadMore1 = true
+    }
+    this.onShow();
   },
-  scroll: function (event) {
+  scroll: function(event) {
     //该方法绑定了页面滚动时的事件，我这里记录了当前的position.y的值,为了请求数据之后把页面定位到这里来。
     this.setData({
-      scrollTop : event.detail.scrollTop
+      scrollTop: event.detail.scrollTop
     });
   },
   topLoad: function(e) {
@@ -230,22 +250,15 @@ Page({
     }
     this.onShow();
   },
-  loadingChange: function (falg) {
+  loadingChange: function(falg) {
     this.setData({
       hidden: true
     });
-    console.log("lower");
   },
-  //分享
   onShareAppMessage: function () {
-    return {
-      title: '闪电呼',
-      path: '/pages/index/index'
-    }
+    return common.onShareAppMessage()
   },
-  back: function (e) {
-    wx.navigateBack({
-      delta: 1
-    })
-  },
+  back: function () {
+    common.back()
+  }
 })

@@ -1,7 +1,6 @@
-// pages/login/login.js
 var req = require('../../utils/request.js')
+var common = require('../../common/common.js')
 const app = getApp()
-let Toast = require('../../utils/Toast.js')
 Page({
   data: {
     redirect: '',
@@ -20,28 +19,18 @@ Page({
     let account = e.detail.value.account;
     let password = e.detail.value.password;
     if (account.length < 4) {
-      Toast.show('用户名不合法')
+      common.showToast('用户名不合法')
     } else if (password.length < 6) {
-      Toast.show('密码不合法')
+      common.showToast('密码不合法')
     } else {
       let that = this
-      req.post('/api/auth/login', {
+      req.post('auth/login', {
         username: account,
         password: password
       }, function(res) {
-        let token = res.data.token
-        wx.setStorageSync('token', token)
-        app.globalData.token = token
-        req.get('api/app/me', function(res) {
-          console.debug(JSON.stringify(res.data))
-          let userinfo = res.data
-          app.globalData.companyId = userinfo.companyId
-          app.globalData.userId = userinfo.id
-          app.globalData.name = userinfo.name
-          app.globalData.username = userinfo.username
-          //放在storage方便调试
-          wx.setStorageSync('userInfo', userinfo)
-          //获取完用户信息后才能跳转页面
+        common.saveToken(res.data.token)
+        req.get('app/me', function(res) {
+          common.saveUserInfo(res.data)
           if (that.data.isTab) {
             wx.switchTab({
               url: '/pages/index/index',
@@ -55,17 +44,18 @@ Page({
       })
     }
   },
-  //分享
-  onShareAppMessage: function() {
-    return {
-      title: '闪电呼',
-      path: '/pages/index/index'
-    }
-  },
   switchPwd: function(e) {
     let isShowPassword = !this.data.isShowPassword
     this.setData({
       isShowPassword: isShowPassword
     })
+  },
+  openTrial: function() {
+    wx.navigateTo({
+      url: '/pages/trial/trial',
+    })
+  },
+  onShareAppMessage: function() {
+    return common.onShareAppMessage()
   }
 })

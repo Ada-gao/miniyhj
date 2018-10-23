@@ -1,25 +1,17 @@
-const app = getApp()
+var common = require('../../common/common.js')
 Page({
-  copy: function (e) {
+  copy: function(e) {
     wx.setClipboardData({
       data: 'gh_374030c43f3c',
-    })
-    wx.showToast({
-      title: '复制成功',
-      icon: 'none',
-      duration: 1500,
+      success: function() {
+        common.showToast('复制成功')
+      }
     })
   },
-  //分享
-  onShareAppMessage: function () {
-    return {
-      title: '闪电呼',
-      path: '/pages/index/index'
-    }
+  onShareAppMessage: function() {
+    return common.onShareAppMessage()
   },
-  back: function (e) {
-    wx.navigateBack({
-      delta: 1
-    })
+  back: function() {
+    common.back()
   },
 })

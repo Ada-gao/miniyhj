@@ -1,0 +1,69 @@
+<view>
+  <view class='tabbar'>
+    <view class='tabBarBack' bindtap='back'>
+      <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
+    </view>
+    <view class='tabBarTitle' style='color:#3772E5;'>
+      <text>申请体验</text>
+    </view>
+  </view>
+  <view class='info'>我们提供免费体验活动，您可以在此提交申请。申请 成功后，将由我们专属服务人员为你安排预约。</view>
+  <view class='imglist'>
+    <view class='imgitem'>
+      <image class='img' src='/image/icon_trial_show.png'></image>
+      <text class='name'>产品展示</text>
+    </view>
+    <view class='imgitem'>
+      <image class='img' src='/image/icon_trial_product.png'></image>
+      <text class='name'>产品配置</text>
+    </view>
+    <view class='imgitem'>
+      <image class='img' src='/image/icon_trial_free.png'></image>
+      <text class='name'>免费体验</text>
+    </view>
+  </view>
+  <view class='line'></view>
+  <form bindsubmit="formSubmit">
+    <view class='form'>
+      <label class='title'>公司信息</label>
+      <view class='inputItem'>
+        <input class='input' placeholder='输入公司名称' maxlength='50' name='companyName'></input>
+      </view>
+      <picker mode="region" bindchange="cityChange">
+        <view class='inputItem'>
+          <input class='input' disabled='true' placeholder='请选择公司所在地' value="{{address?address[0] + '-' + address[1] + '-' + address[2]:''}}"></input>
+          <image class='arrow' src='/image/icon_common_arrow.png' />
+        </view>
+      </picker>
+      <picker range="{{types}}" range-key="name" bindchange="typeChange">
+        <view class='inputItem'>
+          <input class='input' disabled='true' placeholder='请选择所属行业' value='{{industryType}}'></input>
+          <image class='arrow' src='/image/icon_common_arrow.png' />
+        </view>
+      </picker>
+      <picker range="{{scales}}" range-key="label" bindchange="scaleChange">
+        <view class='inputItem'>
+          <input class='input' disabled='true' placeholder='请选择公司规模' value='{{orgSize}}'></input>
+          <image class='arrow' src='/image/icon_common_arrow.png' />
+        </view>
+      </picker>
+    </view>
+    <view class='line'></view>
+    <view class='form'>
+      <label class='title'>联系人信息</label>
+      <view class='inputItem'>
+        <input class='input' placeholder='输入联系人姓名' maxlength='10' name='contact'></input>
+      </view>
+      <view class='inputItem'>
+        <input class='input' placeholder='输入联系人电话' maxlength='11' type='number' bindinput='phoneInput'></input>
+      </view>
+      <view class='inputItem'>
+        <input class='input' placeholder='输入验证码' maxlength='4' type='number' name='verifyCode'></input>
+        <label class='code' bindtap='getCode'>{{isSend?time:'获取验证码'}}</label>
+      </view>
+    </view>
+    <view class='item'>
+      <button class='button' formType="submit">提交</button>
+    </view>
+  </form>
+</view>
