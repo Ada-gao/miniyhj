@@ -4,7 +4,7 @@
       <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
     </view>
     <view class='tabBarTitle'>
-      <text>任务列表</text>
+      <text>客户列表</text>
     </view>
   </view>
   <view class="page__bd page-padding">
