@@ -14,25 +14,31 @@ Page({
     callSid: '',
     groupId: '',
     taskId: '',
-    isLoading: false,
+    isLoading: true,
   },
   onLoad: function(options) {
     this.setData({
-      groupId: options.groupId,
-      taskId: options.taskId
+      groupId: options.groupId || 0,
+      taskId: options.taskId || 0
     })
+  },
+  onUnload: function() {
+    if (app.globalData.isCommit) {
+      delete app.globalData.isCommit
+    }
   },
   onShow: function() {
     if (app.globalData.isCommit) {
       this.openResult()
+      return
     }
     let that = this
-    let url = 'app/miniProgram/nextTask'
+    let url = 'app/miniProgram/nextTask?'
     if (that.data.groupId) {
-      url += '?groupId=' + that.data.groupId
-      if (that.data.taskId) {
-        url += '&taskId=' + that.data.taskId
-      }
+      url += 'groupId=' + that.data.groupId + '&'
+    }
+    if (that.data.taskId) {
+      url += 'taskId=' + that.data.taskId
     }
     req.get(url, function(res) {
       let lastCallResult = res.data.lastCallResult;
@@ -53,6 +59,7 @@ Page({
       that.setData({
         isLoading: false,
         task: res.data,
+        taskId: res.data.taskId,
         lastCallResult: lastCallResult,
         icon: icon,
         lastCallDate: util.formatTime(new Date(res.data.lastCallDate), 'time')
@@ -85,8 +92,9 @@ Page({
     }
   },
   openMemo: function() {
+    let memo = this.data.task.common || ''
     wx.navigateTo({
-      url: '/pages/memo/memo?taskId=' + this.data.task.taskId + '&memo=' + this.data.task.common,
+      url: '/pages/memo/memo?taskId=' + this.data.task.taskId + '&memo=' + memo,
     })
   },
   openResult: function() {
@@ -103,13 +111,14 @@ Page({
     if (this.data.groupId) {
       url += '&groupId=' + this.data.groupId
     }
+    let that = this
     wx.navigateTo({
       url: url,
     })
   },
   callRrturn: function() {
     let that = this
-    req.get('call/' + that.data.callSid, function() {
+    req.get('call/' + that.data.callSid, function() {}, true, function(res) {
       that.setData({
         callLogin: false,
       })

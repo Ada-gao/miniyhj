@@ -60,7 +60,7 @@ Page({
   },
   onLoad: function(data) {
     if (app.globalData.isCommit) {
-      common.showTast('您还有任务未提交！')
+      common.showToast('您还有任务未提交！')
     } else {
       app.globalData.isCommit = true
     }
@@ -89,7 +89,7 @@ Page({
   formSubmit: function(e) {
     let that = this
     if (that.data.result === '' || that.data.status === '') {
-      common.showTast('标星为必填项')
+      common.showToast('标星为必填项')
     } else {
       wx.showLoading()
       that.setData({
@@ -101,7 +101,7 @@ Page({
       let phoneNo = that.data.task.phoneNo
       if (phoneNo === '***********') {
         let callsid = that.data.callsid
-        req.get('api/app/callStatusResult/' + callsid, function(res) {
+        req.get('app/callStatusResult/' + callsid, function(res) {
           that.setData({
             duration: res.data.duration
           })
@@ -126,15 +126,7 @@ Page({
       outboundTaskId: that.data.task.taskId,
       common: that.data.common,
       callType: that.data.task.phoneNo.indexOf('*') > -1 ? 'THIRD_PLATFORM' : 'NATIVE',
-      source: 'miniProgram'
-    }, function(res) {
-      that.outboundName()
-    }, false)
-  },
-  outboundName: function() {
-    let that = this
-    let id = that.data.task.outboundNameId
-    req.put('app/outboundName/' + id, {
+      source: 'miniProgram',
       contactName: that.data.contactName,
       gender: that.data.task.gender,
       mobileNo: that.data.mobileNo,
@@ -161,16 +153,17 @@ Page({
     }, function(res) {
       that.goMessage()
       req.get('app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
-        common.showTast('提交成功')
+        common.showToast('提交成功')
         getApp().globalData.isCommit = false
         if (res.data) {
           let pages = getCurrentPages()
           var beforePage = pages[pages.length - 2]
+          beforePage.setData({
+            groupId: that.data.groupId,
+            taskId: 0
+          })
           wx.navigateBack({
-            delta: 1,
-            success: function() {
-              beforePage.onLoad(that.data.groupId);
-            }
+            delta: 1
           });
         } else {
           wx.navigateBack({

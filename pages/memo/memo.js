@@ -13,16 +13,11 @@ Page({
   },
   formSubmit: function(e) {
     let that = this
-    let memo = e.detail.value.memo
-    if (memo) {
-      req.put('app/addCommon/' + that.data.taskId + '?common=' + memo, {}, function(res) {
-        wx.navigateBack({
-          delta: 1
-        })
+    req.put('app/addCommon/' + that.data.taskId + '?common=' + e.detail.value.memo, {}, function(res) {
+      wx.navigateBack({
+        delta: 1
       })
-    } else {
-      common.showToast('请输入备注信息')
-    }
+    })
   },
   onShareAppMessage: function() {
     return common.onShareAppMessage()

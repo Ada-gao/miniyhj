@@ -39,14 +39,20 @@
         </view>
       </view>
     </view>
-    <view style='margin-top: 30rpx;background: #fff;'>
+    <view>
+      <view class='memo' bindtap="openMemo" wx:if="{{!task.common}}">
+        <image class='memoicon' src='/image/icon_call_add.png'></image>
+        <text class='memotxt'>添加备注</text>
+      </view>
+    </view>
+    <view style='margin-top: 30rpx;background: #fff;' wx:if="{{task.common}}">
       <view class='tip' bindtap='openMemo'>
         <view class='line'></view>
         <text class='name' style='flex:1'>备注</text>
         <image style='width:37rpx;height:38rpx;' src='/image/icon_call_edit.png'></image>
         <text style='font-size:26rpx;color:#2F6BE2;margin-right:44rpx;margin-left:10rpx'>编辑</text>
       </view>
-      <view class='term' wx:if="{{task.common}}">{{task.common}}</view>
+      <view class='term'>{{task.common}}</view>
     </view>
     <view style='margin-top: 30rpx;background: #fff;'>
       <view class='tip'>
