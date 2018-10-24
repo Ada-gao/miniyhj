@@ -53,7 +53,7 @@
             <view class="weui-cells weui-cells_after-title">
               <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
                 <view class="weui-cell__bd text-left">{{item.contactName}}</view>
-                <view class="weui-cell__ft weui-cell__ft_in-access">{{item.lastCallResult}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access">{{item.status||''}}</view>
               </navigator>
             </view>
             <view wx:if="{{isLast}}" class="weui-loadmore weui-loadmore_line">
@@ -69,7 +69,7 @@
             <view class="weui-cells weui-cells_after-title">
               <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list1}}" wx:key="{{index}}">
                 <view class="weui-cell__bd text-left">{{item.contactName}}</view>
-                <view class="weui-cell__ft weui-cell__ft_in-access">{{item.lastCallResult}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access">{{item.status||''}}</view>
               </navigator>
             </view>
             <view wx:if="{{isLast1}}" class="weui-loadmore weui-loadmore_line">

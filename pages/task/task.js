@@ -31,25 +31,20 @@ Page({
       createTime: ''
     },
     resultsColumns: [{
-        label: '未外呼',
-        value: 'NOT_CALL',
-        id: 0
-      },
-      {
-        label: '空号',
-        value: 'NOT_EXIST',
-        id: 1
-      },
-      {
-        label: '未接通',
-        value: 'UNCONNECTED',
-        id: 2
-      },
-      {
-        label: '已接通',
-        value: 'CONNECTED',
-        id: 3
-      }
+      label: '再次外呼',
+      value: 'CALL_AGAIN',
+      id: 0
+    },
+    {
+      label: '放弃外呼',
+      value: 'GIVE_UP',
+      id: 1
+    },
+    {
+      label: '继续跟进',
+      value: 'FOLLOW',
+      id: 2
+    }
     ],
     list: [],
     list1: [],
@@ -176,12 +171,13 @@ Page({
     } else {
       listQuery = that.data.listQuery1
     }
+    console.log('listQuery.type ' + listQuery.type)
     listQuery.createTime = data.initDate
     this.data.hidden = false
     req.get(`app/tasks/${data.groupId}?pageIndex=${listQuery.pageIndex}&pageSize=${listQuery.pageSize}&type=${listQuery.type}&createTime=${listQuery.createTime}`, function(res) {
       var content = res.data.content
       content.forEach(item => {
-        item.lastCallResult = util.transformText(that.data.resultsColumns, item.lastCallResult)
+        item.status = util.transformText(that.data.resultsColumns, item.status)
       })
       that.data.hidden = true
       if (listQuery.type === 'dnf') {
