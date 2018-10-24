@@ -101,7 +101,6 @@ Page({
     let url = '/pages/result/result'
     if (this.data.task) {
       let task = JSON.parse(JSON.stringify(this.data.task))
-      delete task.common
       delete task.salesTalk
       url += '?task=' + JSON.stringify(task)
     }

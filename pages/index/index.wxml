@@ -51,7 +51,7 @@
           <view class='line'></view>
           <text class='txt4'>计划完成时间：{{item.taskEndDate}}</text>
           <view class='detail'>
-            <text class='txt5'>点击查看任务列表</text>
+            <text class='txt5'>点击查看客户列表</text>
             <image class='arrow' src='/image/icon_common_arrow.png' />
           </view>
         </view>
