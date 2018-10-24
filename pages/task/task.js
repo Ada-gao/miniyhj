@@ -77,9 +77,13 @@ Page({
         });
       }
     });
+    this.onShow('finish')
   },
+  // onTabItemTap: function(e) {
+  //   console.log(e)
+  // },
   tabClick: function(e) {
-    console.log(e)
+    // console.log(e)
     this.setData({
       activeIndex: e.currentTarget.id
     });
@@ -113,8 +117,10 @@ Page({
       dnfFirstClick: true,
       finishFirstClick: true
     })
-    var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
-    this.onShow(riskType)
+    // var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
+    // this.onShow(riskType)
+    this.onShow('dnf')
+    this.onShow('finish')
   },
   bindLastDay: function() {
     var date = new Date(new Date(this.data.initDate).getTime() - 24 * 60 * 60 * 1000)
@@ -126,8 +132,10 @@ Page({
       dnfFirstClick: true,
       finishFirstClick: true
     })
-    var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
-    this.onShow(riskType)
+    // var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
+    // this.onShow(riskType)
+    this.onShow('dnf')
+    this.onShow('finish')
   },
   bindNextDay: function() {
     var date1 = new Date(new Date(this.data.initDate).getTime() + 24 * 60 * 60 * 1000)
@@ -139,8 +147,10 @@ Page({
       dnfFirstClick: true,
       finishFirstClick: true
     })
-    var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
-    this.onShow(riskType)
+    // var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
+    // this.onShow(riskType)
+    this.onShow('dnf')
+    this.onShow('finish')
   },
   onHide: function() {
     this.setData({
@@ -156,12 +166,11 @@ Page({
     var data = that.data
     var listQuery = {}
     // common.log('activeIndex :' + this.data.activeIndex)
-    if (this.data.activeIndex - 0 === 0) {
-      riskType = 'dnf'
-    } else if (this.data.activeIndex - 0 === 1) {
-      riskType = 'finish'
+    if (riskType) {
+      listQuery.type = riskType
+    } else {
+      listQuery.type = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
     }
-    listQuery.type = riskType
     if (listQuery.type !== 'finish') {
       listQuery = that.data.listQuery
     } else {
