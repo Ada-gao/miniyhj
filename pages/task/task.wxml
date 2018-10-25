@@ -46,33 +46,33 @@
           </loading>
         </view>
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-          <view wx:if="{{totalPages}}" class="weui-loadmore weui-loadmore_line">
+          <view wx:if="{{dnfNonePage}}" class="weui-loadmore weui-loadmore_line">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
           </view>
-          <scroll-view wx:if="{{!totalPages}}" scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" bindscroll="scroll" data-type="dnf">
+          <scroll-view wx:if="{{!dnfNonePage}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" data-type="dnf">
             <view class="weui-cells weui-cells_after-title">
-              <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list}}" wx:key="{{index}}">
+              <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{dnfList}}" wx:key="{{index}}">
                 <view class="weui-cell__bd text-left">{{item.contactName}}</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access">{{item.status||''}}</view>
               </navigator>
             </view>
-            <view wx:if="{{isLast}}" class="weui-loadmore weui-loadmore_line">
+            <view wx:if="{{dnfLastNum}}" class="weui-loadmore weui-loadmore_line">
               <view class="weui-loadmore__tips weui-loadmore__tips_in-line">这是底线了</view>
             </view>
           </scroll-view>
         </view>
         <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-          <view wx:if="{{totalPages1}}" class="weui-loadmore weui-loadmore_line">
+          <view wx:if="{{finishNonePage}}" class="weui-loadmore weui-loadmore_line">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
           </view>
-          <scroll-view wx:if="{{!totalPages1}}" scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" bindscroll="scroll" data-type="finish">
+          <scroll-view wx:if="{{!finishNonePage}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" data-type="finish">
             <view class="weui-cells weui-cells_after-title">
-              <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{list1}}" wx:key="{{index}}">
+              <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{finishList}}" wx:key="{{index}}">
                 <view class="weui-cell__bd text-left">{{item.contactName}}</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access">{{item.status||''}}</view>
               </navigator>
             </view>
-            <view wx:if="{{isLast1}}" class="weui-loadmore weui-loadmore_line">
+            <view wx:if="{{finishLastNum}}" class="weui-loadmore weui-loadmore_line">
               <view class="weui-loadmore__tips weui-loadmore__tips_in-line">这是底线了</view>
             </view>
           </scroll-view>
