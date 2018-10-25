@@ -85,7 +85,7 @@ Page({
             callLogin: false
           })
           that.openResult()
-        }, 1000)
+        }, 10000)
       })
     } else {
       that.openResult()
