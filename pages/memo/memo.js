@@ -13,7 +13,9 @@ Page({
   },
   formSubmit: function(e) {
     let that = this
-    req.put('app/addCommon/' + that.data.taskId + '?common=' + e.detail.value.memo, {}, function(res) {
+    req.put('app/addCommon/' + that.data.taskId, {
+      common: e.detail.value.memo
+    }, function(res) {
       wx.navigateBack({
         delta: 1
       })

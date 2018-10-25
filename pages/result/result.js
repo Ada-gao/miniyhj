@@ -177,6 +177,11 @@ Page({
             delta: 1
           });
         } else {
+          let pages = getCurrentPages()
+          if(pages.length === 4){
+            var beforePage = pages[pages.length - 3]
+            beforePage.onLoad()
+          }
           wx.navigateBack({
             delta: 2
           })
