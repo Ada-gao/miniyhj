@@ -166,9 +166,13 @@ Page({
       req.get('app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
         common.showToast('提交成功')
         getApp().globalData.isCommit = false
+        let pages = getCurrentPages()
+        if (pages.length === 4) {
+          var beforePage = pages[pages.length - 3]
+          beforePage.bindDateChange()
+        }
         if (res.data) {
-          let pages = getCurrentPages()
-          var beforePage = pages[pages.length - 2]
+          beforePage = pages[pages.length - 2]
           beforePage.setData({
             groupId: that.data.groupId,
             taskId: 0
@@ -177,11 +181,6 @@ Page({
             delta: 1
           });
         } else {
-          let pages = getCurrentPages()
-          if(pages.length === 4){
-            var beforePage = pages[pages.length - 3]
-            beforePage.onLoad()
-          }
           wx.navigateBack({
             delta: 2
           })
