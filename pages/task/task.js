@@ -18,18 +18,11 @@ Page({
     activeIndex: 0,
     initDate: util.formatTime(new Date()),
     groupId: '',
-    listQuery: {
-      pageIndex: 0,
-      pageSize: 10,
-      type: 'dnf',
-      createTime: ''
-    },
-    listQuery1: {
-      pageIndex: 0,
-      pageSize: 10,
-      type: 'finish',
-      createTime: ''
-    },
+    dnfPageIndex: 0,
+    finishPageIndex: 0,
+    pageSize: 20,
+    dnfType: 'dnf',
+    finishType: 'finish',
     resultsColumns: [{
       label: '再次外呼',
       value: 'CALL_AGAIN',
@@ -46,48 +39,47 @@ Page({
       id: 2
     }
     ],
-    list: [],
-    list1: [],
-    scrollTop: 0,
+    dnfList: [],
+    finishList: [],
     scrollHeight: 0,
     hidden: true,
-    isLast: false,
-    isLast1: false,
+    dnfLastNum: false,
+    finishLastNum: false,
     loadMore: false,
     loadMore1: false,
-    totalPages: false,
-    totalPages1: false,
+    dnfNonePage: false,
+    finishNonePage: false,
     dnfFirstClick: true,
     finishFirstClick: true,
     dnfCount: 0,
-    finishCount: 0
+    finishCount: 0,
+    finishReqComplete: true,
+    dnfReqComplete: true
   },
   onLoad: function(options) {
     var that = this
+    // console.log(wx.getSystemInfoSync().windowHeight)
     wx.getSystemInfo({
       success: function(res) {
         that.setData({
-          scrollHeight: 824,
+          scrollHeight: 900,
           groupId: options.groupId
         });
       }
     });
-    this.onShow('finish')
+    this.getList('dnf')
+    this.getList('finish')
   },
-  // onTabItemTap: function(e) {
-  //   console.log(e)
-  // },
   tabClick: function(e) {
-    // console.log(e)
     this.setData({
       activeIndex: e.currentTarget.id
     });
     if (this.data.activeIndex - 0 === 0) {
-      this.data.listQuery.type = 'dnf'
-      if (this.data.dnfFirstClick) this.onShow(this.data.activeIndex)
+      this.data.dnfType = 'dnf'
+      if (this.data.dnfFirstClick) this.getList(this.data.activeIndex)
     } else if (this.data.activeIndex - 0 === 1) {
-      this.data.listQuery1.type = 'finish'
-      if (this.data.finishFirstClick) this.onShow(this.data.activeIndex)
+      this.data.finishType = 'finish'
+      if (this.data.finishFirstClick) this.getList(this.data.activeIndex)
     }
     this.data.loadMore = false
     this.data.loadMore1 = false
@@ -95,171 +87,151 @@ Page({
   bindDateChange: function(e) {
     this.setData({
       initDate: e.detail.value,
-      list: [],
-      list1: [],
-      listQuery: {
-        pageIndex: 0,
-        pageSize: 10,
-        type: 'dnf',
-        createTime: ''
-      },
-      listQuery1: {
-        pageIndex: 0,
-        pageSize: 10,
-        type: 'finish',
-        createTime: ''
-      },
+      dnfList: [],
+      finishList: [],
+      dnfPageIndex: 0,
+      finishPageIndex: 0,
       dnfFirstClick: true,
       finishFirstClick: true
     })
-    // var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
-    // this.onShow(riskType)
-    this.onShow('dnf')
-    this.onShow('finish')
+    this.getList('dnf')
+    this.getList('finish')
   },
   bindLastDay: function() {
     var date = new Date(new Date(this.data.initDate).getTime() - 24 * 60 * 60 * 1000)
     this.setData({
       initDate: util.formatTime(date),
-      totalPages: false,
-      list: [],
-      list1: [],
+      dnfNonePage: false,
+      dnfList: [],
+      finishList: [],
       dnfFirstClick: true,
-      finishFirstClick: true
+      finishFirstClick: true,
+      dnfPageIndex: 0,
+      finishPageIndex: 0
     })
-    // var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
-    // this.onShow(riskType)
-    this.onShow('dnf')
-    this.onShow('finish')
+    this.getList('dnf')
+    this.getList('finish')
   },
   bindNextDay: function() {
     var date1 = new Date(new Date(this.data.initDate).getTime() + 24 * 60 * 60 * 1000)
     this.setData({
       initDate: util.formatTime(date1),
-      totalPages1: false,
-      list: [],
-      list1: [],
+      finishNonePage: false,
+      dnfList: [],
+      finishList: [],
       dnfFirstClick: true,
-      finishFirstClick: true
+      finishFirstClick: true,
+      dnfPageIndex: 0,
+      finishPageIndex: 0
     })
-    // var riskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
-    // this.onShow(riskType)
-    this.onShow('dnf')
-    this.onShow('finish')
+    this.getList('dnf')
+    this.getList('finish')
   },
   onHide: function() {
-    this.setData({
-      list: [],
-      list1: [],
-      dnfFirstClick: true,
-      finishFirstClick: true
-      // activeIndex: 0
-    })
+    // this.setData({
+    //   dnfList: [],
+    //   finishList: [],
+    //   dnfFirstClick: true,
+    //   finishFirstClick: true
+    // })
   },
-  onShow: function(riskType) {
+  getList: function (taskType) {
     var that = this
+    var pageIndex = 0
+    var pageSize = this.data.pageSize
     var data = that.data
-    var listQuery = {}
-    // common.log('activeIndex :' + this.data.activeIndex)
-    if (riskType) {
-      listQuery.type = riskType
-    } else {
-      listQuery.type = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
+
+    if (!taskType) {
+      taskType = this.data.activeIndex - 0 === 0 ? 'dnf' : 'finish'
     }
-    if (listQuery.type !== 'finish') {
-      listQuery = that.data.listQuery
+    pageIndex = taskType === 'dnf' ? that.data.dnfPageIndex : that.data.finishPageIndex
+    if (taskType === 'dnf') {
+      if (!that.data.dnfReqComplete) return
+      that.setData({
+        dnfReqComplete: false
+      })
     } else {
-      listQuery = that.data.listQuery1
+      if (!that.data.finishReqComplete) return
+      that.setData({
+        finishReqComplete: false
+      })
     }
-    console.log('listQuery.type ' + listQuery.type)
-    listQuery.createTime = data.initDate
     this.data.hidden = false
-    req.get(`app/tasks/${data.groupId}?pageIndex=${listQuery.pageIndex}&pageSize=${listQuery.pageSize}&type=${listQuery.type}&createTime=${listQuery.createTime}`, function(res) {
+    req.get(`app/tasks/${data.groupId}?pageIndex=${pageIndex}&pageSize=${pageSize}&type=${taskType}&createTime=${data.initDate}`, function (res) {
       var content = res.data.content
       content.forEach(item => {
         item.status = util.transformText(that.data.resultsColumns, item.status)
       })
       that.data.hidden = true
-      if (listQuery.type === 'dnf') {
-        var list = that.data.list
+      if (taskType === 'dnf') {
+        var list = that.data.dnfList
         list = [...list, ...content]
-        if (that.data.loadMore) {
-          that.data.listQuery.pageIndex++
-        } else {
-          // list = content
-        }
         that.setData({
-          list: list,
-          isLast: res.data.last,
-          totalPages: res.data.totalPages ? false : true,
+          dnfList: list,
+          dnfLastNum: res.data.last,
+          dnfNonePage: res.data.totalPages ? false : true,
           dnfFirstClick: false,
-          dnfCount: res.data.totalElements
+          dnfCount: res.data.totalElements,
+          dnfReqComplete: true,
+          dnfPageIndex: that.data.dnfPageIndex + 1
         })
       } else {
-        var list = that.data.list1
-        if (!res.data.totalPages) {
-          that.setData({
-            totalPages1: true
-          })
-        }
-        for (var i = 0; i < content.length; i++) {
-          list.push(content[i])
-        }
-        if (that.data.loadMore1) {
-          that.data.listQuery1.pageIndex++
-        }
+        var list = that.data.finishList
+        list = [...list, ...content]
         that.setData({
-          list1: list,
-          isLast1: res.data.last,
-          totalPages1: res.data.totalPages ? false : true,
+          finishList: list,
+          finishLastNum: res.data.last,
+          finishNonePage: res.data.totalPages ? false : true,
           finishFirstClick: false,
-          finishCount: res.data.totalElements
+          finishCount: res.data.totalElements,
+          finishReqComplete: true,
+          finishPageIndex: that.data.finishPageIndex + 1
         })
       }
-    }, false)
+    })
   },
   // 页面滑动到底部
   bindDownLoad: function(e) {
+    //该方法绑定了页面滑动到底部的事件，然后做上拉刷新
     if (e.currentTarget.dataset.type === 'dnf') {
-      if (this.data.isLast) return
+      if (this.data.dnfLastNum) return
       this.data.loadMore = true
     } else {
-      if (this.data.isLast1) return
+      if (this.data.finishLastNum) return
       this.data.loadMore1 = true
     }
-    this.onShow();
-  },
-  scroll: function(event) {
-    //该方法绑定了页面滚动时的事件，我这里记录了当前的position.y的值,为了请求数据之后把页面定位到这里来。
-    this.setData({
-      scrollTop: event.detail.scrollTop
-    });
+    this.getList();
   },
   topLoad: function(e) {
-    //该方法绑定了页面滑动到顶部的事件，然后做上拉刷新
+    //该方法绑定了页面滑动到顶部的事件，然后做下拉刷新
     // page = 0;
     if (e.currentTarget.dataset.type === 'dnf') {
-      this.data.listQuery.pageIndex = 0
-      this.data.listQuery.type = 'dnf'
+      // this.data.listQuery.pageIndex = 0
+      this.data.dnfPageIndex = 0
+      this.data.dnfType = 'dnf'
       this.setData({
-        list: [],
-        scrollTop: 0
+        dnfList: []
       });
     } else {
-      this.data.listQuery1.pageIndex = 0
-      this.data.listQuery1.type = 'finish'
+      // this.data.listQuery1.pageIndex = 0
+      this.data.finishPageIndex = 0
+      this.data.finishType = 'finish'
       this.setData({
-        list1: [],
-        scrollTop: 0
+        finishList: []
       });
     }
-    this.onShow();
+    this.getList(e.currentTarget.dataset.type);
   },
   loadingChange: function(falg) {
     this.setData({
       hidden: true
     });
   },
+  // onPullDownRefresh: function () {
+  //   console.log('下拉刷新')
+  //   this.getList()
+  //   wx.stopPullDownRefresh()
+  // },
   onShareAppMessage: function () {
     return common.onShareAppMessage()
   },
