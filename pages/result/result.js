@@ -46,6 +46,7 @@ Page({
     callStart: true,
     task: '',
     callsid: '',
+    requestAgain: false,
     groupId: '',
     result: '',
     status: '',
@@ -101,11 +102,19 @@ Page({
       let phoneNo = that.data.task.phoneNo
       if (phoneNo === '***********') {
         let callsid = that.data.callsid
-        req.get('app/callStatusResult/' + callsid, function(res) {
-          that.setData({
-            duration: res.data.duration
-          })
-          that.callResult(new Date(res.data.start), new Date(res.data.end))
+        req.get('app/callStatusResult/' + callsid, function () {}, true, function(res) {
+          if (res.data) {
+            that.setData({
+              duration: res.data.duration
+            })
+            that.callResult(new Date(res.data.start), new Date(res.data.end))
+          } else {
+            that.setData({
+              duration: 0,
+              requestAgain: true
+            })
+            that.callResult(new Date(), new Date())
+          }
         }, false)
       } else {
         if (that.data.resultIndex == 3) {
@@ -120,6 +129,8 @@ Page({
     let that = this
     req.post('app/tasks/history', {
       result: that.data.result,
+      callSid: that.data.callsid,
+      requestAgain: that.data.requestAgain,
       status: that.data.status,
       actualCallStartDate: start,
       acutalCallEndDate: end,
