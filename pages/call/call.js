@@ -41,6 +41,9 @@ Page({
       url += 'taskId=' + that.data.taskId
     }
     req.get(url, function(res) {
+      if(!res.data){
+        return
+      }
       let lastCallResult = res.data.lastCallResult;
       let icon = ''
       if (lastCallResult === 'NOT_CALL') {
