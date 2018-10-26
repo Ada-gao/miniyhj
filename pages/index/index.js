@@ -11,7 +11,8 @@ Page({
     tasks: [],
     isComplete: false,
     showComplete: false,
-    isReturn: false
+    isReturn: false,
+    current: 0
   },
   onLoad: function(options) {
     var that = this
@@ -50,11 +51,17 @@ Page({
       })
     }, false)
     req.get('task/statisGroup', function(res) {
-      for (var index in res.data) {
-        res.data[index].taskEndDate = util.formatTime(new Date(res.data[index].taskEndDate), '')
+      let tasks = res.data
+      for (var index in tasks) {
+        tasks[index].taskEndDate = util.formatTime(new Date(tasks[index].taskEndDate), '')
+      }
+      let current = that.data.current
+      if (current >= tasks.length) {
+        current = 0
       }
       that.setData({
-        tasks: res.data
+        tasks: tasks,
+        current: current
       })
     }, false)
     req.get('task/saleDailyCompleteStatus?userId=' + app.globalData.userId, function(res) {

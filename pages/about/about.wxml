@@ -9,7 +9,7 @@
 <view class='info'>
   <image class='logo' src='/image/icon_about_logo.png' />
   <text class='name'>闪电呼</text>
-  <text class='version'>客户端版本号：1.0.2</text>
+  <text class='version'>客户端版本号：1.2.0</text>
   <view class='copyright'>
     <text class='txt1'>版权所有：上海数赟科技有限公司</text>
     <text class='txt2'>Copyright © 2018 suxiang.All Rights Reserved</text>
