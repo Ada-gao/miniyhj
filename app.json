@@ -11,10 +11,12 @@
     "pages/result/result",
     "pages/trial/trial",
     "pages/feedback/feedback",
-    "pages/memo/memo"
+    "pages/memo/memo",
+    "pages/customer/customer",
+    "pages/setting/setting"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
   },
   "tabBar": {
@@ -28,6 +30,12 @@
         "iconPath": "image/icon_index_home_default.png",
         "selectedIconPath": "image/icon_index_home_selected.png",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/customer/customer",
+        "iconPath": "image/icon_index_me_default.png",
+        "selectedIconPath": "image/icon_index_me_selected.png",
+        "text": "潜客"
       },
       {
         "pagePath": "pages/me/me",

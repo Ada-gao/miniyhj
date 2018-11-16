@@ -36,6 +36,11 @@ Page({
       url: '/pages/feedback/feedback',
     })
   },
+  openSetting: function () {
+    wx.navigateTo({
+      url: '/pages/setting/setting',
+    })
+  },
   openAbout: function () {
     wx.navigateTo({
       url: '/pages/about/about',

@@ -5,7 +5,7 @@
     </view>
   </view>
   <view class='head'>
-    <image class='avatar' src='/image/icon_me_avatar.png' />
+    <image class='avatar' src='/image/icon_me_avatar.png' bindtap='openSetting' />
     <text class='name'>{{ userName }}</text>
     <text class='title' style='padding-left: 40px;padding-right: 40px;'>{{ companyName }}</text>
   </view>

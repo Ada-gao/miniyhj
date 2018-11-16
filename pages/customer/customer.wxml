@@ -1,0 +1,5 @@
+<view class='tabBar'>
+    <view class='tabBarTitle'>
+      <text>潜客列表</text>
+    </view>
+  </view>
