@@ -61,6 +61,7 @@ App({
     this.globalData.userId = userInfo.id
     this.globalData.name = userInfo.name
     this.globalData.username = userInfo.username
+    this.globalData.winHeight = wx.getSystemInfoSync().screenHeight
   },
   globalData: {
     token: null,
@@ -69,6 +70,7 @@ App({
     name: null,//用户昵称
     username:null,//用户名
     isCommit:false,//是否要提交数据
+    winHeight:0//屏幕高度
   },
   onPageNotFound(res) {
     wx.redirectTo({

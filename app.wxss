@@ -4,13 +4,18 @@
 page {
   display: flex;
   flex-direction: column;
+  padding-top: 128rpx;
 }
 
 .tabBar {
-  height: 125rpx;
+  width: 100%;
+  height: 128rpx;
   display: flex;
   flex-direction: row;
-  background: #fff;
+  background: #2F6BE2;
+  position: fixed;
+  top: 0;
+  z-index: 1;
 }
 
 .tabBarBack {
@@ -24,14 +29,14 @@ page {
 }
 
 .tabBarIcon {
-  width: 34rpx;
-  height: 34rpx;
+  width: 45rpx;
+  height: 45rpx;
 }
 
 .tabBarTitle {
-  color: #000;
+  color: #fff;
   text-align: center;
-  padding-top: 65rpx;
+  padding-top: 60rpx;
   width: 100%;
   font-size: 37rpx;
 }

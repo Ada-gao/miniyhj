@@ -1,17 +1,33 @@
 <view>
-  <view class='head' bindtap='back' wx:if="{{!callLogin}}">
+  <!-- <view class='head' bindtap='back' wx:if="{{!callLogin}}">
     <image class='arrow' src='/image/icon_common_back_white.png'></image>
     <text>返回</text>
+  </view> -->
+  <view class='tabBar' style='background-color: rgba(47, 107, 226, {{opacity}})' wx:if="{{!callLogin}}">
+    <view class='tabBarBack' bindtap='back'>
+      <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
+    </view>
+    <view class='tabBarTitle' style='opacity:{{opacity}}'>
+      <text>{{task.taskName}}</text>
+    </view>
   </view>
-  <view class='bg'>
+  <scroll-view scroll-y="true" class='scroll' style='height:{{winHeight}}px' wx:if="{{!isLoading}}" bindscroll="scrollChange">
     <image class='image' src='/image/icon_call_bg.png'></image>
-  </view>
-  <scroll-view scroll-y="true" class='scroll' wx:if="{{!isLoading}}">
     <view style='background: #fff;'>
       <view class='info'>
-        <text class='txt'>任务名称：<text style='color:#252525'>{{task.taskName}}</text></text>
-        <text class='txt' style='margin-top: 26rpx;margin-bottom: 26rpx;'>客户姓名：<text style='color:#252525'>{{task.contactName}}</text></text>
-        <text class='txt'>客户电话：<text style='color:#252525'>{{task.phoneNo}}</text></text>
+        <view class='txt'>
+          <text>任务名称：</text>
+          <text style='color:#252525'>{{task.taskName}}</text>
+        </view>
+        <view class='txt' style='margin-top: 26rpx;margin-bottom: 26rpx;'>
+          <text>客户姓名：</text>
+          <text style='color:#252525;'>{{task.contactName}}</text>
+          <image style='width:36rpx;height:36rpx;margin-left:10rpx;' src='/image/icon_call_collect_n.png'></image>
+        </view>
+        <view class='txt'>
+          <text>客户电话：</text>
+          <text style='color:#252525'>{{task.phoneNo}}</text>
+        </view>
       </view>
       <view class='split'></view>
       <view class='info2'>

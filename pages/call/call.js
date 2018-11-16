@@ -15,6 +15,8 @@ Page({
     groupId: '',
     taskId: '',
     isLoading: true,
+    opacity:0,
+    winHeight: app.globalData.winHeight
   },
   onLoad: function(options) {
     this.setData({
@@ -67,6 +69,16 @@ Page({
         icon: icon,
         lastCallDate: util.formatTime(new Date(res.data.lastCallDate), 'time')
       })
+    })
+  },
+  scrollChange:function(e){
+    console.log(e.detail.scrollTop)
+    let opacity = e.detail.scrollTop / 150
+    if(opacity > 1){
+      opacity = 1
+    }
+    this.setData({
+      opacity: opacity
     })
   },
   callPhone: function(e) {

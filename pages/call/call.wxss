@@ -1,8 +1,9 @@
 page {
   background: #f3f4f6;
+  padding-top: 0;
 }
 
-.head {
+/* .head {
   margin-top: 40rpx;
   height: 85rpx;
   text-align: center;
@@ -21,15 +22,12 @@ page {
   height: 34rpx;
   margin-left: 38rpx;
   margin-right: 10rpx;
-}
+} */
 
-.bg {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
+/* .bg {
   height: 100%;
   width: 100%;
-}
+} */
 
 .image {
   width: 100%;
@@ -37,13 +35,8 @@ page {
 }
 
 .scroll {
-  margin-top: 327rpx;
-  margin-left: 20rpx;
-  margin-right: 20rpx;
-  width: 95%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 30rpx;
 }
 
 .info {
