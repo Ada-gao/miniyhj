@@ -1,12 +1,12 @@
 <view>
-  <view class='tabbar'>
-    <view class='tabBarBack' bindtap='back'>
-      <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
-    </view>
-    <view class='tabBarTitle' style='color:#3772E5;'>
-      <text>申请体验</text>
-    </view>
+  <view class='tabBar'>
+  <view class='tabBarBack' bindtap='back'>
+    <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
   </view>
+  <view class='tabBarTitle'>
+    <text>申请体验</text>
+  </view>
+</view>
   <view class='info'>我们提供免费体验活动，您可以在此提交申请。申请 成功后，将由我们专属服务人员为你安排预约。</view>
   <view class='imglist'>
     <view class='imgitem'>

@@ -2,7 +2,7 @@ page {
   background: #fff;
 }
 
-.tabbar {
+/* .tabbar {
   height: 125rpx;
   display: flex;
   flex-direction: row;
@@ -10,10 +10,9 @@ page {
   width: 100%;
   z-index: 1;
   background: #fff;
-}
+} */
 
 .info {
-  margin-top: 125rpx;
   font-size: 28rpx;
   color: #323232;
   padding-left: 51rpx;
