@@ -1,1 +1,9 @@
+<view class='tabBar'>
+  <view class='tabBarBack' bindtap='back'>
+    <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
+  </view>
+  <view class='tabBarTitle'>
+    <text>错误</text>
+  </view>
+</view>
 <view class='txt'>404</view>

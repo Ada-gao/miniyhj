@@ -16,16 +16,13 @@ page {
 .module .name {
   font-size: 28rpx;
   color: #323232;
-  flex: 1;
 }
 
 .module .value {
   font-size: 28rpx;
   color: #9c9c9c;
-  margin-right: 20rpx;
-}
-
-.module .arrow {
-  width: 33rpx;
-  height: 33rpx;
+  text-align: right;
+  height: 100%;
+  margin-left: 20rpx;
+  flex: 1;
 }

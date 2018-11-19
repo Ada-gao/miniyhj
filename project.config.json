@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 1,
 			"list": [
 				{
 					"id": 1,
@@ -75,10 +75,10 @@
 					"query": ""
 				},
 				{
-					"id": 7,
+					"id": 6,
 					"name": "call",
 					"pathName": "pages/call/call",
-					"query": ""
+					"query": "?groupId=2&taskId=7"
 				},
 				{
 					"id": 8,
@@ -107,7 +107,14 @@
 				{
 					"id": 12,
 					"name": "memo",
-					"pathName": "pages/memo/memo"
+					"pathName": "pages/memo/memo",
+					"query": ""
+				},
+				{
+					"id": 13,
+					"name": "setting",
+					"pathName": "pages/setting/setting",
+					"query": ""
 				}
 			]
 		}

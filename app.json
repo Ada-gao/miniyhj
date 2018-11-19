@@ -13,7 +13,9 @@
     "pages/feedback/feedback",
     "pages/memo/memo",
     "pages/customer/customer",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/setting/updateName",
+    "pages/setting/updatePwd"
   ],
   "window": {
     "navigationBarTextStyle": "white",

@@ -1,14 +1,18 @@
-<view>
-  <view class='tabBar'>
-    <view class='tabBarBack' bindtap='back'>
-      <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
-    </view>
-    <view class='tabBarTitle'>
-      <text>设置</text>
-    </view>
+<view class='tabBar'>
+  <view class='tabBarBack' bindtap='back'>
+    <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
   </view>
-  <form bindsubmit="formSubmit">
-    <textarea class='info' placeholder='请输入备注信息...' maxlength='100' name='memo' value="{{memo}}" />
-    <button class='button' formType="submit">提交</button>
-  </form>
+  <view class='tabBarTitle'>
+    <text>设置</text>
+  </view>
+</view>
+<view class='module' style='margin-top:20rpx;' bindtap='updateName'>
+  <text class='name'>销售名称</text>
+  <text class='value'>{{userName}}</text>
+  <image class='arrow' src='/image/icon_common_arrow.png' />
+</view>
+<view class='module' bindtap='updatePwd'>
+  <text class='name'>登录密码</text>
+  <text class='value'>修改登录密码</text>
+  <image class='arrow' src='/image/icon_common_arrow.png' />
 </view>

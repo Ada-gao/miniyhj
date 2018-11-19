@@ -1,0 +1,19 @@
+<view class='tabBar'>
+  <view class='tabBarBack' bindtap='back'>
+    <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
+  </view>
+  <view class='tabBarTitle'>
+    <text>修改密码</text>
+  </view>
+</view>
+<form bindsubmit="formSubmit">
+  <view class='module' style='margin-top:20rpx;' bindtap='updateName'>
+    <text class='name'>输入新密码</text>
+    <input class='value' placeholder='输入新密码' name='password'/>
+  </view>
+  <view class='module' bindtap='updatePwd'>
+    <text class='name'>确认新密码</text>
+    <input class='value' placeholder='确认新密码' name='repassword'/>
+  </view>
+  <button class='button' formType="submit">提交</button>
+</form>

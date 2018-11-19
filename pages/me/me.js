@@ -12,9 +12,6 @@ Page({
   },
   onLoad: function(options) {
     let that = this
-    that.setData({
-      userName: app.globalData.name,
-    })
     req.get('app/getLogoAndName', function(res) {
       that.setData({
         companyName: res.data.companyName
@@ -23,6 +20,9 @@ Page({
   },
   onShow: function() {
     let that = this
+    that.setData({
+      userName: app.globalData.name,
+    })
     req.get('task/statisBySales?userId=' + app.globalData.userId, function(res) {
       that.setData({
         totalTaskCompleteCnt: res.data.totalTaskCompleteCnt || 0,
