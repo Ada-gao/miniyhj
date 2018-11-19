@@ -3,93 +3,98 @@ page {
 }
 
 .head {
-  background: #fff;
+  background: linear-gradient(180deg, rgba(47, 107, 226, 1), rgba(93, 144, 244, 1));
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
 }
 
-.avatar {
-  width: 170rpx;
-  height: 170rpx;
-  padding-top: 40rpx;
-  padding-bottom: 40rpx;
+.head .avatar {
+  width: 172rpx;
+  height: 172rpx;
+  margin-top: 40rpx;
+  margin-bottom: 30rpx;
 }
 
-.name {
+.head .name {
   font-size: 36rpx;
-  color: #323232;
+  color: #fff;
+  font-weight: bold;
 }
 
-.item {
+.head .company {
+  font-size: 24rpx;
+  margin-top: 20rpx;
+  margin-bottom: 50rpx;
+  color: #fff;
+  font-weight: 300;
+}
+
+.info {
+  background: #fff;
+  padding-top: 60rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 60rpx;
+}
+
+.info .item {
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
 }
 
-.info {
-  background: #fff;
-  padding-top: 80rpx;
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 80rpx;
+.info .txt1 {
+  font-size: 36rpx;
+  color: #3a74e6;
+  font-weight: 500;
 }
 
-.title {
+.info .txt2 {
+  font-size: 36rpx;
+  color: #43c222;
+  font-weight: 500;
+}
+
+.info .txt3 {
+  font-size: 36rpx;
+  color: #f14f3c;
+  font-weight: 500;
+}
+
+.info .title {
   font-size: 24rpx;
   margin-top: 18rpx;
   color: #9c9c9c;
+  font-weight: bold;
 }
 
-.txt1 {
-  font-size: 36rpx;
-  color: #3a74e6;
-}
-
-.txt2 {
-  font-size: 36rpx;
-  color: #43c222;
-}
-
-.txt3 {
-  font-size: 36rpx;
-  color: #f14f3c;
-}
-
-.about {
+.module {
   background: #fff;
-  display: flex;
-  margin-top: 1rpx;
-  flex-direction: row;
-  height: 100rpx;
-  align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.feedback {
-  background: #fff;
-  margin-top: 30rpx;
   display: flex;
   flex-direction: row;
   height: 100rpx;
   align-items: center;
   padding-left: 10px;
   padding-right: 10px;
+  border-bottom: 1rpx #f5f5f5 solid;
 }
 
-.icon {
+.module .icon {
   width: 48rpx;
   height: 48rpx;
 }
 
-.arrow {
+.module .arrow {
   width: 33rpx;
   height: 33rpx;
 }
 
-.value {
+.module .value {
   font-size: 28rpx;
   margin-left: 30rpx;
   flex: 1;
@@ -101,8 +106,7 @@ page {
   margin-bottom: 60rpx;
   line-height: 98rpx;
   background: #fff;
-  border-radius: 6rpx;
   text-align: center;
   color: #3a74e6;
-  font-size: 32rpx;
+  font-size: 28rpx;
 }

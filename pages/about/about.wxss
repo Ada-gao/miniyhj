@@ -4,25 +4,26 @@
   align-items: center;
 }
 
-.logo {
-  margin-top: 120rpx;
+.info .logo {
+  margin-top: 137rpx;
   width: 150rpx;
   height: 150rpx;
 }
 
-.name {
+.info .name {
   font-size: 36rpx;
-  margin-top: 40rpx;
+  margin-top: 37rpx;
   color: #000;
 }
 
-.version {
+.info .version {
   font-size: 26rpx;
   margin-top: 29rpx;
+  font-weight: 300;
   color: #868686;
 }
 
-.copyright {
+.info .copyright {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,25 +32,25 @@
   bottom: 100rpx;
 }
 
-.txt1 {
+.copyright .txt1 {
   font-size: 28rpx;
   color: #3e3e3e;
 }
 
-.txt2 {
+.copyright .txt2 {
   font-size: 24rpx;
   color: #868686;
   margin-top: 29rpx;
   margin-bottom: 39rpx;
 }
 
-.txt3 {
+.copyright .txt3 {
   font-size: 28rpx;
   color: #306ce2;
   margin-left: 20rpx;
 }
 
-.copy {
+.copyright .copy {
   display: flex;
   flex-direction: row;
 }

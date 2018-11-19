@@ -7,7 +7,7 @@ Page({
     let that = this
     timer = setTimeout(function() {
       if (app.globalData.token && app.globalData.userId) {
-        req.get('app/me', function (res) {
+        req.get('app/me', function(res) {
           common.saveUserInfo(res.data)
           wx.switchTab({
             url: '/pages/index/index',
@@ -23,7 +23,7 @@ Page({
   onUnload: function() {
     clearTimeout(timer)
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return common.onShareAppMessage()
   }
 })

@@ -36,12 +36,12 @@ Page({
       url: '/pages/feedback/feedback',
     })
   },
-  openSetting: function () {
+  openSetting: function() {
     wx.navigateTo({
       url: '/pages/setting/setting',
     })
   },
-  openAbout: function () {
+  openAbout: function() {
     wx.navigateTo({
       url: '/pages/about/about',
     })
@@ -59,7 +59,7 @@ Page({
       }
     })
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return common.onShareAppMessage()
   }
 })

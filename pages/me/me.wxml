@@ -7,7 +7,7 @@
   <view class='head'>
     <image class='avatar' src='/image/icon_me_avatar.png' bindtap='openSetting' />
     <text class='name'>{{ userName }}</text>
-    <text class='title' style='padding-left: 40px;padding-right: 40px;'>{{ companyName }}</text>
+    <text class='company'>{{ companyName }}</text>
   </view>
   <view class='info'>
     <view class='item'>
@@ -23,16 +23,15 @@
       <text class='title'>团队排名</text>
     </view>
   </view>
-  <view class='feedback' bindtap='openFeedback'>
+  <view class='module' bindtap='openFeedback'>
     <image class='icon' src='/image/icon_me_feedback.png' />
     <text class='value'>意见反馈</text>
     <image class='arrow' src='/image/icon_common_arrow.png' />
   </view>
-  <view class='about' bindtap='openAbout'>
+  <view class='module' bindtap='openAbout'>
     <image class='icon' src='/image/icon_me_about.png' />
     <text class='value'>关于闪电呼</text>
     <image class='arrow' src='/image/icon_common_arrow.png' />
   </view>
-
-  <view class='logout_button' bindtap="logout">退出</view>
+  <view class='logout_button' bindtap="logout">退出登录</view>
 </view>
