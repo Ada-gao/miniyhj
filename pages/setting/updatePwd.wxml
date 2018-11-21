@@ -7,13 +7,13 @@
   </view>
 </view>
 <form bindsubmit="formSubmit">
-  <view class='module' style='margin-top:20rpx;' bindtap='updateName'>
+  <view class='module' style='margin-top:20rpx;'>
     <text class='name'>输入新密码</text>
-    <input class='value' placeholder='输入新密码' name='password'/>
+    <input class='value' placeholder='输入新密码' maxlength='12' name='password'/>
   </view>
-  <view class='module' bindtap='updatePwd'>
+  <view class='module'>
     <text class='name'>确认新密码</text>
-    <input class='value' placeholder='确认新密码' name='repassword'/>
+    <input class='value' placeholder='确认新密码' maxlength='12' name='repassword'/>
   </view>
   <button class='button' formType="submit">提交</button>
 </form>

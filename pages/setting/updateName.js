@@ -5,27 +5,31 @@ Page({
   data: {
     userName: ''
   },
-  onLoad: function (options) {
-    let that = this
-    that.setData({
+  onShow: function () {
+    this.setData({
       userName: app.globalData.name,
     })
   },
-  formSubmit: function (e) {
-    console.log(e.detail.value)
-    let that = this
-    req.put('app/addCommon/' + that.data.taskId, {
-      common: e.detail.value.memo
-    }, function (res) {
-      wx.navigateBack({
-        delta: 1
+  formSubmit: function(e) {
+    let name = e.detail.value.username
+    if (name) {
+      let that = this
+      req.put('users/updateSaleName/' + app.globalData.userId + '?name='+name, {
+        name: name
+      }, function(res) {
+        var user = wx.getStorageSync('userInfo')
+        user.name = name
+        common.saveUserInfo(user)
+        common.back()
       })
-    })
+    } else {
+      common.showToast('请输入销售名称！')
+    }
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return common.onShareAppMessage()
   },
-  back: function () {
+  back: function() {
     common.back()
   }
 })

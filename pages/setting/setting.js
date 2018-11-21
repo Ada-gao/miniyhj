@@ -5,7 +5,7 @@ Page({
   data: {
     userName: ''
   },
-  onShow: function(options) {
+  onShow: function() {
     this.setData({
       userName: app.globalData.name,
     })

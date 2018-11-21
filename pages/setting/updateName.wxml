@@ -8,9 +8,9 @@
     </view>
   </view>
   <form bindsubmit="formSubmit">
-    <view class='module' style='margin-top:20rpx;' bindtap='updateName'>
+    <view class='module' style='margin-top:20rpx;'>
       <text class='name'>销售名称</text>
-      <input class='value' placeholder='销售名称' value='{{userName}}' name='username'/>
+      <input class='value' placeholder='销售名称' maxlength='10' value='{{userName}}' name='username'/>
     </view>
     <button class='button' formType="submit">提交</button>
   </form>
