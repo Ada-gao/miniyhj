@@ -106,3 +106,20 @@
   color: #346fe4;
   font-size: 26rpx;
 }
+.nav-bar {
+  height: 250rpx;
+  width: 610rpx;
+  position: fixed;
+  z-index: 999;
+  background-color: #fff;
+  top: 127rpx;
+}
+.tab-40 {
+  height: 88rpx;
+}
+.list-bar {
+  margin-top: 220rpx;
+}
+.weui-tab__panel {
+  padding-top: 0;
+}

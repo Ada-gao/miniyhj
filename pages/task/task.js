@@ -199,21 +199,26 @@ Page({
           finishFirstClick: true
         })
       }
+      wx.stopPullDownRefresh()
     })
   },
   // 页面滑动到底部
-  bindDownLoad: function(e) {
-    //该方法绑定了页面滑动到底部的事件，然后做上拉刷新
-    if (e.currentTarget.dataset.type === 'dnf') {
-      if (this.data.dnfLastNum) return
-      this.data.loadMore = true
-    } else {
-      if (this.data.finishLastNum) return
-      this.data.loadMore1 = true
-    }
-    this.getList()
-  },
+  // bindDownLoad: function(e) {
+  //   //该方法绑定了页面滑动到底部的事件，然后做上拉刷新
+  //   if (e.currentTarget.dataset.type === 'dnf') {
+  //     if (this.data.dnfLastNum) return
+  //     this.data.loadMore = true
+  //   } else {
+  //     if (this.data.finishLastNum) return
+  //     this.data.loadMore1 = true
+  //   }
+  //   this.getList()
+  // },
+  // onPageScroll: function (e) {
+  //   // console.log(e)
+  // },
   // topLoad: function(e) {
+  //   console.log('xia la shua xin')
   //   //该方法绑定了页面滑动到顶部的事件，然后做下拉刷新
   //   if (e.currentTarget.dataset.type === 'dnf') {
   //     this.data.dnfPageIndex = 0
@@ -236,20 +241,34 @@ Page({
     })
   },
   onPullDownRefresh: function () {
-    console.log('下拉刷新')
-    if (this.data.activeIndex - 0 === 'dnf') {
-      this.data.dnfPageIndex = 0
+    wx.showNavigationBarLoading()
+    // console.log('下拉刷新')
+    if (this.data.activeIndex - 0 === 0) {
+      // this.data.dnfPageIndex = 0
       this.setData({
-        dnfList: []
+        dnfList: [],
+        dnfPageIndex: 0
       })
     } else {
-      this.data.finishPageIndex = 0
+      // this.data.finishPageIndex = 0
       this.setData({
-        finishList: []
+        finishList: [],
+        finishPageIndex: 0
       })
     }
+    // console.log(this.data)
     this.getList()
-    wx.stopPullDownRefresh()
+  },
+  onReachBottom: function () {
+    console.log('上拉刷新')
+    if (this.data.activeIndex - 0 === 0) {
+      if (this.data.dnfLastNum) return
+      this.data.loadMore = true
+    } else {
+      if (this.data.finishLastNum) return
+      this.data.loadMore1 = true
+    }
+    this.getList()
   },
   onShareAppMessage: function () {
     return common.onShareAppMessage()
