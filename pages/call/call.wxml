@@ -17,7 +17,8 @@
       <view style='margin-top: 26rpx;margin-bottom: 26rpx;'>
         <text>客户姓名：</text>
         <text>{{task.contactName}}</text>
-        <image src='/image/icon_call_collect_n.png' bindtap='collectChange'></image>
+        <image wx:if="{{task.star}}" src='/image/icon_call_collect_p.png' bindtap='collectChange'></image>
+        <image wx:if="{{!task.star}}" src='/image/icon_call_collect_n.png' bindtap='collectChange'></image>
       </view>
       <view>
         <text>客户电话：</text>
@@ -42,6 +43,7 @@
       </view>
     </view>
     <view class='log' wx:if="{{task.callCount>0}}">最近外呼：{{task.callCount}}次，最近外呼时间：{{lastCallDate}} </view>
+    <view class='log2' wx:if="{{task.callCount===0}}"></view>
     <view class='call' bindtap="callPhone">
       <image class='callicon' src='/image/icon_index_call.png'></image>
       <text class='calltxt'>立即拨打</text>

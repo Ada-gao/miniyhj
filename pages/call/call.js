@@ -72,7 +72,21 @@ Page({
     })
   },
   collectChange: function() {
-    common.showToast('已添加星标客户')
+    let that = this
+    let task = that.data.task
+    req.put('task/addStar/' + task.taskId + '?star=' + !task.star, {
+      star: !task.star
+    }, function(res) {
+      task.star = !task.star
+      that.setData({
+        task: task
+      })
+      if (task.star) {
+        common.showToast('已添加星标客户')
+      } else {
+        common.showToast('已取消星标客户')
+      }
+    })
   },
   scrollChange: function(e) {
     let opacity = e.detail.scrollTop / 150
@@ -99,7 +113,7 @@ Page({
             callLogin: false
           })
           that.openResult()
-        }, 10000)
+        }, 5000)
       })
     } else {
       that.openResult()

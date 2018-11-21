@@ -1,14 +1,34 @@
 var req = require('../../utils/request.js')
 var common = require('../../common/common.js')
+var util = require('../../utils/util.js')
+const app = getApp()
 Page({
   data: {
-    tasks: [{ "source": "自有", "duration": 0, "salesTalk": "尊敬的客户，您好：\n我向你推荐一款摇钱树产品", "taskName": "汤臣一期销售", "maskPhoneNo": false, "phoneNo": "17612161114", "createTime": 1538210593000, "productName": "摇钱树", "lastCallDate": 1539931947000, "taskId": 7, "gender": "GENTLEMAN", "age": "18岁以下", "outboundTaskGroupId": 2, "minimumDuration": 1, "taskDate": 1540104764000, "outboundNameId": 7, "mobileNo": "", "wechatNo": "", "contactName": "刘龙", "callCount": 38, "lastCallResult": "NOT_EXIST", "status": "CALL_AGAIN", "userId": 2, "common": "xxx" }, { "source": "自有", "duration": 0, "salesTalk": "尊敬的客户，您好：\n我向你推荐一款摇钱树产品", "taskName": "汤臣一期销售", "maskPhoneNo": false, "phoneNo": "17612161114", "createTime": 1538210593000, "productName": "摇钱树", "lastCallDate": 1539931947000, "taskId": 7, "gender": "GENTLEMAN", "age": "18岁以下", "outboundTaskGroupId": 2, "minimumDuration": 1, "taskDate": 1540104764000, "outboundNameId": 7, "mobileNo": "", "wechatNo": "", "contactName": "刘龙", "callCount": 38, "lastCallResult": "NOT_EXIST", "status": "CALL_AGAIN", "userId": 2, "common": "xxx" }, { "source": "自有", "duration": 0, "salesTalk": "尊敬的客户，您好：\n我向你推荐一款摇钱树产品", "taskName": "汤臣一期销售", "maskPhoneNo": false, "phoneNo": "17612161114", "createTime": 1538210593000, "productName": "摇钱树", "lastCallDate": 1539931947000, "taskId": 7, "gender": "GENTLEMAN", "age": "18岁以下", "outboundTaskGroupId": 2, "minimumDuration": 1, "taskDate": 1540104764000, "outboundNameId": 7, "mobileNo": "", "wechatNo": "", "contactName": "刘龙", "callCount": 38, "lastCallResult": "NOT_EXIST", "status": "CALL_AGAIN", "userId": 2, "common": "xxx" }, { "source": "自有", "duration": 0, "salesTalk": "尊敬的客户，您好：\n我向你推荐一款摇钱树产品", "taskName": "汤臣一期销售", "maskPhoneNo": false, "phoneNo": "17612161114", "createTime": 1538210593000, "productName": "摇钱树", "lastCallDate": 1539931947000, "taskId": 7, "gender": "GENTLEMAN", "age": "18岁以下", "outboundTaskGroupId": 2, "minimumDuration": 1, "taskDate": 1540104764000, "outboundNameId": 7, "mobileNo": "", "wechatNo": "", "contactName": "刘龙", "callCount": 38, "lastCallResult": "NOT_EXIST", "status": "CALL_AGAIN", "userId": 2, "common": "xxx" }]
+    tasks: '',
+    groupId: ''
   },
   onLoad: function (options) {
+    let that = this
+    that.setData({
+      groupId: options.groupId
+    })
+  },
+  onShow: function () {
+    let that = this
+    req.get('task/getTaskInfo/' + this.data.groupId + '?type=dnf', function (res) {
+      let tasks = res.data
+      for (var index in tasks) {
+        tasks[index].taskDate = util.formatTime(new Date(tasks[index].taskDate), '')
+      }
+      that.setData({
+        tasks: tasks
+      })
+    })
   },
   openTask: function (e) {
+    let taskId = e.currentTarget.dataset.taskid
     wx.navigateTo({
-      url: '/pages/call/call?groupId=2&taskId=7',
+      url: '/pages/call/call?groupId=' + this.data.groupId + '&taskId=' + taskId,
     })
   },
   onShareAppMessage: function () {

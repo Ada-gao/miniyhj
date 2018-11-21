@@ -43,11 +43,11 @@
               <text class='txt2'>客户数</text>
             </view>
             <view class='cardsub' bindtap='completeList' data-id='{{ item.taskGroupId }}'>
-              <text class='txt3'>{{ item.totalTaskCompleteCnt }}<text style='font-size:32rpx;'>个</text></text>
-              <text class='txt2'>继续跟进</text>
+              <text class='txt3'>{{ item.callAgainCnt }}<text style='font-size:32rpx;'>个</text></text>
+              <text class='txt2'>继续外呼</text>
             </view>
             <view class='cardsub' bindtap='list' data-id='{{ item.taskGroupId }}'>
-              <text class='txt3'>{{ item.totalTaskCnt - item.totalTaskCompleteCnt }}<text style='font-size:32rpx;'>个</text></text>
+              <text class='txt3'>{{ item.taskDnfCnt }}<text style='font-size:32rpx;'>个</text></text>
               <text class='txt2'>剩余未呼</text>
             </view>
           </view>

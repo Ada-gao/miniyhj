@@ -7,9 +7,9 @@
   </view>
 </view>
 <view class='list' wx:for="{{tasks}}">
-  <view class='module' bindtap='openTask'>
+  <view class='module' bindtap='openTask' data-taskid='{{item.taskId}}'>
     <text class='name'>{{item.contactName}}</text>
-    <text class='value'>2018-12-14</text>
+    <text class='value'>{{item.taskDate}}</text>
     <image class='arrow' src='/image/icon_common_arrow.png' />
   </view>
 </view>

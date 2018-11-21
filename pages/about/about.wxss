@@ -30,6 +30,7 @@
   flex: 1;
   position: fixed;
   bottom: 100rpx;
+  width: 100%;
 }
 
 .copyright .txt1 {

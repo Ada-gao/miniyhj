@@ -87,6 +87,18 @@ Page({
       actionIndex: e.detail.value
     })
   },
+  collectChange: function () {
+    let that = this
+    let task = that.data.task
+    req.put('task/addStar/' + task.taskId + '?star=' + !task.star, {
+      star: !task.star
+    }, function (res) {
+      task.star = !task.star
+      that.setData({
+        task: task
+      })
+    })
+  },
   formSubmit: function(e) {
     let that = this
     if (that.data.result === '' || that.data.status === '') {
