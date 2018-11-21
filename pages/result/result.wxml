@@ -39,7 +39,7 @@
           <view class="weui-label">添加为星标客户</view>
         </view>
         <view class="weui-cell__bd">
-          <switch bindchange="switchChange" color="#2F6BE2"/>
+          <switch checked='{{task.star}}' bindchange="collectChange" color="#2F6BE2"/>
         </view>
       </view>
     </view>

@@ -7,9 +7,12 @@
   </view>
 </view>
 <view class='list' wx:for="{{tasks}}">
-  <view class='module' bindtap='openTask'>
+  <view class='module' bindtap='openTask' data-taskid='{{item.taskId}}'>
     <text class='name'>{{item.contactName}}</text>
-    <text class='value blue'>已接通</text>
+    <text class='value blue' wx:if="{{item.result === 'CONNECTED'}}">已接通</text>
+    <text class='value red' wx:if="{{item.result === 'NOT_CALL'}}">未外呼</text>
+    <text class='value red' wx:if="{{item.result === 'NOT_EXIST'}}">空号</text>
+    <text class='value red' wx:if="{{item.result === 'UNCONNECTED'}}">未接通</text>
     <image class='arrow' src='/image/icon_common_arrow.png' />
   </view>
 </view>
