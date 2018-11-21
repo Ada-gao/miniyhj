@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -69,10 +69,10 @@
 					"query": ""
 				},
 				{
-					"id": 6,
+					"id": 5,
 					"name": "task",
 					"pathName": "pages/task/task",
-					"query": ""
+					"query": "groupId=1"
 				},
 				{
 					"id": 6,

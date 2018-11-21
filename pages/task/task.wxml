@@ -8,26 +8,37 @@
     </view>
   </view>
   <view class="page__bd page-padding">
-    <view class='time-bar'>
-      <view class='padding20' bindtap="bindLastDay">
-        <image class='arrow' src='/image/icon_task_last.png' />
-      </view>
-      <picker class="" mode="date" value="{{initDate}}" start="2018-01-01" end="2038-01-01" bindchange="bindDateChange">
-        <view class='picker'>
-          <text class="date">{{initDate}}</text>
+    <view class="nav-bar">
+      <view class='time-bar'>
+        <view class='padding20' bindtap="bindLastDay">
+          <image class='arrow' src='/image/icon_task_last.png' />
         </view>
-      </picker>
-      <view class='padding20' bindtap="bindNextDay">
-        <image class='arrow' src='/image/icon_task_next.png' />
+        <picker class="" mode="date" value="{{initDate}}" start="2018-01-01" end="2038-01-01" bindchange="bindDateChange">
+          <view class='picker'>
+            <text class="date">{{initDate}}</text>
+          </view>
+        </picker>
+        <view class='padding20' bindtap="bindNextDay">
+          <image class='arrow' src='/image/icon_task_next.png' />
+        </view>
+      </view>
+      <view class="weui-tab tab-40">
+        <view class="weui-navbar">
+          <block>
+            <view id="0" class="weui-navbar__item {{activeIndex == 0 ? 'weui-bar__item_on' : ''}}" bindtap="tabClick" data-type='dnf'>
+              <view class="weui-navbar__title">未完成({{dnfCount}})</view>
+            </view>
+          </block>
+          <block>
+            <view id="1" class="weui-navbar__item {{activeIndex == 1 ? 'weui-bar__item_on' : ''}}" bindtap="tabClick" data-type='finish'>
+              <view class="weui-navbar__title">已完成({{finishCount}})</view>
+            </view>
+          </block>
+        </view>
       </view>
     </view>
-    <view class="weui-tab">
-      <view class="weui-navbar">
-        <!-- <block wx:for-items="{{tabs}}" wx:key="{{index}}">
-          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick" data-type='{{item.value}}'>
-            <view class="weui-navbar__title">{{item.label}}({{}})</view>
-          </view>
-        </block> -->
+    <view class="weui-tab list-bar">
+      <!-- <view class="weui-navbar">
         <block>
           <view id="0" class="weui-navbar__item {{activeIndex == 0 ? 'weui-bar__item_on' : ''}}" bindtap="tabClick" data-type='dnf'>
             <view class="weui-navbar__title">未完成({{dnfCount}})</view>
@@ -38,7 +49,7 @@
             <view class="weui-navbar__title">已完成({{finishCount}})</view>
           </view>
         </block>
-      </view>
+      </view> -->
       <view class="weui-tab__panel">
         <view class="body-view">
           <loading hidden="{{hidden}}">
@@ -49,33 +60,33 @@
           <view wx:if="{{dnfNonePage}}" class="weui-loadmore weui-loadmore_line">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
           </view>
-          <scroll-view wx:if="{{!dnfNonePage}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" data-type="dnf">
-            <view class="weui-cells weui-cells_after-title">
+          <!-- <scroll-view wx:if="{{!dnfNonePage}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" data-type="dnf"> -->
+            <view wx:if="{{!dnfNonePage}}" class="weui-cells weui-cells_after-title">
               <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{dnfList}}" wx:key="{{index}}">
                 <view class="weui-cell__bd text-left">{{item.contactName}}</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access">{{item.status||''}}</view>
               </navigator>
             </view>
-            <view wx:if="{{dnfLastNum}}" class="weui-loadmore weui-loadmore_line">
+            <view wx:if="{{dnfLastNum&&!dnfNonePage}}" class="weui-loadmore weui-loadmore_line">
               <view class="weui-loadmore__tips weui-loadmore__tips_in-line">这是底线了</view>
             </view>
-          </scroll-view>
+          <!-- </scroll-view> -->
         </view>
         <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
           <view wx:if="{{finishNonePage}}" class="weui-loadmore weui-loadmore_line">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
           </view>
-          <scroll-view wx:if="{{!finishNonePage}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" data-type="finish">
-            <view class="weui-cells weui-cells_after-title">
+          <!-- <scroll-view wx:if="{{!finishNonePage}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" data-type="finish"> -->
+            <view wx:if="{{!finishNonePage}}" class="weui-cells weui-cells_after-title">
               <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{finishList}}" wx:key="{{index}}">
                 <view class="weui-cell__bd text-left">{{item.contactName}}</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access">{{item.status||''}}</view>
               </navigator>
             </view>
-            <view wx:if="{{finishLastNum}}" class="weui-loadmore weui-loadmore_line">
+            <view wx:if="{{finishLastNum&&!finishNonePage}}" class="weui-loadmore weui-loadmore_line">
               <view class="weui-loadmore__tips weui-loadmore__tips_in-line">这是底线了</view>
             </view>
-          </scroll-view>
+          <!-- </scroll-view> -->
         </view>
       </view>
     </view>
