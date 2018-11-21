@@ -9,32 +9,37 @@
 <view class='head'>
   <view class='search' bindtap='openSearch'>
     <image class='icon' src='/image/icon_customer_search.png'></image>
-    <input class='input' placeholder='搜索'></input>
+    <input class='input' placeholder='搜索' confirm-type='search' bindconfirm='search'></input>
   </view>
 </view>
-<view class='list'>
+<view class='list' wx:if="{{followList.length > 0}}">
   <view class='title'>
     <text>意向客户</text>
   </view>
-  <view wx:for="{{completeList}}">
-    <view class='module' bindtap='openTask'>
+  <view wx:for="{{followList}}">
+    <view class='module' bindtap='openTask'  data-taskid='{{item.taskId}}'>
       <text class='name'>{{item.contactName}}</text>
       <image class='arrow' src='/image/icon_common_arrow.png' />
     </view>
   </view>
 </view>
-<view class='list'>
+<view class='list' wx:if="{{starList.length > 0}}">
   <view class='title'>
     <text>星标客户</text>
   </view>
-  <view wx:for="{{list}}">
-    <view class='module' bindtap='openTask'>
+  <view wx:for="{{starList}}">
+    <view class='module' bindtap='openTask'  data-taskid='{{item.taskId}}'>
       <text class='name'>{{item.contactName}}</text>
       <image class='arrow' src='/image/icon_common_arrow.png' />
     </view>
   </view>
 </view>
-
+<block wx:if="{{followList.length === 0 && starList.length === 0}}">
+    <view class='empty'>
+      <image class='icon' src='/image/icon_customer_empty.png'></image>
+      <text class='txt'>暂无数据</text>
+    </view>
+</block>
 
 
 

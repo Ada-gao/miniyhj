@@ -10,20 +10,32 @@
   </view>
   <view class='tab'>
     <view class='head'>
-      <view class="{{tabIndex==='1'?'active':'default'}}" bindtap='switchTab' data-index='1'>
-        <text>意向客户（66）</text>
+      <view class="{{tabType==='follow'?'active':'default'}}" bindtap='switchTab' data-type='follow'>
+        <text>意向客户（{{followList.length}}）</text>
       </view>
-      <view class="{{tabIndex==='2'?'active':'default'}}" bindtap='switchTab' data-index='2'>
-        <text>星标客户（18）</text>
+      <view class="{{tabType==='star'?'active':'default'}}" bindtap='switchTab' data-type='star'>
+        <text>星标客户（{{starList.length}}）</text>
       </view>
     </view>
   </view>
 </view>
 <view class='content'>
-  <block wx:for="{{tasks}}">
-    <view class='module' bindtap='openTask'>
+  <block wx:if="{{tabType==='follow'}}" wx:for="{{followList}}">
+    <view class='module' bindtap='openTask' data-taskid='{{item.taskId}}'>
       <text class='name'>{{item.contactName}}</text>
       <image class='arrow' src='/image/icon_common_arrow.png' />
+    </view>
+  </block>
+  <block wx:if="{{tabType==='star'}}" wx:for="{{starList}}">
+    <view class='module' bindtap='openTask' data-taskid='{{item.taskId}}'>
+      <text class='name'>{{item.contactName}}</text>
+      <image class='arrow' src='/image/icon_common_arrow.png' />
+    </view>
+  </block>
+  <block wx:if="{{(tabType==='follow' && followList.length === 0) || (tabType==='star' && starList.length === 0)}}">
+    <view class='empty'>
+      <image class='icon' src='/image/icon_customer_empty.png'></image>
+      <text class='txt'>暂无数据</text>
     </view>
   </block>
 </view>
