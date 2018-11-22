@@ -4,7 +4,7 @@
       <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
     </view>
     <view class='tabBarTitle' style='opacity:{{opacity}}'>
-      <text>任务详情</text>
+      <text>客户详情</text>
     </view>
   </view>
   <scroll-view scroll-y="true" class='scroll' style='height:{{winHeight}}px' wx:if="{{!isLoading}}" bindscroll="scrollChange">

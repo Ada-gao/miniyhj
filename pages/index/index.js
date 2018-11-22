@@ -55,13 +55,13 @@ Page({
       for (var index in tasks) {
         tasks[index].taskEndDate = util.formatTime(new Date(tasks[index].taskEndDate), '')
       }
-      let current = that.data.current
-      if (current >= tasks.length) {
-        current = 0
+      if (that.data.current >= tasks.length) {
+        that.setData({
+          current: 0
+        })
       }
       that.setData({
-        tasks: tasks,
-        current: current
+        tasks: tasks
       })
     }, false)
     req.get('task/saleDailyCompleteStatus?userId=' + app.globalData.userId, function(res) {
@@ -75,6 +75,11 @@ Page({
         showComplete: wx.getStorageSync('isComplete')
       })
     }, false)
+  },
+  swiperChange:function(e){
+    this.setData({
+      current: e.detail.current
+    })
   },
   //任务列表
   openTask: function(e) {

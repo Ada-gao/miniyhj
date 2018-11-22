@@ -4,11 +4,7 @@ var common = require('../../common/common.js')
 const app = getApp()
 Page({
   data: {
-    resultsColumns: [{
-        label: '未外呼',
-        value: 'NOT_CALL',
-        id: 0
-      },
+    resultsColumns: [
       {
         label: '空号',
         value: 'NOT_EXIST',
@@ -27,7 +23,7 @@ Page({
     ],
     resultIndex: -1,
     actionColumns: [{
-        label: '再次外呼',
+        label: '继续外呼',
         value: 'CALL_AGAIN',
         id: 0
       },
@@ -37,7 +33,7 @@ Page({
         id: 1
       },
       {
-        label: '继续跟进',
+        label: '意向客户',
         value: 'FOLLOW',
         id: 2
       }
@@ -47,7 +43,6 @@ Page({
     task: '',
     callsid: '',
     requestAgain: false,
-    groupId: '',
     result: '',
     status: '',
     actualCallStartDate: '',
@@ -57,18 +52,19 @@ Page({
     duration: 0,
     contactName: '',
     phoneNo: '',
-    wechatNo: ''
+    wechatNo: '',
+    formGroup:false
   },
-  onLoad: function(data) {
+  onLoad: function(options) {
     if (app.globalData.isCommit) {
       common.showToast('您还有任务未提交！')
     } else {
       app.globalData.isCommit = true
     }
     this.setData({
-      task: JSON.parse(data.task),
-      callsid: data.callsid || '',
-      groupId: data.groupId || '',
+      task: JSON.parse(options.task),
+      callsid: options.callsid || '',
+      formGroup: options.formGroup,
       actualCallStartDate: new Date,
       acutalCallEndDate: new Date
     })
@@ -175,27 +171,17 @@ Page({
       source: 'miniProgram'
     }, function(res) {
       that.goMessage()
-      req.get('app/miniProgram/nextTask?groupId=' + that.data.groupId, function(res) {
+      req.get('app/miniProgram/nextTask', function(res) {
         common.showToast('提交成功')
         getApp().globalData.isCommit = false
-        let pages = getCurrentPages()
-        if (pages.length === 4) {
-          var beforePage = pages[pages.length - 3]
-          beforePage.bindDateChange()
-        }
-        if (res.data) {
-          beforePage = pages[pages.length - 2]
-          beforePage.setData({
-            groupId: that.data.groupId,
-            taskId: 0
-          })
+        if (that.data.formGroup === 'false' && res.data){
           wx.navigateBack({
             delta: 1
           });
-        } else {
+        }else{
           wx.navigateBack({
             delta: 2
-          })
+          });
         }
       })
     }, false)

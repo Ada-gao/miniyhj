@@ -3,16 +3,24 @@
     <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
   </view>
   <view class='tabBarTitle'>
-    <text>跟进列表</text>
+    <text>继续外呼列表</text>
   </view>
 </view>
-<view class='list' wx:for="{{tasks}}">
-  <view class='module' bindtap='openTask' data-taskid='{{item.taskId}}'>
-    <text class='name'>{{item.contactName}}</text>
-    <text class='value blue' wx:if="{{item.result === 'CONNECTED'}}">已接通</text>
-    <text class='value red' wx:if="{{item.result === 'NOT_CALL'}}">未外呼</text>
-    <text class='value red' wx:if="{{item.result === 'NOT_EXIST'}}">空号</text>
-    <text class='value red' wx:if="{{item.result === 'UNCONNECTED'}}">未接通</text>
-    <image class='arrow' src='/image/icon_common_arrow.png' />
-  </view>
+<view class='list'>
+  <block wx:for="{{tasks}}">
+    <view class='module' bindtap='openTask' data-taskid='{{item.taskId}}'>
+      <text class='name'>{{item.contactName}}</text>
+      <text class='value blue' wx:if="{{item.result === 'CONNECTED'}}">已接通</text>
+      <text class='value red' wx:if="{{item.result === 'NOT_CALL'}}">未外呼</text>
+      <text class='value red' wx:if="{{item.result === 'NOT_EXIST'}}">空号</text>
+      <text class='value red' wx:if="{{item.result === 'UNCONNECTED'}}">未接通</text>
+      <image class='arrow' src='/image/icon_common_arrow.png' />
+    </view>
+  </block>
+  <block wx:if="{{tasks.length === 0}}">
+    <view class='empty'>
+      <image class='icon' src='/image/icon_customer_empty.png'></image>
+      <text class='txt'>暂无数据</text>
+    </view>
+  </block>
 </view>

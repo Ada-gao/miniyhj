@@ -62,7 +62,7 @@
           </view>
           <!-- <scroll-view wx:if="{{!dnfNonePage}}" scroll-y="true" style="height:{{scrollHeight}}rpx;" class="list" bindscrolltolower="bindDownLoad" data-type="dnf"> -->
             <view wx:if="{{!dnfNonePage}}" class="weui-cells weui-cells_after-title">
-              <navigator url="/pages/call/call?groupId={{groupId}}&taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{dnfList}}" wx:key="{{index}}">
+              <navigator url="/pages/call/call?taskId={{item.taskId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for-items="{{dnfList}}" wx:key="{{index}}">
                 <view class="weui-cell__bd text-left">{{item.contactName}}</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access">{{item.status||''}}</view>
               </navigator>

@@ -1,5 +1,9 @@
-page {
-  background: #f4f5f7;
+page{
+  background: #f4f5f7
+}
+
+.list{
+  margin-top: 20rpx;
 }
 
 .module {
@@ -28,4 +32,22 @@ page {
 .module .arrow {
   width: 33rpx;
   height: 33rpx;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 300rpx;
+}
+
+.empty .icon {
+  width: 243rpx;
+  height: 158rpx;
+}
+
+.empty .txt {
+  font-size: 32rpx;
+  color: #c2c2c2;
+  margin-top: 35rpx;
 }

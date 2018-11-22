@@ -31,14 +31,14 @@
       <text class='emptyTxt2'>请联系管理员给您分配任务</text>
     </view>
   </view>
-  <swiper wx:if="{{tasks.length>0}}" current="{{current}}" class='card'>
+  <swiper wx:if="{{tasks.length>0}}" current="{{current}}" bindchange='swiperChange' class='card'>
     <block wx:for="{{tasks}}" wx:key="{{item.taskGroupId}}">
       <swiper-item>
         <view class='carditem' data-id="{{item.taskGroupId}}">
           <text class='txt1'>{{ item.taskName }}</text>
           <view class='line'></view>
           <view class='carditem2'>
-            <view class='cardsub'>
+            <view class='cardsub' bindtap='openTask' data-id='{{ item.taskGroupId }}'>
               <text class='txt3'>{{ item.totalTaskCnt }}<text style='font-size:32rpx;'>个</text></text>
               <text class='txt2'>客户数</text>
             </view>
@@ -65,7 +65,7 @@
     <image class='icon' src='/image/icon_index_call.png'></image>
     <text class='txt'>开始外呼</text>
   </view>
-  <view class="dialog-mask" wx:if="{{showComplete}}">
+  <view class="dialog-mask" wx:if="{{dailyTaskCnt>0 && showComplete}}">
     <view class="dialog-content">
       <image class='complete-img' src='/image/icon_index_task.png'></image>
       <text class="dialog-txt1">今天的任务已完成！</text>

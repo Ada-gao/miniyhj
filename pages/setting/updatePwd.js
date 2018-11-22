@@ -11,7 +11,9 @@ Page({
           req.put('users/resetPWD/' + app.globalData.userId + '?newPWD=' + password, {
             newPWD: password
           }, function(res) {
-            common.back()
+            wx.reLaunch({
+              url: '/pages/login/login',
+            })
           })
         } else {
           common.showToast('二次输入的密码不一致！')

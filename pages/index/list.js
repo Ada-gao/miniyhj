@@ -28,7 +28,7 @@ Page({
   openTask: function (e) {
     let taskId = e.currentTarget.dataset.taskid
     wx.navigateTo({
-      url: '/pages/call/call?groupId=' + this.data.groupId + '&taskId=' + taskId,
+      url: '/pages/call/call?taskId=' + taskId,
     })
   },
   onShareAppMessage: function () {

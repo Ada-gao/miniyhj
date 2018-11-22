@@ -6,23 +6,30 @@ const app = getApp()
 var timer;
 Page({
   data: {
-    callLogin: false,
-    task: '',
-    lastCallResult: '',
-    icon: '',
-    lastCallDate: '',
-    callSid: '',
-    groupId: '',
     taskId: '',
+    icon: '',
+    lastCallResult: '',
+    lastCallDate: '',
+    task: '',
     isLoading: true,
+    callSid: '',
+    callLogin: false,
+    formGroup: true,
     opacity: 0,
     winHeight: app.globalData.winHeight
   },
   onLoad: function(options) {
-    this.setData({
-      groupId: options.groupId || 0,
-      taskId: options.taskId || 0
-    })
+    let taskId = options.taskId
+    if (taskId) {
+      this.setData({
+        formGroup: true,
+        taskId: taskId
+      })
+    } else {
+      this.setData({
+        formGroup: false
+      })
+    }
   },
   onUnload: function() {
     if (app.globalData.isCommit) {
@@ -34,41 +41,37 @@ Page({
       this.openResult()
       return
     }
+    let url = 'app/miniProgram/nextTask'
+    if (this.data.taskId) {
+      url += '?taskId=' + this.data.taskId
+    }
     let that = this
-    let url = 'app/miniProgram/nextTask?'
-    if (that.data.groupId) {
-      url += 'groupId=' + that.data.groupId + '&'
-    }
-    if (that.data.taskId) {
-      url += 'taskId=' + that.data.taskId
-    }
     req.get(url, function(res) {
-      if (!res.data) {
-        return
+      let task = res.data
+      if (task) {
+        let lastCallResult = '';
+        let icon = ''
+        if (task.lastCallResult === 'NOT_CALL') {
+          lastCallResult = '未外呼'
+          icon = '/image/icon_call_status_null.png'
+        } else if (task.lastCallResult === 'CONNECTED') {
+          lastCallResult = '已接通'
+          icon = '/image/icon_call_status_success.png'
+        } else if (task.lastCallResult === 'NOT_EXIST') {
+          lastCallResult = '空号'
+          icon = '/image/icon_call_status_fail.png'
+        } else if (task.lastCallResult === 'UNCONNECTED') {
+          lastCallResult = '未接通'
+          icon = '/image/icon_call_status_fail.png'
+        }
+        that.setData({
+          icon: icon,
+          lastCallResult: lastCallResult,
+          lastCallDate: util.formatTime(new Date(task.lastCallDate), 'time'),
+          task: task,
+          isLoading: false
+        })
       }
-      let lastCallResult = res.data.lastCallResult;
-      let icon = ''
-      if (lastCallResult === 'NOT_CALL') {
-        lastCallResult = '未外呼'
-        icon = '/image/icon_call_status_null.png'
-      } else if (lastCallResult === 'CONNECTED') {
-        lastCallResult = '已接通'
-        icon = '/image/icon_call_status_success.png'
-      } else if (lastCallResult === 'NOT_EXIST') {
-        lastCallResult = '空号'
-        icon = '/image/icon_call_status_fail.png'
-      } else if (lastCallResult === 'UNCONNECTED') {
-        lastCallResult = '未接通'
-        icon = '/image/icon_call_status_fail.png'
-      }
-      that.setData({
-        isLoading: false,
-        task: res.data,
-        taskId: res.data.taskId,
-        lastCallResult: lastCallResult,
-        icon: icon,
-        lastCallDate: util.formatTime(new Date(res.data.lastCallDate), 'time')
-      })
     })
   },
   collectChange: function() {
@@ -99,11 +102,9 @@ Page({
   },
   callPhone: function(e) {
     let that = this
-    let phneNo = that.data.task.phoneNo
-    if (phneNo === '***********') {
-      let nameId = that.data.task.outboundNameId
-      let taskId = that.data.task.taskId
-      req.post('app/call?nameId=' + nameId + '&taskId=' + taskId, {}, function(res) {
+    let task = that.data.task
+    if (task.phoneNo === '***********') {
+      req.post('app/call?nameId=' + task.outboundNameId + '&taskId=' + task.taskId, {}, function(res) {
         that.setData({
           callSid: res.data.callSid,
           callLogin: true
@@ -118,30 +119,24 @@ Page({
     } else {
       that.openResult()
       wx.makePhoneCall({
-        phoneNumber: phneNo
+        phoneNumber: task.phoneNo
       })
     }
   },
   openMemo: function() {
-    let memo = this.data.task.common || ''
+    let task = this.data.task
+    let memo = task.common || ''
     wx.navigateTo({
-      url: '/pages/memo/memo?taskId=' + this.data.task.taskId + '&memo=' + memo,
+      url: '/pages/memo/memo?taskId=' + task.taskId + '&memo=' + memo,
     })
   },
   openResult: function() {
-    let url = '/pages/result/result'
-    if (this.data.task) {
-      let task = JSON.parse(JSON.stringify(this.data.task))
-      delete task.salesTalk
-      url += '?task=' + JSON.stringify(task)
-    }
+    let task = JSON.parse(JSON.stringify(this.data.task))
+    delete task.salesTalk //减少数据传递大小
+    let url = '/pages/result/result?task=' + JSON.stringify(task) + '&formGroup=' + this.data.formGroup
     if (this.data.callSid) {
       url += '&callsid=' + this.data.callSid
     }
-    if (this.data.groupId) {
-      url += '&groupId=' + this.data.groupId
-    }
-    let that = this
     wx.navigateTo({
       url: url,
     })

@@ -6,10 +6,18 @@
     <text>未外呼列表</text>
   </view>
 </view>
-<view class='list' wx:for="{{tasks}}">
-  <view class='module' bindtap='openTask' data-taskid='{{item.taskId}}'>
-    <text class='name'>{{item.contactName}}</text>
-    <text class='value'>{{item.taskDate}}</text>
-    <image class='arrow' src='/image/icon_common_arrow.png' />
-  </view>
+<view class='list'>
+  <block wx:for="{{tasks}}">
+    <view class='module' bindtap='openTask' data-taskid='{{item.taskId}}'>
+      <text class='name'>{{item.contactName}}</text>
+      <text class='value'>{{item.taskDate}}</text>
+      <image class='arrow' src='/image/icon_common_arrow.png' />
+    </view>
+  </block>
+   <block wx:if="{{tasks.length === 0}}">
+    <view class='empty'>
+      <image class='icon' src='/image/icon_customer_empty.png'></image>
+      <text class='txt'>暂无数据</text>
+    </view>
+  </block>
 </view>
