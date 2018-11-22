@@ -16,19 +16,4 @@
     <text class='txt'>暂无数据</text>
   </view>
 </block>
-<block wx:if="{{listData.content.length > 0}}">
-  <block wx:if="{{hasMore}}">
-    <view class='more'>
-      <view class='line' />
-      <text class='txt'>正在加载中</text>
-      <view class='line' />
-    </view>
-  </block>
-  <block wx:else>
-    <view class='more'>
-      <view class='line' />
-      <text class='txt'>没有更多了</text>
-      <view class='line' />
-    </view>
-  </block>
-</block>
+<loadmore size="{{listData.content.length}}" hasMore="{{hasMore}}" />

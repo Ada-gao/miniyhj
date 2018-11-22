@@ -2,6 +2,7 @@
   "enablePullDownRefresh": true,
   "backgroundColor": "#f4f5f7",
   "usingComponents": {
-    "search": "/components/search"
+    "search": "/components/search",
+    "loadmore": "/components/loadmore"
   }
 }

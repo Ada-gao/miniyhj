@@ -1,0 +1,16 @@
+<block wx:if="{{size > 0}}">
+  <block wx:if="{{hasMore}}">
+    <view class='more'>
+      <view class='line' />
+      <text class='txt'>上拉加载更多</text>
+      <view class='line' />
+    </view>
+  </block>
+  <block wx:else>
+    <view class='more'>
+      <view class='line' />
+      <text class='txt'>没有更多了</text>
+      <view class='line' />
+    </view>
+  </block>
+</block>
