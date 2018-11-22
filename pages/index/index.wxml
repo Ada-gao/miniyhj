@@ -31,7 +31,7 @@
       <text class='emptyTxt2'>请联系管理员给您分配任务</text>
     </view>
   </view>
-  <swiper wx:if="{{tasks.length>0}}" current="{{current}}" bindchange='swiperChange' class='card'>
+  <swiper wx:if="{{tasks.length>0}}" previous-margin="60rpx" next-margin="30rpx" current="{{current}}" bindchange='swiperChange' class='card'>
     <block wx:for="{{tasks}}" wx:key="{{item.taskGroupId}}">
       <swiper-item>
         <view class='carditem' data-id="{{item.taskGroupId}}">
