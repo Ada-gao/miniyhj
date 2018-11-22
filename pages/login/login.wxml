@@ -12,8 +12,8 @@
       </view>
       <view class='item'>
         <image class='icon' src='/image/icon_login_pwd.png' />
-        <input class="input" placeholder-class="phcolor" placeholder="请输入密码" maxlength='12' password="{{isShowPassword}}" name="password" />
-        <image class='icon' src="{{isShowPassword?'/image/icon_login_pwd_hide.png':'/image/icon_login_pwd_show.png'}}" bindtap='switchPwd' />
+        <input class="input" password="{{isPassword}}" placeholder-class="phcolor" placeholder="请输入密码" maxlength='12' name="password" />
+        <image class='icon' src="{{isPassword?'/image/icon_login_pwd_hide.png':'/image/icon_login_pwd_show.png'}}" bindtap='switchPwd' />
       </view>
       <view>
         <button class='login' formType="submit">登录</button>

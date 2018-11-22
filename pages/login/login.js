@@ -5,7 +5,7 @@ Page({
   data: {
     redirect: '',
     isTab: false,
-    isShowPassword: true
+    isPassword: true,
   },
   onLoad: function(options) {
     delete app.globalData.token
@@ -50,9 +50,9 @@ Page({
     }
   },
   switchPwd: function(e) {
-    let isShowPassword = !this.data.isShowPassword
     this.setData({
-      isShowPassword: isShowPassword
+      isPassword: !this.data.isPassword,
+      isFocus:true
     })
   },
   openTrial: function() {

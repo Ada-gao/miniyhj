@@ -27,7 +27,8 @@ Page({
       }
       that.setData({
         tasks: tasks,
-        hasMore: hasMore
+        hasMore: hasMore,
+        pageIndex: that.data.pageIndex + 1,
       })
     }, true, function() {
       wx.stopPullDownRefresh();
@@ -47,9 +48,6 @@ Page({
   },
   onReachBottom: function() {
     if (this.data.hasMore) {
-      this.setData({
-        pageIndex: this.data.pageIndex + 1,
-      })
       this.getData()
     }
   },
