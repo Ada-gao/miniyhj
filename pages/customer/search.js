@@ -19,7 +19,7 @@ Page({
   },
   getFollows: function(name) {
     let that = this
-    req.get('task/getPotentialUser?type=follow&name=' + name, function(res) {
+    req.get('task/getPotentialUser?pageSize=20&type=follow&name=' + name, function(res) {
       that.setData({
         followList: res.data.content,
       })
@@ -27,7 +27,7 @@ Page({
   },
   getStars: function(name) {
     let that = this
-    req.get('task/getPotentialUser?type=star&name=' + name, function(res) {
+    req.get('task/getPotentialUser?pageSize=20&type=star&name=' + name, function(res) {
       that.setData({
         starList: res.data.content,
       })

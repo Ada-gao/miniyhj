@@ -3,39 +3,52 @@ var common = require('../../common/common.js')
 Page({
   data: {
     tabType: 'follow',
-    followData:'',
-    starData: '',
+    listData: '',
+    pageIndex: 0,
+    hasMore: true,
   },
-  onShow: function() {
-    this.getFollows()
-    this.getStars()
+  onLoad: function(options) {
+    this.getData()
   },
-  getFollows: function() {
+  getData: function() {
     let that = this
-    req.get('task/getPotentialUser?type=follow', function(res) {
+    req.get('task/getPotentialUser?pageSize=20&type=' + that.data.tabType + '&pageIndex=' + that.data.pageIndex, function(res) {
+      let model = res.data
+      let hasMore = true
+      if (that.data.pageIndex >= model.totalPages) { 
+        hasMore = false
+      }
+      if (that.data.pageIndex > 0) {
+        model.content = that.data.listData.content.concat(model.content)
+      }
       that.setData({
-        followData: res.data
+        listData: model,
+        hasMore: hasMore
       })
+    }, true, function () {
+      wx.stopPullDownRefresh();
     })
   },
-  getStars: function() {
-    let that = this
-    req.get('task/getPotentialUser?type=star', function(res) {
-      that.setData({
-        starData: res.data,
-      })
+  onPullDownRefresh: function () {
+    this.setData({
+      pageIndex: 0,
     })
+    this.getData()
+  },
+  onReachBottom: function () {
+    if (this.data.hasMore) {
+      this.setData({
+        pageIndex: this.data.pageIndex + 1,
+      })
+      this.getData()
+    }
   },
   switchTab: function(e) {
-    let tabType = e.currentTarget.dataset.type
     this.setData({
-      tabType: tabType
+      tabType: e.currentTarget.dataset.type,
+      pageIndex: 0
     })
-    if (tabType === 'follow') {
-      this.getFollows()
-    } else {
-      this.getStars()
-    }
+    this.getData()
   },
   openTask: function(e) {
     let taskId = e.currentTarget.dataset.taskid
