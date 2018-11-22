@@ -35,6 +35,8 @@ Page({
     })
     this.getData()
   },
+  onPageScroll: function (e) {
+  },
   onReachBottom: function () {
     if (this.data.hasMore) {
       this.setData({
@@ -45,7 +47,7 @@ Page({
   },
   switchTab: function(e) {
     this.setData({
-      tabType: e.currentTarget.dataset.type,
+      tabType: e.detail.tabType,
       pageIndex: 0
     })
     this.getData()
@@ -54,11 +56,6 @@ Page({
     let taskId = e.currentTarget.dataset.taskid
     wx.navigateTo({
       url: '/pages/call/call?taskId=' + taskId,
-    })
-  },
-  openSearch: function(e) {
-    wx.navigateTo({
-      url: '/pages/customer/search',
     })
   },
   onShareAppMessage: function() {

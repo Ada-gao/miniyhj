@@ -3,20 +3,7 @@
     <text>潜客列表</text>
   </view>
 </view>
-<view class='search' bindtap='openSearch'>
-  <image class='icon' src='/image/icon_customer_search.png'></image>
-  <text class='txt'>搜索</text>
-</view>
-<view class='tab'>
-  <view class='head'>
-    <view class="{{tabType==='follow'?'active':'default'}}" bindtap='switchTab' data-type='follow'>
-      <text>意向客户{{listData.totalElements > 0 && tabType==='follow' ?'('+ listData.totalElements +')' : ''}}</text>
-    </view>
-    <view class="{{tabType==='star'?'active':'default'}}" bindtap='switchTab' data-type='star'>
-      <text>星标客户{{listData.totalElements > 0 && tabType==='star' ?'('+ listData.totalElements +')' : ''}}</text>
-    </view>
-  </view>
-</view>
+<search totalElements="{{listData.totalElements}}" bindswitchTab="switchTab"></search>
 <block wx:for="{{listData.content}}">
   <view class='module' bindtap='openTask' data-taskid='{{item.taskId}}'>
     <text class='name'>{{item.contactName}}</text>
