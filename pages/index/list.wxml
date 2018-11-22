@@ -3,7 +3,7 @@
     <image class='tabBarIcon' src='/image/icon_common_back.png'></image>
   </view>
   <view class='tabBarTitle'>
-    <text>未外呼列表</text>
+    <text>剩余未呼列表</text>
   </view>
 </view>
 <view class='list'>
@@ -14,10 +14,26 @@
       <image class='arrow' src='/image/icon_common_arrow.png' />
     </view>
   </block>
-   <block wx:if="{{tasks.length === 0}}">
+  <block wx:if="{{tasks.length === 0}}">
     <view class='empty'>
       <image class='icon' src='/image/icon_customer_empty.png'></image>
       <text class='txt'>暂无数据</text>
     </view>
+  </block>
+  <block wx:if="{{tasks.length > 0}}">
+    <block wx:if="{{hasMore}}">
+      <view class='more'>
+        <view class='line' />
+        <text class='txt'>正在加载中</text>
+        <view class='line' />
+      </view>
+    </block>
+    <block wx:else>
+      <view class='more'>
+        <view class='line' />
+        <text class='txt'>没有更多了</text>
+        <view class='line' />
+      </view>
+    </block>
   </block>
 </view>

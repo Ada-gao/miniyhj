@@ -33,6 +33,7 @@ page {
   height: 36rpx;
   float: right;
   margin-top: 2rpx;
+  padding: 20rpx;
 }
 
 .scroll .info2 {

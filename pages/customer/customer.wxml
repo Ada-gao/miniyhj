@@ -11,10 +11,10 @@
   <view class='tab'>
     <view class='head'>
       <view class="{{tabType==='follow'?'active':'default'}}" bindtap='switchTab' data-type='follow'>
-        <text>意向客户（{{followData.totalElements}}）</text>
+        <text>意向客户（{{followData.totalElements || 0}}）</text>
       </view>
       <view class="{{tabType==='star'?'active':'default'}}" bindtap='switchTab' data-type='star'>
-        <text>星标客户（{{starData.totalElements}}）</text>
+        <text>星标客户（{{starData.totalElements || 0}}）</text>
       </view>
     </view>
   </view>
