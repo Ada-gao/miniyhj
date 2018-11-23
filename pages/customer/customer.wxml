@@ -10,7 +10,7 @@
     <image class='arrow' src='/image/icon_common_arrow.png' />
   </view>
 </block>
-<block wx:if="{{(listData.content.length === 0)}}">
+<block wx:if="{{(!listData || listData.content.length === 0)}}">
   <view class='empty'>
     <image class='icon' src='/image/icon_customer_empty.png'></image>
     <text class='txt'>暂无数据</text>

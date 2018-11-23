@@ -13,9 +13,17 @@ Page({
   },
   formSubmit: function(e) {
     let that = this
+    let memo = e.detail.value.memo
     req.put('app/addCommon/' + that.data.taskId, {
-      common: e.detail.value.memo
+      common: memo
     }, function(res) {
+      var pages = getCurrentPages();
+      var prevPage = pages[pages.length - 2];
+      let task = prevPage.data.task
+      task.common = memo
+      prevPage.setData({
+        task: task
+      })
       wx.navigateBack({
         delta: 1
       })

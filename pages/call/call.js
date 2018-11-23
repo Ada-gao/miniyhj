@@ -16,7 +16,8 @@ Page({
     callLogin: false,
     formGroup: true,
     opacity: 0,
-    winHeight: app.globalData.winHeight
+    winHeight: app.globalData.winHeight,
+    openMemo:false,
   },
   onLoad: function(options) {
     let taskId = options.taskId
@@ -37,6 +38,13 @@ Page({
     }
   },
   onShow: function() {
+    //如果是从备注页面回来则不刷新
+    if (this.data.openMemo){
+      this.setData({
+        openMemo:false
+      })
+      return;
+    }
     if (app.globalData.isCommit) {
       this.openResult()
       return
@@ -49,12 +57,9 @@ Page({
     req.get(url, function(res) {
       let task = res.data
       if (task) {
-        let lastCallResult = '';
-        let icon = ''
-        if (task.lastCallResult === 'NOT_CALL') {
-          lastCallResult = '未外呼'
-          icon = '/image/icon_call_status_null.png'
-        } else if (task.lastCallResult === 'CONNECTED') {
+        let lastCallResult = '未外呼';
+        let icon = '/image/icon_call_status_null.png'
+        if (task.lastCallResult === 'CONNECTED') {
           lastCallResult = '已接通'
           icon = '/image/icon_call_status_success.png'
         } else if (task.lastCallResult === 'NOT_EXIST') {
@@ -124,6 +129,9 @@ Page({
     }
   },
   openMemo: function() {
+    this.setData({
+      openMemo: true
+    })
     let task = this.data.task
     let memo = task.common || ''
     wx.navigateTo({
