@@ -15,7 +15,7 @@ Page({
     req.get('task/getPotentialUser?pageSize=20&type=' + that.data.tabType + '&pageIndex=' + that.data.pageIndex, function(res) {
       let model = res.data
       let hasMore = true
-      if (that.data.pageIndex >= model.totalPages) { 
+      if (that.data.pageIndex >= model.totalPages - 1) { 
         hasMore = false
       }
       if (that.data.pageIndex > 0) {

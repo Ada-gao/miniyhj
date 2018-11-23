@@ -17,16 +17,16 @@ Page({
   getData: function() {
     let that = this
     req.get('task/getTaskInfo/' + that.data.groupId + '?pageSize=20&type=callAgain&pageIndex=' + that.data.pageIndex, function(res) {
-      let tasks = res.data
+      let model = res.data
       let hasMore = true
-      if (tasks.length < 20) { //这样判断不是很准确，需要后台返回对应字段
+      if (that.data.pageIndex >= model.totalPages - 1) {
         hasMore = false
       }
       if (that.data.pageIndex > 0) {
-        tasks = that.data.tasks.concat(tasks)
+        model.content = that.data.tasks.concat(model.content)
       }
       that.setData({
-        tasks: tasks,
+        tasks: model.content,
         hasMore: hasMore,
         pageIndex: that.data.pageIndex + 1,
       })
