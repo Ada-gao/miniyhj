@@ -4,59 +4,59 @@ const app = getApp()
 Page({
   data: {
     type: '',
-    keyword:'',
+    keyword: '',
     pageIndex: 0,
     hasMore: true,
-    list:''
+    list: ''
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
       type: options.type,
       keyword: options.keyword
     })
     this.getData()
   },
-  getData: function () {
+  getData: function() {
     let that = this
-    req.get('task/getPotentialUser?pageSize=20&type='+that.data.type+'&name=' + that.data.keyword + '&pageIndex=' + that.data.pageIndex, function (res) {
+    req.get('task/getPotentialUser?pageSize=20&type=' + that.data.type + '&name=' + that.data.keyword + '&pageIndex=' + that.data.pageIndex, function(res) {
       let model = res.data
       let hasMore = true
       if (that.data.pageIndex >= model.totalPages - 1) {
         hasMore = false
       }
       if (that.data.pageIndex > 0) {
-        model.content = that.data.tasks.concat(model.content)
+        model.content = that.data.list.concat(model.content)
       }
       that.setData({
         list: model.content,
         hasMore: hasMore,
         pageIndex: that.data.pageIndex + 1,
       })
-    }, true, function () {
+    }, true, function() {
       wx.stopPullDownRefresh();
     })
   },
-  openTask: function (e) {
+  openTask: function(e) {
     let taskId = e.currentTarget.dataset.taskid
     wx.navigateTo({
       url: '/pages/call/call?taskId=' + taskId,
     })
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.setData({
       pageIndex: 0,
     })
     this.getData()
   },
-  onReachBottom: function () {
+  onReachBottom: function() {
     if (this.data.hasMore) {
       this.getData()
     }
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return common.onShareAppMessage()
   },
-  back: function () {
+  back: function() {
     common.back()
   }
 })
