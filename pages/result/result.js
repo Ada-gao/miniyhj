@@ -84,15 +84,10 @@ Page({
     })
   },
   collectChange: function () {
-    let that = this
-    let task = that.data.task
-    req.put('task/addStar/' + task.taskId + '?star=' + !task.star, {
-      star: !task.star
-    }, function (res) {
-      task.star = !task.star
-      that.setData({
+    let task = this.data.task
+    task.star = !task.star
+    this.setData({
         task: task
-      })
     })
   },
   formSubmit: function(e) {
@@ -105,7 +100,7 @@ Page({
         contactName: e.detail.value.contactName,
         mobileNo: e.detail.value.mobileNo,
         wechatNo: e.detail.value.wechatNo,
-        common: e.detail.value.common
+        common: e.detail.value.common,
       })
       let phoneNo = that.data.task.phoneNo
       if (phoneNo === '***********') {
@@ -150,7 +145,8 @@ Page({
       gender: that.data.task.gender,
       mobileNo: that.data.mobileNo,
       wechatNo: that.data.wechatNo,
-      age: that.data.task.age
+      age: that.data.task.age,
+      star: that.data.task.star
     }, function(res) {
       that.getCallMoney()
     }, false)
