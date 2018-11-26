@@ -13,6 +13,7 @@
     "pages/result/result",
     "pages/customer/customer",
     "pages/customer/search",
+    "pages/customer/more",
     "pages/me/me",
     "pages/setting/setting",
     "pages/setting/updateName",

@@ -17,10 +17,14 @@
     <text>意向客户</text>
   </view>
   <view wx:for="{{followList}}">
-    <view class='module' bindtap='openTask'  data-taskid='{{item.taskId}}'>
+    <view class='module' bindtap='openTask' data-taskid='{{item.taskId}}'>
       <text class='name'>{{item.contactName}}</text>
       <image class='arrow' src='/image/icon_common_arrow.png' />
     </view>
+  </view>
+  <view class='module' bindtap='openMore' data-type='follow' wx:if="{{hasFollow}}">
+    <text class='name' style='color:#4F8AEE'>查看更多</text>
+    <image class='arrow' src='/image/icon_common_arrow.png' />
   </view>
 </view>
 <view class='list' wx:if="{{starList.length > 0}}">
@@ -28,15 +32,19 @@
     <text>星标客户</text>
   </view>
   <view wx:for="{{starList}}">
-    <view class='module' bindtap='openTask'  data-taskid='{{item.taskId}}'>
+    <view class='module' bindtap='openTask' data-taskid='{{item.taskId}}'>
       <text class='name'>{{item.contactName}}</text>
       <image class='arrow' src='/image/icon_common_arrow.png' />
     </view>
   </view>
+  <view class='module' bindtap='openMore' data-type='star' wx:if="{{hasStar}}">
+    <text class='name' style='color:#4F8AEE'>查看更多</text>
+    <image class='arrow' src='/image/icon_common_arrow.png' />
+  </view>
 </view>
 <block wx:if="{{followList.length === 0 && starList.length === 0}}">
-    <view class='empty'>
-      <image class='icon' src='/image/icon_customer_empty.png'></image>
-      <text class='txt'>暂无数据</text>
-    </view>
+  <view class='empty'>
+    <image class='icon' src='/image/icon_customer_empty.png'></image>
+    <text class='txt'>暂无数据</text>
+  </view>
 </block>
