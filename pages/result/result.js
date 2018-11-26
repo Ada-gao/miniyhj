@@ -167,19 +167,27 @@ Page({
       source: 'miniProgram'
     }, function(res) {
       that.goMessage()
-      req.get('app/miniProgram/nextTask', function(res) {
+      if (that.data.formGroup === 'false'){
+        req.get('app/miniProgram/nextTask', function (res) {
+          common.showToast('提交成功')
+          getApp().globalData.isCommit = false
+          if (res.data) {
+            wx.navigateBack({
+              delta: 1
+            });
+          } else {
+            wx.navigateBack({
+              delta: 2
+            });
+          }
+        })
+      }else{
         common.showToast('提交成功')
         getApp().globalData.isCommit = false
-        if (that.data.formGroup === 'false' && res.data){
-          wx.navigateBack({
-            delta: 1
-          });
-        }else{
-          wx.navigateBack({
-            delta: 2
-          });
-        }
-      })
+        wx.navigateBack({
+          delta: 2
+        });
+      }
     }, false)
   },
   onShareAppMessage: function () {
